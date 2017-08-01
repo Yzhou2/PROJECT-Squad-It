@@ -1,0 +1,124 @@
+
+.LandingHeader {
+  height: 80px;
+  width: 100%;
+  background: gray;
+  display: flex;
+  justify-content: space-between;
+}
+
+.LandingBody {
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  border: 2px solid red;
+  justify-content: space-between;
+  align-items: center;
+  height: 42px;
+}
+
+.headerInner {
+  display: flex;
+}
+
+.headerInner input{
+  height: 23px;
+  width: 38vw;
+}
+
+.search {
+  height: 29px;
+  width: 29px;
+}
+
+.leftMargin {
+  height: 29px;
+  border: 2px solid green;
+}
+
+.headerlogo {
+  width: 180px;
+}
+
+.sidebar {
+  width: 12.7%;
+  height: 100vh;
+  border: 2px solid orange;
+  display: inline-block;
+  float: left;
+}
+
+.sidebarTop {
+  height: 200px;
+  border: 2px solid gray;
+}
+
+
+.sidebarImg {
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
+  margin-top: 30px;
+  margin-left: 40px;
+  background-color: gray;
+}
+
+.sidebarName {
+  height: 20px;
+  width: 90px;
+  border: 2px solid black;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.sideBarSelection {
+  height: 40px;
+  width: 100%;
+  border: 1px solid gray;
+}
+
+.DashboardContainer {
+  border: 2px solid teal;
+  display: inline-block;
+  float: left;
+  height: 100vh;
+  width: 86.7%;
+}
+
+.DashboardImg {
+  height: 180px;
+  width: 100%;
+  background: lightgreen;
+}
+
+.createSquad {
+  height: 150px;
+  width: 100%;
+  background: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.squadList {
+  height: 350px;
+  width: 100%;
+  background: lightpink;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.squadsListBox {
+  height: 80%;
+  width: 25%;
+  background: orange;
+}
+
+.upcomingTrips {
+  height: 200px;
+  width: 100%;
+  background: lightyellow;
+}
