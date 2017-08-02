@@ -6,7 +6,10 @@ const bodyParser = require('body-parser')
 const app = express();
 const keys = require('./server/keys')
 const massive = require('massive');
+const controller = require('./server/controllers/controllers');
+
 const connectionString = keys.address;
+
 
 app.use(bodyParser.json());
 app.use(session({
@@ -14,16 +17,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -43,8 +36,8 @@ massive( connectionString ).then( db => {
       //  console.log(user, 'hihihihihihihi')
         user = user[0];
         if (!user) { //if there isn't one, we'll create one!
-          console.log('CREATING USER');
-          db.createUserByAuthID([profile.name.givenName, profile.id]).then(function(user,err) {
+          console.log('CREATING USER', profile);
+          db.createUserByAuthID([profile.name.givenName, profile.name.familyName, profile.id, profile.emails[0].value]).then(function(user,err) {
             console.log('USER CREATED', user);
             return done(err, user); // GOES TO SERIALIZE USER
           })
@@ -70,8 +63,10 @@ massive( connectionString ).then( db => {
   app.get('/auth/callback', passport.authenticate('auth0', {successRedirect:'http://localhost:3000/dashboard'}));
   app.get('/me', function(req, res){
     res.send(req.user)
-  })
-
+  });
+  // app.get('/api/profileImg', controller.getPic);
+  app.get('/api/firstName/:authid', controller.getFirstName);
+  // app.put('/api/editprofile/:authid', )
 });
 
 app.listen(3001, ()=>{

@@ -1,1 +1,1 @@
-SELECT profile_img_url FROM User WHERE UserID = $1;
+SELECT profile_img_url FROM users WHERE UserID = $1;
