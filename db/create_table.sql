@@ -29,11 +29,11 @@ CREATE TABLE users (
 
 
 CREATE TABLE travelPlan (
-  TravelPlan_ID： int，
-  Country: TEXT,
-  City: TEXT,
-  ARRIVAL: DATE,
-  DEPART: DATE,
+  TravelPlan_ID int，
+  Country TEXT,
+  City TEXT,
+  ARRIVAL DATE,
+  DEPART DATE,
   FOREIGN KEY (UserID) REFERENCES User(UserID)
 )；
 
@@ -45,23 +45,23 @@ CREATE Table user_Squad (
 
 
 CREATE TABLE squad (
-  squad_id: Serial PRIMARY KEY,
-  name: TEXT,
-  Description: TEXT,
-  Address: TEXT,
-  City: TEXT,
-  Country: TEXT,
-  StartDate：Date,
-  EndDate: Date,
-  Memberlist_Id: Int,
+  squad_id Serial PRIMARY KEY,
+  name TEXT,
+  Description TEXT,
+  Address TEXT,
+  City TEXT,
+  Country TEXT,
+  StartDate Date,
+  EndDate Date,
+  Memberlist_Id Int,
 )
 
 
 CREATE Table bucketList (
-  BucketList_Id: int,
+  BucketList_Id int,
   FOREIGN KEY (squad_id) REFERENCES BucketList(squad_id)
-  squad_id: int,
-  title: TEXT,
-  Stars: Int,
-  Location: TEXT
+  squad_id int,
+  title TEXT,
+  Stars Int,
+  Location TEXT
 )

@@ -165,13 +165,64 @@ video {
   justify-content: center;
 }
 
-.DashboardContainer, .ProfileContainer {
+.DashboardContainer{
   border: 2px solid teal;
   display: inline-block;
   float: left;
   height: 100vh;
   width: 86.7%;
   background: #f4f4f5;
+}
+
+.ProfileContainer {
+  border: 2px solid teal;
+  display: inline-block;
+  float: left;
+  height: 1450px;
+  width: 86.7%;
+  background: #f4f4f5;
+}
+
+.aboutMeDetailContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+}
+
+.basicInfoList {
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 0.5px solid lightgray;
+  width: 100%;
+  height: 55px;
+}
+
+.Profilereview {
+  border: 2px solid red;
+  width: 650px;
+  height: 480px;
+}
+
+.basicInfo {
+  font-size: 14px;
+  border: 2px solid blue;
+  height: 600px;
+  width: 400px;
+}
+
+.basic_title {
+  font-size: 18px;
+  border: 2px solid red;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.aboutMeTitle, .aboutMeDetail {
+  display: flex;
+  align-items: center;
 }
 
 .DashboardImg {
@@ -189,7 +240,7 @@ video {
   height: 300px;
   width: 97%;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 20px;
   background: white;
   box-shadow: 0 3px 1px #B8ADA2;
 }
@@ -308,7 +359,7 @@ video {
   height: 220px;
   width: 330px;
   border: 2px solid #b5b5b5;
-  margin-top: 15px;
+  margin-top: 10px;
   border-radius: 10px;
   box-shadow: 3px 3px 1.25px #888888;
 }
@@ -343,8 +394,8 @@ video {
 .ProfileTopBar {
   height: 130px;
   width: 100%;
-  background: pink;
-  position: absolute;
+  background: url('https://i.imgur.com/tHtIR3y.png') no-repeat;
+ background-size: 100%;
 }
 
 .ProfilePicBox {
@@ -353,48 +404,122 @@ video {
   background: lightgreen;
   position: relative;
   top: 50px;
-  left: 37%;
+  left: 42.5%;
 }
 
 .profileTopUnder {
-  background: yellow;
+  background: white;
   width: 100%;
-  height: 190px;
+  height: 60px;
   margin-bottom: 30px;
+  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
 }
 
 .avaliableFor {
+  /*border: 2px solid green;*/
   height: 80px;
   width: 90%;
-  background: violet;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: white;
+  /*margin-bottom: 30px;*/
+  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 4px 4px 2px lightgray;
+}
+
+.avaliableForContent {
+  width: 98%;
+  height: 100%;
+  /*border: 2px solid red;*/
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
+.avaliableStatus {
+  color: #636b75;
+  font-family: 'Lobster';
+  font-size: 25px;
+}
+
+.editProfileBtn {
+  height: 30px;
+  width: 130px;
+  color: white;
+  background-color: #e57a13;
+  font-size: 15px;
+  margin-left: 5px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 50vh;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+
+
 .profileAlbum {
-  height: 200px;
+  border-radius: 10px;
+  height: 220px;
   width: 90%;
-  background: lightblue;
+  background: white;
   margin: 0 auto;
   margin-top: 30px;
+  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 4px 4px 2px lightgray;
+}
+
+.profileAlbum p {
+  color: #7e8794;
 }
 
 .albumText {
+  /*border: 2px solid red;*/
+  width: 97%;
+  color: #7e8794;
+  font-weight: bold;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
 
 .albumPic {
+  width: 97%;
+  margin: 0 auto;
+  /*border: 2px solid red;*/
   display: flex;
   justify-content: space-between;
 }
 .albumInner {
   height: 150px;
   width: 150px;
-  margin-left: 20px;
   background: orange;
+  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 4px 4px 2px lightgray;
+  border-radius: 10px;
+}
+
+
+.aboutMe {
+  height: 35px;
+  width: 100%;
+  background: #e57a13;
+  display: flex;
+  align-items: center;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.aboutMe div {
+  margin-left: 17px;
 }
 
 .profileUpcoming {
@@ -406,13 +531,26 @@ video {
 }
 
 
-.AboutMe {
-  height: 400px;
+.AboutMeContainer {
+  height: 840px;
   width: 90%;
   margin: 0 auto;
   margin-top: 30px;
-  background: teal;
+  background: white;
+  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 4px 4px 2px lightgray;
+  border-radius: 10px;
 }
+
+.aboutMeContent{
+  width: 97%;
+  margin: 0 auto;
+  /*border: 2px solid red;*/
+  margin-top: 15px;
+
+}
+
 
 .profileTags {
   display: flex;

@@ -8,10 +8,11 @@ module.exports = {
   },
   getUserProfile: (req, res) => {
     const db = req.app.get('db');
-    console.log(req.user, 'hiiiiiiiiiiiii')
+    console.log('server req.user', req.user)
     db.get_user_profile([req.user.authid]).then(
-      user => res.status(200).send(user)
-    )
+      user => res.status(200).send(user))
+    // res.status(200).send({name: "yiran"})
+
   },
 
   updateProfile: (req, res) => {
@@ -23,7 +24,7 @@ module.exports = {
 
   CreateSquad: (req, res) => {
     const db = req.app.get('db');
-    db.create_squad([req.body,req.user.authid]).then(
+    db.create_squad([req.body.name]).then(
       squad => res.status(200).send(squad)
     )
   },

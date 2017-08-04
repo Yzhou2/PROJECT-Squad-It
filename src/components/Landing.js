@@ -7,7 +7,7 @@ export default function Landing() {
     <div className="landingMain">
 
     <div className="landingTop">
-      <img src='https://i.imgur.com/vhANm1q.png' />
+      <img src='https://i.imgur.com/E7Zuby6.png' />
     </div>
 
 

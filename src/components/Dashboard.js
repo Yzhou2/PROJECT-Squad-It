@@ -14,7 +14,7 @@ export default function Dashboard() {
         <div className="tripPlan">
 
             <div className="TopBox">
-              <div className="YourTrip">Your Trip Plans</div>
+              <div className="YourTrip">Your Travel Plans</div>
               <button className="AddTrip"> + Add Trip Plans</button>
             </div>
 
@@ -87,22 +87,34 @@ export default function Dashboard() {
             <div className="squadBox">
               <div className="squadTop">Current Squads</div>
               <div className="line"></div>
-            <div className="squadList">
-              <div>The Legend</div>
-              <button className="squaddelete">DELETE</button>
-            </div>
+
+              <div className="squadList">
+                <div>The Legend</div>
+                <button className="squaddelete">REMOVE</button>
+              </div>
             </div>
 
 
             <div className="squadBox">
               <div className="squadTop">Past Squads</div>
               <div className="line"></div>
+
+              <div className="squadList">
+                <div>The Legend</div>
+                <button className="squaddelete">DELETE</button>
+              </div>
             </div>
 
 
+
             <div className="squadBox">
-              <div className="squadTop">Bucket Lists</div>
+              <div className="squadTop">Bucket List</div>
               <div className="line"></div>
+
+              <div className="squadList">
+                <div>The Legend</div>
+                <button className="squaddelete">DELETE</button>
+              </div>
             </div>
           </div>
       </div>

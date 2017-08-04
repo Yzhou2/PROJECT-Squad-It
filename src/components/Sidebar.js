@@ -18,7 +18,9 @@ export default class Sidebar extends Component {
 
 
   componentDidMount() {
-  axios.get( 'http://localhost:3001/api/user' ).then( response => {
+    console.log('mounted')
+  axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
+    console.log('response!!!!!!!',response)
     this.setState({ user: response });
   });
 }

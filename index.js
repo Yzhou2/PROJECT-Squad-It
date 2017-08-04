@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const Auth = require('passport-auth0');
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express();
 const keys = require('./server/keys')
@@ -10,7 +11,13 @@ const controller = require('./server/controllers/controllers');
 
 const connectionString = keys.address;
 
+var corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(session({
   secret:'dsadsfgdsdfsdffghio',
@@ -69,7 +76,7 @@ massive( connectionString ).then( db => {
   // app.get('/api/profileImg', controller.getPic);
   app.get('/api/user', controller.getUserProfile);
   app.put('/api/editprofile', controller.updateProfile);
-  app.put('/api/squad', controller.CreateSquad)
+  app.post('/api/squad', controller.CreateSquad)
 });
 
 app.listen(3001, ()=>{

@@ -27,7 +27,7 @@ handleChange(event) {
 
         <div>
         <input onChange={this.handleChange} />
-        <button type="submit" className="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <button type="submit" className="search"><i className="fa fa-search" aria-hidden="true"></i></button>
         </div>
 
       </div>

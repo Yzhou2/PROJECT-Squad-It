@@ -23,6 +23,7 @@ export default class CreateSquad extends Component {
       this.handlechangeCountry = this.handlechangeCountry.bind(this);
       this.handlechangeStartDate = this.handlechangeStartDate.bind(this);
       this.handlechangeEndDate = this.handlechangeEndDate.bind(this);
+      this.handleClick = this.handleClick.bind(this);
     }
 
 
@@ -68,8 +69,9 @@ export default class CreateSquad extends Component {
       })
     }
 
-    componentDidMount() {
-    axios.post( 'http://localhost:3001/api/squad'/*, {this.state}*/ ).then( response => response)
+    handleClick() {
+      console.log('clicked save')
+    axios.post( 'http://localhost:3001/api/squad', this.state ).then( response => response)
   }
 
 
@@ -110,7 +112,7 @@ export default class CreateSquad extends Component {
           <div>Description</div>
           <input onChange={this.handlechangeDescription}></input>
 
-          <button>save</button>
+          <button onClick={this.handleClick}>save</button>
         </div>
       )
     }
