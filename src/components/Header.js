@@ -23,9 +23,9 @@ handleChange(event) {
   return (
     <div className="header">
       <div className="headerInner">
-        <div className="leftMargin headerlogo">logo</div>
+        <div className="leftMargin headerlogo"><img src='https://i.imgur.com/E7Zuby6.png' /></div>
 
-        <div className="leftMargin">
+        <div>
         <input onChange={this.handleChange} />
         <button type="submit" className="search"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>

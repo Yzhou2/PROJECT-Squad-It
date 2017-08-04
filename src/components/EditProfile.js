@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 
 export default class EditProfile extends Component {
   constructor() {
@@ -37,6 +37,12 @@ export default class EditProfile extends Component {
   this.handleChangeDescription = this.handleChangeDescription.bind(this);
   this.handleChangeOccupation = this.handleChangeOccupation.bind(this);
   this.handleChangeTags = this.handleChangeTags.bind(this);
+  }
+
+
+  componentDidMount(){
+    axios.post('http://localhost:3001/api/editprofile'/*, {this.state.Gender}*/).then(res => res)
+
   }
 
 

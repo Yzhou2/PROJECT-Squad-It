@@ -1,14 +1,88 @@
 
-.LandingHeader {
-  height: 80px;
-  width: 100%;
-  background: gray;
-  display: flex;
-  justify-content: space-between;
+
+video {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
+  width: auto;
+  height: auto;
+  background-size: cover;
+  transition: 1s opacity;
 }
 
-.LandingBody {
+.landingTop {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /*border: 2px solid orange;*/
+}
+
+.landingTop img {
+  width: 120px;
+  height: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.topNav {
+    display: flex;
+    height: 25px;
+    margin-right: 10px;
+    margin-top: 15px;
+    border: 2px solid green;
+}
+
+
+.landingText {
+  position: absolute;
+  top: 40%;
+  width: 100%;
   text-align: center;
+  font-family: 'Lobster';
+  color: white;
+  font-size: 70px;
+}
+
+.span {
+  font-size: 30px;
+  color: #e57a13;
+}
+
+.signin {
+  height: 40px;
+  width: 130px;
+  color: white;
+  background-color: black;
+  font-size: 18px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+}
+
+.main_Cta {
+  height: 40px;
+  width: 130px;
+  color: white;
+  background-color: #e57a13;
+  font-size: 18px;
+  margin-left: 5px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+
+}
+
+.main_Cta:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }
 
 .header {
@@ -17,10 +91,12 @@
   justify-content: space-between;
   align-items: center;
   height: 42px;
+  background: white;
 }
 
 .headerInner {
   display: flex;
+  color: #b5b5b5;
 }
 
 .headerInner input{
@@ -42,12 +118,19 @@
   width: 180px;
 }
 
+.headerlogo img{
+  width: 90px;
+  margin-left: 22%;
+}
+
 .sidebar {
   width: 12.7%;
   height: 100vh;
   border: 2px solid orange;
   display: inline-block;
   float: left;
+  color:#b5b5b5;
+  background:white;
 }
 
 .sidebarTop {
@@ -88,42 +171,173 @@
   float: left;
   height: 100vh;
   width: 86.7%;
+  background: #f4f4f5;
 }
 
 .DashboardImg {
   height: 180px;
   width: 100%;
-  background: lightgreen;
 }
 
-.createSquad {
-  height: 150px;
+.DashboardImg img {
+  height: 100%;
+  overflow: hidden;
   width: 100%;
-  background: lightblue;
+}
+
+.tripPlan {
+  height: 300px;
+  width: 97%;
+  margin: 0 auto;
+  margin-top: 10px;
+  background: white;
+  box-shadow: 0 3px 1px #B8ADA2;
+}
+
+.AddTrip {
+  height: 20px;
+  width: 100px;
+  color: black;
+  background-color: white;
+  margin-left: 5px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+
+}
+
+.TopBox{
+  height: 50px;
+  width: 100%;
+  background-color: #e57a13;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+}
+
+.YourTrip{
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+.AddTrip {
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #e57a13;
+  width: 130px;
+  background-color: white;
+  height: 30px;
+  border-radius: 50vh;
+}
+
+.tripList, .squadTop {
+  margin-left: 12px;
+  margin-top: 10px;
+  color: #B8ADA2;
+  font-size: 14px;
+}
+
+.line {
+  width: 98%;
+  background-color: #b5b5b5;
+  height: 0.5px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.tripListDetails {
+  /*border: 2px solid orange;*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:darkgray;
+  width: 98%;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 12px;
+}
+
+.lists {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+
+.tripdate{
+  color: #cecece;
+}
+
+.triploc {
+  font-weight: bold;
+}
+.edittrip {
+  height: 30px;
+  width: 90px;
+  color: white;
+  background-color: #ffb033;
+  font-size: 15px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 50vh;
+}
+
+.deletetrip {
+  height: 30px;
+  width: 90px;
+  color: white;
+  background-color: #e57a13;
+  font-size: 15px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 50vh;
+}
+
+
+.squadBoxcontainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.squadBox{
+  height: 220px;
+  width: 330px;
+  border: 2px solid #b5b5b5;
+  margin-top: 15px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 1.25px #888888;
 }
 
 .squadList {
-  height: 350px;
-  width: 100%;
-  background: lightpink;
+  /*border: 2px solid green;*/
+  padding: 10px;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  width: 92%;
+  margin: 0 auto;
+  justify-content: space-between;
+  font-size: 15px;
+  color: #b5b5b5;
 }
 
-.squadsListBox {
-  height: 80%;
-  width: 25%;
-  background: orange;
+.squaddelete {
+  border-radius: 50vh;
+  background-color: white;
+  border:2px solid #2EE59D;
+  color: #2EE59D;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+
 }
 
-.upcomingTrips {
-  height: 200px;
-  width: 100%;
-  background: lightyellow;
+.topBarColor {
+  background-color: #ffb033;
 }
 
 .ProfileTopBar {
@@ -213,5 +427,11 @@
   width: 90%;
   border: 2px solid green;
   display: flex;
+  justify-content: space-between;
+}
+
+.createSquadTop {
+  display: flex;
+  background: lightgray;
   justify-content: space-between;
 }

@@ -45,9 +45,10 @@ CREATE Table user_Squad (
 
 
 CREATE TABLE squad (
-  squad_id: int PRIMARY KEY,
+  squad_id: Serial PRIMARY KEY,
   name: TEXT,
   Description: TEXT,
+  Address: TEXT,
   City: TEXT,
   Country: TEXT,
   StartDate：Date,

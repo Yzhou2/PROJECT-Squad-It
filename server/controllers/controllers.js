@@ -6,20 +6,25 @@ module.exports = {
       url => res.status(200).send(url)
     )
   },
-  getFirstName: (req, res) => {
+  getUserProfile: (req, res) => {
     const db = req.app.get('db');
-    const { params } = req;
-    console.log(req.session.user)//undefined
-    console.log(req.session)//there's only cookies on the session, i don't see the users info that's been put on the session
-    db.get_first_name([params.authid]).then(
-      name => res.status(200).send(name[0].firstname)
+    console.log(req.user, 'hiiiiiiiiiiiii')
+    db.get_user_profile([req.user.authid]).then(
+      user => res.status(200).send(user)
     )
   },
 
   updateProfile: (req, res) => {
     const db = req.app.get('db');
-    db.get_first_name([params.authid]).then(
-      name => res.status(200).send(name[0].firstname)
+    db.update_user_profile([req.body.gender,req.user.authid]).then(
+      user => res.status(200).send(user)
+    )
+  },
+
+  CreateSquad: (req, res) => {
+    const db = req.app.get('db');
+    db.create_squad([req.body,req.user.authid]).then(
+      squad => res.status(200).send(squad)
     )
   },
 }

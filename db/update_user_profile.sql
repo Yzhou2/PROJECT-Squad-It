@@ -1,3 +1,3 @@
 UPDATE users
-SET gender = {this.state.gender}?, column2 = value2, ...
-WHERE userid? authid? = how do we find current logged in user's id? find it from session? ;
+SET gender = $1
+WHERE authid = $2;

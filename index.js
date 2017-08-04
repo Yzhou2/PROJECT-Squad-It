@@ -13,7 +13,9 @@ const connectionString = keys.address;
 
 app.use(bodyParser.json());
 app.use(session({
-  secret:'dsadsfgdsdfsdffghio'
+  secret:'dsadsfgdsdfsdffghio',
+  resave: true,
+  saveUninitialized: true,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -65,8 +67,9 @@ massive( connectionString ).then( db => {
     res.send(req.user)
   });
   // app.get('/api/profileImg', controller.getPic);
-  app.get('/api/firstName/:authid', controller.getFirstName);
-  // app.put('/api/editprofile/:authid', )
+  app.get('/api/user', controller.getUserProfile);
+  app.put('/api/editprofile', controller.updateProfile);
+  app.put('/api/squad', controller.CreateSquad)
 });
 
 app.listen(3001, ()=>{
