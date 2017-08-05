@@ -13,7 +13,13 @@ export default class CreateSquad extends Component {
         City: null,
         Country: null,
         StartDate: null,
+        StartDay: null,
+        StartMonth: null,
+        StartYear: null,
         EndDate: null,
+        EndDay: null,
+        EndMonth: null,
+        EndYear: null,
       }
 
       this.handlechangeName = this.handlechangeName.bind(this);
@@ -21,9 +27,13 @@ export default class CreateSquad extends Component {
       this.handlechangeAddress = this.handlechangeAddress.bind(this);
       this.handlechangeCity = this.handlechangeCity.bind(this);
       this.handlechangeCountry = this.handlechangeCountry.bind(this);
-      this.handlechangeStartDate = this.handlechangeStartDate.bind(this);
-      this.handlechangeEndDate = this.handlechangeEndDate.bind(this);
       this.handleClick = this.handleClick.bind(this);
+      this.handlechangeStartDay = this.handlechangeStartDay.bind(this);
+      this.handlechangeStartMonth = this.handlechangeStartMonth.bind(this);
+      this.handlechangeStartYear =  this.handlechangeStartYear.bind(this);
+      this.handlechangeEndDay = this.handlechangeEndDay.bind(this);
+      this.handlechangeEndMonth = this.handlechangeEndMonth.bind(this);
+      this.handlechangeEndYear =  this.handlechangeEndYear.bind(this);
     }
 
 
@@ -57,15 +67,45 @@ export default class CreateSquad extends Component {
       })
     }
 
-    handlechangeStartDate(event) {
+    handlechangeStartDay(event) {
       this.setState({
-        StartDate: event.target.value
+        StartDay: event.target.value,
+        StartDate: event.target.value,
       })
     }
 
-    handlechangeEndDate(event) {
+    handlechangeStartMonth(event) {
       this.setState({
-        EndDate: event.target.value
+        StartMonth: event.target.value,
+        StartDate: event.target.value +"-"+this.state.StartDay
+      })
+    }
+
+    handlechangeStartYear(event) {
+      this.setState({
+        StartYear: event.target.value,
+        StartDate: event.target.value+"-"+this.state.StartMonth+"-"+this.state.StartDay
+      })
+    }
+
+    handlechangeEndDay(event) {
+      this.setState({
+        EndDay: event.target.value,
+        EndDate: event.target.value,
+      })
+    }
+
+    handlechangeEndMonth(event) {
+      this.setState({
+        EndMonth: event.target.value,
+        EndDate: event.target.value +"-"+this.state.EndDay
+      })
+    }
+
+    handlechangeEndYear(event) {
+      this.setState({
+        EndYear: event.target.value,
+        EndDate: event.target.value+"-"+this.state.EndMonth+"-"+this.state.EndDay
       })
     }
 
@@ -76,6 +116,7 @@ export default class CreateSquad extends Component {
 
 
     render(){
+      console.log(this.state, 'state status')
       return (
         <div>
           <div className="createSquadTop">
@@ -96,16 +137,16 @@ export default class CreateSquad extends Component {
           <div>time</div>
           <div>
             <div>from</div>
-            <input placeholder="date"></input>
-            <input placeholder="month"></input>
-            <input placeholder="year"></input>
+            <input placeholder="date" onChange={this.handlechangeStartDay}></input>
+            <input placeholder="month" onChange={this.handlechangeStartMonth}></input>
+            <input placeholder="year" onChange={this.handlechangeStartYear}></input>
           </div>
 
           <div>
             <div>to</div>
-            <input placeholder="date"></input>
-            <input placeholder="month"></input>
-            <input placeholder="year"></input>
+            <input placeholder="date" onChange={this.handlechangeEndDay}></input>
+            <input placeholder="month" onChange={this.handlechangeEndMonth}></input>
+            <input placeholder="year" onChange={this.handlechangeEndYear}></input>
           </div>
 
 

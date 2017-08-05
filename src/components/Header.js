@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 export default class Header extends Component {
@@ -6,7 +7,8 @@ export default class Header extends Component {
       super();
 
       this.state = {
-          search:null
+          firstname:null,
+          profile_img_url: null
       }
       this.handleChange = this.handleChange.bind(this);
     }
@@ -18,6 +20,18 @@ handleChange(event) {
   })
 }
 
+
+componentDidMount() {
+  console.log('mounted')
+  axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
+  // console.log('response!!!!!!!',response.data[0].firstname)
+  this.setState({
+    firstname: response.data[0].firstname,
+    profile_img_url: response.data[0].profile_img_url
+
+  });
+});
+}
 
   render() {
   return (
@@ -33,9 +47,9 @@ handleChange(event) {
       </div>
 
     <div className="headerInner">
-      <div className="leftMargin">notification</div>
-      <div className="leftMargin">name</div>
-      <div className="leftMargin">profile_pic</div>
+      <div className="headerNav">noti</div>
+      <div className="headerNav">{this.state.firstname}</div>
+      <div className="headerNav headerimg"><img src={this.state.profile_img_url} /></div>
     </div>
 
     </div>

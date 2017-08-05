@@ -1,6 +1,2 @@
-insert into squad (name) values ($1)
-returning name, Description, Address, City, Country, StartDate, EndDate;
-
-
-
- -- Description, Address, City, Country, StartDate, EndDate
+insert into squad (name, description, address, city, country, startdate, enddate) values ($1, $2, $3, $4, $5, $6, $7)
+returning name, description, address, city, country, startdate, enddate;

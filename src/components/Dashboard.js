@@ -78,7 +78,7 @@ export default function Dashboard() {
             <div className="YourTrip">Your Squads</div>
 
             <div>
-                <button className="AddTrip">+ Create a Squad</button>
+                <Link to="/createsquad"><button className="AddTrip">+ Create a Squad</button></Link>
                 <button className="AddTrip">+ Join a Squad</button>
             </div>
           </div>

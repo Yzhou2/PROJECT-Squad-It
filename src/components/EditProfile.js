@@ -37,11 +37,25 @@ export default class EditProfile extends Component {
   this.handleChangeDescription = this.handleChangeDescription.bind(this);
   this.handleChangeOccupation = this.handleChangeOccupation.bind(this);
   this.handleChangeTags = this.handleChangeTags.bind(this);
+  this.handleClick = this.handleClick.bind(this);
   }
 
 
-  componentDidMount(){
-    axios.post('http://localhost:3001/api/editprofile'/*, {this.state.Gender}*/).then(res => res)
+  handleClick(){
+    axios.put('http://localhost:3001/api/editprofile', {
+      Gender: this.state.Gender,
+      Squad_Status: this.state.Squad_Status,
+      City: this.state.City,
+      Country: this.state.Country,
+      Smoker: this.state.Smoker,
+      Drinker: this.state.Drinker,
+      DSTolerance: this.state.DSTolerance,
+      AvaliableForHostDinner: this.state.AvaliableForHostDinner,
+      TypeOfTraveller: this.state.TypeOfTraveller,
+      Occupation: this.state.Occupation,
+      Description: this.state.Description
+
+    }, {withCredentials:true}).then(res => res)
 
   }
 
@@ -242,7 +256,7 @@ export default class EditProfile extends Component {
 
           </div>
 
-          <button>save</button>
+          <button onClick={ this.handleClick }>save</button>
 
         </div>
 

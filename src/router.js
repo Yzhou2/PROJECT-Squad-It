@@ -5,6 +5,7 @@ import Landing from './components/Landing';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import CreateSquad from './components/CreateSquad';
+import CreateTripPlan from './components/CreateTripPlan';
 
 export default function(){
   return (
@@ -15,6 +16,8 @@ export default function(){
     <Route component={ Profile } path="/profile" />
     <Route component={ EditProfile } path="/editProfile" />
     <Route component={ CreateSquad } path="/createsquad" />
+    <Route component={ CreateTripPlan } path="/createtrip" />
+
   </Switch>
   </div>
 )}

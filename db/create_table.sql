@@ -9,7 +9,7 @@ CREATE TABLE users (
     City TEXT,
     Country TEXT,
     DOB DATE,
-    profile_img_url TEXT,
+    profile_img_url TEXT DEFAULT 'https://i.imgur.com/rbClaeN.png',
     Smoker TEXT,
     Drinker TEXT,
     DSTolerance TEXT,
@@ -34,13 +34,14 @@ CREATE TABLE travelPlan (
   City TEXT,
   ARRIVAL DATE,
   DEPART DATE,
-  FOREIGN KEY (UserID) REFERENCES User(UserID)
+  FOREIGN KEY (UserID) REFERENCES users(UserID)
 )；
 
 
 CREATE Table user_Squad (
-  FOREIGN KEY (UserID) REFERENCES User(UserID),
-  FOREIGN KEY (squad_id) REFERENCES Squad(squad_id)
+  user_Squad_id Serial PRIMARY KEY,
+  FOREIGN KEY(UserID) REFERENCES users(UserID),
+  FOREIGN KEY(squad_id) REFERENCES squad(squad_id)
 )
 
 
@@ -51,7 +52,7 @@ CREATE TABLE squad (
   Address TEXT,
   City TEXT,
   Country TEXT,
-  StartDate Date,
+  StartDate Date, //xxxx(year)-xx(month)-xx(day)
   EndDate Date,
   Memberlist_Id Int,
 )
