@@ -149,12 +149,13 @@ export default class EditProfile extends Component {
     console.log(this.state)
       return (
         <div className="editProfile">
-          <div>profile img</div>
+          <div className="editprofileTitle"><span>Edit Profile</span></div>
+
 
           <div className="editForm">
             <div className="edirFormSection">
               <div>Ready To Join Squads?</div>
-              <select onChange={this.handleChangeSquadStatus}>
+              <select onChange={this.handleChangeSquadStatus} className="formInput">
                 <option>yes</option>
                 <option>maybe</option>
                 <option>no</option>
@@ -164,7 +165,7 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
               <div>Avaliable To host Squads for dinner?</div>
-              <select onChange={this.handleChangeHostDinner}>
+              <select onChange={this.handleChangeHostDinner} className="formInput">
                 <option>yes</option>
                 <option>no</option>
               </select>
@@ -173,7 +174,7 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
               <div>Gender</div>
-              <select onChange={this.handleChangeGender}>
+              <select onChange={this.handleChangeGender} className="formInput">
                 <option>Male</option>
                 <option>Female</option>
               </select>
@@ -181,40 +182,44 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
               <p>Where I live</p>
-              <input placeholder="city" onChange={this.handleChangeCity}></input>
-              <input placeholder="country" onChange={this.handleChangeCountry}></input>
+              <div className="formInput">
+                <input placeholder="city" onChange={this.handleChangeCity}></input>
+                <input placeholder="country" onChange={this.handleChangeCountry}></input>
+              </div>
             </div>
 
             <div className="edirFormSection">
               <p>Countries Visited</p>
-              <input onChange={this.handleChangeVisitedCountries}></input>
+              <input onChange={this.handleChangeVisitedCountries} className="formInput"></input>
             </div>
 
             <div className="edirFormSection">
               <p>Language Spoken</p>
-              <input onChange={this.handleChangeFluentLanguages}></input>
+              <input onChange={this.handleChangeFluentLanguages} className="formInput"></input>
             </div>
 
             <div className="edirFormSection">
               <p>Birthday</p>
-              <input placeholder="day"></input>
-              <input placeholder="month"></input>
-              <input placeholder="year"></input>
+              <div className="formInput">
+                <input placeholder="day"></input>
+                <input placeholder="month"></input>
+                <input placeholder="year"></input>
+              </div>
             </div>
 
             <div className="edirFormSection">
               <p>Occupation</p>
-              <input onChange={this.handleChangeOccupation}></input>
+              <input onChange={this.handleChangeOccupation} className="formInput"></input>
             </div>
 
             <div className="edirFormSection">
               <p>My Interests</p>
-              <input onChange={this.handleChangeTags}></input>
+              <input onChange={this.handleChangeTags} className="formInput"></input>
             </div>
 
             <div className="edirFormSection">
               <p>Do You Smoke?</p>
-              <select onChange={this.handleChangeSmoker}>
+              <select onChange={this.handleChangeSmoker} className="formInput">
                 <option>yes</option>
                 <option>no</option>
               </select>
@@ -222,7 +227,7 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
               <p>Do You Drink?</p>
-              <select onChange={this.handleChangeDrinker}>
+              <select onChange={this.handleChangeDrinker} className="formInput">
                 <option>yes</option>
                 <option>maybe</option>
                 <option>no</option>
@@ -231,7 +236,7 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
               <p>Do You Mind Hanging Out with People who Smoke/Drink?</p>
-              <select onChange={this.handleChangeDSTolerance}>
+              <select onChange={this.handleChangeDSTolerance} className="formInput">
                 <option>yes</option>
                 <option>maybe</option>
                 <option>preferablely not</option>
@@ -242,7 +247,7 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
             <p>What Type Of Traveller Are You?</p>
-            <select onChange={this.handleChangeTypeOfTraveller}>
+            <select onChange={this.handleChangeTypeOfTraveller} className="formInput">
               <option>budget</option>
               <option>adventure</option>
               <option>luxuryvocation</option>
@@ -251,12 +256,12 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
               <p>About Me</p>
-              <input onChange={this.handleChangeDescription}></input>
+              <input onChange={this.handleChangeDescription} className="formInput"></input>
             </div>
 
           </div>
 
-          <button onClick={ this.handleClick }>save</button>
+          <button onClick={ this.handleClick } className="editProfileSave">save</button>
 
         </div>
 

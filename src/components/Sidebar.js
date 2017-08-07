@@ -45,7 +45,7 @@ export default class Sidebar extends Component {
       </div>
 
       <Link to='/dashboard'><div className="sideBarSelection">Dashboard</div></Link>
-      <Link to='/editProfile'><div className="sideBarSelection">Profile</div></Link>
+      <Link to='/profile'><div className="sideBarSelection">Profile</div></Link>
       <div className="sideBarSelection">Messages</div>
       <div className="sideBarSelection bottomLine">News Feed</div>
 

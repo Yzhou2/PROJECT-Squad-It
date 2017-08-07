@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import axios from 'axios';
+import EditProfile from './EditProfile';
 
 export default class Profile extends Component {
   constructor() {
@@ -25,7 +26,8 @@ export default class Profile extends Component {
       Tags: null,
       visited_countries: null,
       Fluent_Languages: null,
-      description: null
+      description: null,
+      popUp: false
     }
   }
 
@@ -67,6 +69,10 @@ export default class Profile extends Component {
         <Sidebar />
 
         <div className="ProfileContainer">
+
+        <EditProfile />
+
+        <div className="popUpProfile">
           <div className="ProfileTopBar">
             <div className="ProfilePicBox">
               <img src={this.state.profile_img_url} />
@@ -183,6 +189,7 @@ export default class Profile extends Component {
                 </div>
               </div>
             </div>
+            </div>  
           </div>
         </div>
     )
