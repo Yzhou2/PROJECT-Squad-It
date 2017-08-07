@@ -149,7 +149,7 @@ video {
 
 .headerlogo img{
   width: 90px;
-  margin-left: 22%;
+  margin-left: -3%;
 }
 
 .sidebar {
@@ -510,6 +510,7 @@ video {
   border-radius: 10px;
   background: white;
   z-index: 4;
+  color: #7e8794;
 }
 
 .editProfileSave {
@@ -529,9 +530,9 @@ video {
   margin-left: 42%;
 }
 
-.popUpProfile {
+/*.popUpProfile {
   filter: blur(20px);
-}
+}*/
 
 
 
@@ -681,4 +682,23 @@ video {
 
 .formInput {
   width: 250px;
+}
+
+.bdInput {
+  width: 118px;
+  /*border-radius: 5px;*/
+}
+
+.adInput {
+  width: 78px;
+}
+
+.barInput {
+  width: 242px;
+}
+
+.chatroomcss {
+  height: 400px;
+  width: 400px;
+  border: 2px solid black
 }

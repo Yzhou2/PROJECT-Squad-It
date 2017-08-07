@@ -11,7 +11,7 @@ module.exports = {
     // console.log('server req.user', req.user)
     db.get_user_profile([req.user.authid]).then(
       user => res.status(200).send(user))
-    // res.status(200).send({name: "yiran"})
+
 
   },
 
@@ -24,9 +24,20 @@ module.exports = {
   },
 
   CreateSquad: (req, res) => {
+    console.log('create_squad')
+
     const db = req.app.get('db');
     db.create_squad([req.body.name, req.body.Description, req.body.Address, req.body.City, req.body.Country, req.body.StartDate, req.body.EndDate]).then(
-      squad => res.status(200).send(squad)
-    )
+      squad => {
+        console.log(req.user, 'req.userrr')
+          db.insertIntoUserSquad([req.user.userid, squad[0].squad_id]).then(
+          squad => res.status(200).send(squad)
+        )
+      })
+
+    // )
+    // db.insertIntoUserSquad([req.user.id, ]).then(
+    //   squad => res.status(200).send(squad)
+    // )
   },
 }

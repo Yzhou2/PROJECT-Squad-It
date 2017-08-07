@@ -22,7 +22,7 @@ CREATE TABLE users (
     visited_country_id Int,
     Fluent_Languages_id int,
     Description TEXT,
-    squad_list_id int,
+    -- squad_list_id int,
     friends_list_id int
 );
 
@@ -34,14 +34,14 @@ CREATE TABLE travelPlan (
   City TEXT,
   ARRIVAL DATE,
   DEPART DATE,
-  FOREIGN KEY (UserID) REFERENCES users(UserID)
+  UserID int REFERENCES users(UserID)
 )；
 
 
 CREATE Table user_Squad (
-  user_Squad_id Serial PRIMARY KEY,
-  FOREIGN KEY(UserID) REFERENCES users(UserID),
-  FOREIGN KEY(squad_id) REFERENCES squad(squad_id)
+  -- user_Squad_id Serial PRIMARY KEY,
+  UserID int REFERENCES users(UserID),
+  squad_id int REFERENCES squad(squad_id)
 )
 
 
@@ -60,7 +60,7 @@ CREATE TABLE squad (
 
 CREATE Table bucketList (
   BucketList_Id int,
-  FOREIGN KEY (squad_id) REFERENCES BucketList(squad_id)
+  squad_id int REFERENCES BucketList(squad_id)
   squad_id int,
   title TEXT,
   Stars Int,

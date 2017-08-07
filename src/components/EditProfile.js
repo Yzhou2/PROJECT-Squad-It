@@ -182,39 +182,39 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
               <p>Where I live</p>
-              <div className="formInput">
-                <input placeholder="city" onChange={this.handleChangeCity}></input>
-                <input placeholder="country" onChange={this.handleChangeCountry}></input>
+              <div>
+                <input placeholder="city" onChange={this.handleChangeCity} className="bdInput"></input>
+                <input placeholder="country" onChange={this.handleChangeCountry} className="bdInput"></input>
               </div>
             </div>
 
             <div className="edirFormSection">
               <p>Countries Visited</p>
-              <input onChange={this.handleChangeVisitedCountries} className="formInput"></input>
+              <input onChange={this.handleChangeVisitedCountries} className="barInput"></input>
             </div>
 
             <div className="edirFormSection">
               <p>Language Spoken</p>
-              <input onChange={this.handleChangeFluentLanguages} className="formInput"></input>
+              <input onChange={this.handleChangeFluentLanguages} className="barInput"></input>
             </div>
 
             <div className="edirFormSection">
               <p>Birthday</p>
-              <div className="formInput">
-                <input placeholder="day"></input>
-                <input placeholder="month"></input>
-                <input placeholder="year"></input>
+              <div>
+                <input placeholder="day" className="adInput"></input>
+                <input placeholder="month" className="adInput"></input>
+                <input placeholder="year" className="adInput"></input>
               </div>
             </div>
 
             <div className="edirFormSection">
               <p>Occupation</p>
-              <input onChange={this.handleChangeOccupation} className="formInput"></input>
+              <input onChange={this.handleChangeOccupation} className="barInput"></input>
             </div>
 
             <div className="edirFormSection">
               <p>My Interests</p>
-              <input onChange={this.handleChangeTags} className="formInput"></input>
+              <input onChange={this.handleChangeTags} className="barInput"></input>
             </div>
 
             <div className="edirFormSection">
@@ -256,7 +256,7 @@ export default class EditProfile extends Component {
 
             <div className="edirFormSection">
               <p>About Me</p>
-              <input onChange={this.handleChangeDescription} className="formInput"></input>
+              <input onChange={this.handleChangeDescription} className="barInput"></input>
             </div>
 
           </div>

@@ -77,8 +77,9 @@ massive( connectionString ).then( db => {
   app.get('/api/user', controller.getUserProfile);
   app.put('/api/editprofile', controller.updateProfile);
   app.post('/api/squad', controller.CreateSquad)
-});
 
-app.listen(3001, ()=>{
-  console.log('im listening on port 3001')
-})
+  app.listen(3001, ()=>{
+
+    console.log('im listening on port 3001')
+  })
+});
