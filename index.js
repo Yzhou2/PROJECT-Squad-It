@@ -41,18 +41,18 @@ massive( connectionString ).then( db => {
   }, function(accessToken, refreshToken, extraParams, profile, done){
     //db find and create user
     // console.log(profile);
-    db.getUserByAuthId([profile.id]).then(function(user, err) {
+    db.getUserByAuthId([profile.id]).then(function(user) {
       //  console.log(user, 'hihihihihihihi')
         user = user[0];
         if (!user) { //if there isn't one, we'll create one!
           console.log('CREATING USER', profile);
-          db.createUserByAuthID([profile.name.givenName, profile.name.familyName, profile.id, profile.emails[0].value]).then(function(user,err) {
-            console.log('USER CREATED', user);
-            return done(err, user); // GOES TO SERIALIZE USER
-          })
+          db.createUserByAuthID([profile.name.givenName, profile.name.familyName, profile.id, profile.emails[0].value]).then(function(createdUser) {
+            console.log('USER CREATED', createdUser);
+            return done(null, createdUser[0]); // GOES TO SERIALIZE USER
+          }).catch( (err) => console.log(err) )
         } else { //when we find the user, return it
           console.log('FOUND USER', user);
-          return done(err, user);
+          return done(null, user);
         }
       })
     }
@@ -71,12 +71,20 @@ massive( connectionString ).then( db => {
   app.get('/auth', passport.authenticate('auth0'));
   app.get('/auth/callback', passport.authenticate('auth0', {successRedirect:'http://localhost:3000/dashboard'}));
   app.get('/me', function(req, res){
+    console.log(req.user,'this is req.user')
     res.send(req.user)
   });
   // app.get('/api/profileImg', controller.getPic);
   app.get('/api/user', controller.getUserProfile);
   app.put('/api/editprofile', controller.updateProfile);
-  app.post('/api/squad', controller.CreateSquad)
+  app.post('/api/createTrip', controller.createTrip)
+  app.get('/api/viewTrip', controller.viewTrip)
+  app.post('/api/squad', controller.CreateSquad);
+  app.get('/api/squadInfo', controller.displaySquadInfo);
+  app.put('/api/updateSquad', controller.updateCurrentSquad);
+  app.get('/api/getPastSquad', controller.getPastSquad);
+  app.delete('/api/removeTrip/:id', controller.removeTrip);
+  app.delete('/api/removeSquad/:id', controller.removeSquad);
 
   app.listen(3001, ()=>{
 

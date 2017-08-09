@@ -1,6 +1,6 @@
 CREATE TABLE users (
     UserID Serial PRIMARY KEY,
-    authID TEXT,
+    authID TEXT PRIMARY KEY,
     LastName varchar(255),
     FirstName varchar(255),
     Email varchar(255),
@@ -29,17 +29,19 @@ CREATE TABLE users (
 
 
 CREATE TABLE travelPlan (
-  TravelPlan_ID int，
+  TravelPlan_ID Serial PRIMARY KEY,
   Country TEXT,
   City TEXT,
-  ARRIVAL DATE,
-  DEPART DATE,
+  Arrival varchar(255),
+  Depart varchar(255),
+  LVCity TEXT,
+  LVState TEXT,
+  LVCountry TEXT,
   UserID int REFERENCES users(UserID)
-)；
+)
 
 
 CREATE Table user_Squad (
-  -- user_Squad_id Serial PRIMARY KEY,
   UserID int REFERENCES users(UserID),
   squad_id int REFERENCES squad(squad_id)
 )
@@ -52,17 +54,25 @@ CREATE TABLE squad (
   Address TEXT,
   City TEXT,
   Country TEXT,
-  StartDate Date, //xxxx(year)-xx(month)-xx(day)
+  StartDate Date,
   EndDate Date,
   Memberlist_Id Int,
+  Current TEXT DEFAULT true
 )
 
 
 CREATE Table bucketList (
   BucketList_Id int,
-  squad_id int REFERENCES BucketList(squad_id)
-  squad_id int,
+  squad_id int REFERENCES squad(squad_id)
   title TEXT,
   Stars Int,
   Location TEXT
+)
+
+CREATE Table Message (
+  id int,
+  squad_id int REFERENCES squad(squad_id),
+  content TEXT,
+  sender TEXT,
+  TM TEXT,
 )

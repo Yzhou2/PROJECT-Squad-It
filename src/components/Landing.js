@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+// import { Link } from 'react-router-dom';
 
 
 export default function Landing() {
@@ -7,7 +7,7 @@ export default function Landing() {
     <div className="landingMain">
 
     <div className="landingTop">
-      <img src='https://i.imgur.com/E7Zuby6.png' />
+      <img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/>
     </div>
 
 

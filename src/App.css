@@ -40,7 +40,7 @@ video {
     height: 25px;
     margin-right: 10px;
     margin-top: 15px;
-    border: 2px solid green;
+    /*border: 2px solid green;*/
 }
 
 
@@ -125,9 +125,13 @@ video {
 }
 
 .headerNav {
-  border: 2px solid gray;
+  /*border: 2px solid gray;*/
   height: 15px;
-  width: 60px;
+  width: 100px;
+}
+
+.notification {
+  margin-right: 10px;
 }
 
 .headerimg {
@@ -219,7 +223,7 @@ video {
 }
 
 .ProfileContainer {
-  border: 2px solid teal;
+  /*border: 2px solid teal;*/
   display: inline-block;
   float: left;
   height: 1450px;
@@ -231,7 +235,7 @@ video {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  border: 2px solid black;
+  /*border: 2px solid black;*/
 }
 
 .basicInfoList {
@@ -338,6 +342,15 @@ video {
   font-size: 14px;
 }
 
+.tripList1 {
+  width: 250px;
+}
+
+.tripList2 {
+  width: 150px;
+  margin-left: 30px;
+}
+
 .line {
   width: 98%;
   background-color: #b5b5b5;
@@ -346,20 +359,22 @@ video {
   margin-top: 10px;
 }
 
-.tripListDetails {
-  /*border: 2px solid orange;*/
+.listWrapper {
   display: flex;
+  width: 98%;
   justify-content: space-between;
   align-items: center;
-  color:darkgray;
-  width: 98%;
   font-size: 14px;
   margin-top: 10px;
   margin-left: 12px;
+  color:darkgray;
+
 }
+
 
 .lists {
   display: flex;
+
   width: 60%;
   justify-content: space-between;
 }
@@ -414,9 +429,10 @@ video {
   /*border: 2px solid green;*/
   padding: 10px;
   display: flex;
+  flex-direction: column;
   width: 92%;
   margin: 0 auto;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
   font-size: 15px;
   color: #b5b5b5;
 }
@@ -511,6 +527,7 @@ video {
   background: white;
   z-index: 4;
   color: #7e8794;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .editProfileSave {
@@ -676,8 +693,53 @@ video {
 
 .createSquadTop {
   display: flex;
-  background: lightgray;
+  width: 96%;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: 10px;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
+
+}
+
+.createSquadContainer {
+  align-items: center;
+  font-size: 15px;
+  width: 500px;
+  height: 450px;
+  position: absolute;
+  top:30%;
+  left:35%;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  border-top: 3px solid #e57a13;
+  background: white;
+  z-index: 4;
+  color: #7e8794;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.createBtn {
+  width: 80%;
   justify-content: space-between;
+  border: 2px solid red;
+  margin: 0 auto;
+  display: flex;
+}
+
+.createBtn button {
+  height: 30px;
+  width: 49%;
+  color: white;
+  background-color: #e57a13;
+  font-size: 14px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+
 }
 
 .formInput {
@@ -697,8 +759,103 @@ video {
   width: 242px;
 }
 
-.chatroomcss {
-  height: 400px;
-  width: 400px;
-  border: 2px solid black
+
+
+.innerWrapper {
+  height: 65px;
+
 }
+
+.innerWrapperContainer {
+  /*border: 2px solid red;*/
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.innerInput {
+  margin-top: 5px;
+  display: flex;
+  width: 100%;
+  border: 2px solid red;
+}
+
+.innerselect {
+  display: flex;
+  height: 45px;
+  /*border: 2px solid red;*/
+  justify-content: space-between;
+}
+
+
+.squadListInner {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.chatRoomContainer {
+  display: flex;
+  border: 2px solid red;
+  height: 700px;
+  width: 86.7%;
+  background: #f4f4f5;
+
+}
+
+.chatLeft {
+  border: 2px solid teal;
+  width: 85%;
+  height: 700px;
+
+}
+
+.chatRight {
+  border: 2px solid orange;
+  width: 15%;
+  height: 100%;
+}
+
+.chatTop {
+  border: 2px solid red;
+  height: 50px;
+}
+
+.chatArea {
+  height: 610px;
+  border: 2px solid brown;
+}
+
+.memberArea {
+  height: 450px;
+  border: 2px solid green;
+}
+
+.bucketList {
+  height: 250px;
+  border: 2px solid green;
+}
+
+.chatInput {
+  height: 30px;
+  background-color: yellow;
+}
+
+.createTripSave {
+  color: white;
+  background-color: #e57a13;
+  font-size: 14px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+}
+
+/*.chatInput input {
+  width: 100%;
+  height: 100%;
+}*/

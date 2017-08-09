@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Router from './router';
-import Landing from './components/Landing';
+// import Landing from './components/Landing';
 import './App.css';
 // import Sidebar from './components/Sidebar';
 // import Header from './components/Header';

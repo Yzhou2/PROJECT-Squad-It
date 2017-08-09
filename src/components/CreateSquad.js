@@ -3,8 +3,8 @@ import axios from 'axios';
 
 
 export default class CreateSquad extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
       this.state={
         name: null,
@@ -28,6 +28,7 @@ export default class CreateSquad extends Component {
       this.handlechangeCity = this.handlechangeCity.bind(this);
       this.handlechangeCountry = this.handlechangeCountry.bind(this);
       this.handleClick = this.handleClick.bind(this);
+      this.handleClickCancel = this.handleClickCancel.bind(this);
       this.handlechangeStartDay = this.handlechangeStartDay.bind(this);
       this.handlechangeStartMonth = this.handlechangeStartMonth.bind(this);
       this.handlechangeStartYear =  this.handlechangeStartYear.bind(this);
@@ -114,47 +115,66 @@ export default class CreateSquad extends Component {
     axios.post( 'http://localhost:3001/api/squad', this.state, {withCredentials:true} ).then( response => response)
   }
 
+    handleClickCancel() {
+      this.props.createSquadReset();
+    }
+
 
     render(){
       console.log(this.state, 'state status')
       return (
-        <div>
+      <div className="createSquadContainer">
           <div className="createSquadTop">
             <div>Create a Squad</div>
-            <div>exit</div>
           </div>
 
-          <hr/>
+        <div className="innerWrapperContainer">
+          <div className="innerWrapper">
+            <div>Squad Name: *</div>
+              <input onChange={this.handlechangeName} className="innerInput"></input>
 
-          <div>Squad Name</div>
-          <input onChange={this.handlechangeName}></input>
-
-          <div>Location</div>
-          <input placeholder="address" onChange={this.handlechangeAddress}></input>
-          <input placeholder="city" onChange={this.handlechangeCity}></input>
-          <input placeholder="country" onChange={this.handlechangeCountry}></input>
-
-          <div>time</div>
-          <div>
-            <div>from</div>
-            <input placeholder="date" onChange={this.handlechangeStartDay}></input>
-            <input placeholder="month" onChange={this.handlechangeStartMonth}></input>
-            <input placeholder="year" onChange={this.handlechangeStartYear}></input>
           </div>
 
-          <div>
-            <div>to</div>
-            <input placeholder="date" onChange={this.handlechangeEndDay}></input>
-            <input placeholder="month" onChange={this.handlechangeEndMonth}></input>
-            <input placeholder="year" onChange={this.handlechangeEndYear}></input>
+          <div className="innerWrapper">
+            <div>Location: *</div>
+            <div className="innerInput">
+              <input placeholder="address" onChange={this.handlechangeAddress} ></input>
+              <input placeholder="city" onChange={this.handlechangeCity} ></input>
+              <input placeholder="country" onChange={this.handlechangeCountry} ></input>
+            </div>
+          </div>
+
+          <div className="innerWrapper">
+              <div>From: *</div>
+              <div className="innerInput">
+                <input placeholder="date" onChange={this.handlechangeStartDay} ></input>
+                <input placeholder="month" onChange={this.handlechangeStartMonth} ></input>
+                <input placeholder="year" onChange={this.handlechangeStartYear} ></input>
+              </div>
           </div>
 
 
-          <div>Description</div>
-          <input onChange={this.handlechangeDescription}></input>
+          <div className="innerWrapper">
+            <div>
+              <div>To: *</div>
+              <div className="innerInput">
+                <input placeholder="date" onChange={this.handlechangeEndDay}></input>
+                <input placeholder="month" onChange={this.handlechangeEndMonth}></input>
+                <input placeholder="year" onChange={this.handlechangeEndYear}></input>
+              </div>
+            </div>
+          </div>
 
-          <button onClick={this.handleClick}>save</button>
+        <div className="innerWrapper">
+          <div>Description:</div>
+          <input onChange={this.handlechangeDescription} className="innerInput"></input>
         </div>
+      </div>
+        <div className="createBtn">
+          <button onClick={this.handleClick}>Save</button>
+          <button onClick={this.handleClickCancel}>Cancel</button>
+        </div>
+      </div>
       )
     }
 }

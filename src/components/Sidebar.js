@@ -20,7 +20,7 @@ export default class Sidebar extends Component {
 
 
   componentDidMount() {
-    console.log('mounted')
+    // console.log('mounted')
   axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
     // console.log('response!!!!!!!',response.data[0].firstname)
     this.setState({
@@ -33,14 +33,14 @@ export default class Sidebar extends Component {
 }
 
   render() {
-    console.log('state!!!!!!', this.state)
-    console.log('user on state!!!!', this.state.user)
+    // console.log('state!!!!!!', this.state)
+    // console.log('user on state!!!!', this.state.user)
     // console.log('firstname in user obj!!!!', this.state.user.firstname)
 
   return (
     <div className="sidebar">
       <div className="sidebarTop">
-        <div className="sidebarImg"><img src={this.state.profile_img_url} /></div>
+        <div className="sidebarImg"><img src={this.state.profile_img_url} alt="fixed"/></div>
         <div className="sidebarName">{this.state.firstname+" "+this.state.lastname}</div>
       </div>
 

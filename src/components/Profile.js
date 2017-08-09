@@ -27,7 +27,6 @@ export default class Profile extends Component {
       visited_countries: null,
       Fluent_Languages: null,
       description: null,
-      squadName: null,
       popUp: false
     }
 
@@ -54,7 +53,6 @@ export default class Profile extends Component {
         occupation: response.data[0].occupation,
         // visited_countries: response.data[0].profile_img_url,
         // Fluent_Languages: response.data[0].profile_img_url,
-        squadName: response.data[0].name,
         description: response.data[0].description
 
 
@@ -69,25 +67,29 @@ handleClickEdit() {
 }
 
   render() {
-    console.log(this.state.squadName)
+    // console.log(this.state.squadName)
+    var blur = {
+      filter: 'blur(5px)'
+    }
     return (
       <div>
        {
          this.state.popUp
          ?
-
          <div>
+         <EditProfile />
+
+         <div style={this.state.popUp?blur:{}}>
         <Header />
         <Sidebar />
 
         <div className="ProfileContainer">
 
-        <EditProfile />
 
         <div className="popUpProfile">
           <div className="ProfileTopBar">
             <div className="ProfilePicBox">
-              <img src={this.state.profile_img_url} />
+              <img src={this.state.profile_img_url} alt={this.state.firstname}/>
             </div>
           </div>
 
@@ -97,7 +99,7 @@ handleClickEdit() {
           <div className="avaliableFor">
             <div className="avaliableForContent">
               <div className="avaliableStatus">{
-                this.state.Squad_Status = 'maybe'
+                this.state.Squad_Status === 'maybe'
                 ?
                 'Not Avaliable to Join Squad'
                 :
@@ -204,7 +206,7 @@ handleClickEdit() {
             </div>
           </div>
         </div>
-
+      </div>
         :
 
         <div>
@@ -217,7 +219,7 @@ handleClickEdit() {
           <div className="popUpProfile">
             <div className="ProfileTopBar">
               <div className="ProfilePicBox">
-                <img src={this.state.profile_img_url} />
+                <img src={this.state.profile_img_url} alt={this.state.firstname}/>
               </div>
             </div>
 
@@ -227,7 +229,7 @@ handleClickEdit() {
             <div className="avaliableFor">
               <div className="avaliableForContent">
                 <div className="avaliableStatus">{
-                  this.state.Squad_Status = 'maybe'
+                  this.state.Squad_Status === 'maybe'
                   ?
                   'Not Avaliable to Join Squad'
                   :

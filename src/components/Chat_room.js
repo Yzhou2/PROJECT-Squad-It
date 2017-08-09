@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Header from './Header';
+import Sidebar from './Sidebar';
+// import axios from 'axios';
 
 
 export default class Chat_room extends Component {
     constructor() {
       super();
 
-      // this.state = {
-      //
-      // }
-
+      this.state = {
+        message: null
+      }
+    this.handleChange = this.handleChange.bind(this);
     }
 
 
 handleChange(event) {
   this.setState({
-    search: event.target.value
+    message: event.target.value
   })
 }
 
@@ -33,18 +35,35 @@ handleChange(event) {
 // }
 
   render() {
+    console.log(this.state.message,'chat message')
   return (
     <div>
-    <div>title</div>
-    <div>description</div>
-    <div className="chatroomcss">
-    chat area
-    <input></input>
-     </div>
-    <div className="chatroomcss"> member area </div>
-    <div className="chatroomcss">bucket list </div>
 
+    <Header />
+    <Sidebar />
+
+        <div className="chatRoomContainer">
+
+          <div className="chatLeft">
+            <div className="chatTop">
+              <div>title</div>
+              <div>description</div>
+            </div>
+                <div className="chatArea">chat area</div>
+                <div className="chatInput">
+                  <input onChange={this.handleChange}></input>
+                  <button>send</button>
+                </div>
+          </div>
+
+          <div className="chatRight">
+            <div className="memberArea"> member area </div>
+            <div className="bucketList">bucket list </div>
+          </div>
+
+        </div>
     </div>
+
   )
   }
 }
