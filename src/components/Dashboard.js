@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import CreateSquad from './CreateSquad';
 import CreateTripPlan from './CreateTripPlan';
+import EditTripPlan from './EditTripPlan';
 
 export default class Dashboard extends Component{
   constructor() {
@@ -14,22 +15,27 @@ export default class Dashboard extends Component{
       response:[],
       currentSquad: [],
       pastSquad: [],
-      travelPlan: null,
+      travelPlan: [],
       createSquad: false,
-      CreateTripPlan: false
+      CreateTripPlan: false,
+      EditTripPlan: false,
+      eachPlan: null
+
     }
   this.handleCSDelete = this.handleCSDelete.bind(this);
   this.handleClick = this.handleClick.bind(this);
   this.createSquadReset = this.createSquadReset.bind(this);
   this.CreateTripPlanReset = this.CreateTripPlanReset.bind(this);
+  this.EditTripPlanReset = this.EditTripPlanReset.bind(this);
   this.handleClickAddTP = this.handleClickAddTP.bind(this);
+  this.updateTravelPlan = this.updateTravelPlan.bind(this);
+  this.updatecurrentSquad = this.updatecurrentSquad.bind(this);
   }
 
 
   componentDidMount() {
     axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>
       this.setState({
-        response: response.data,
         currentSquad: response.data,
       })
     );
@@ -112,11 +118,39 @@ CreateTripPlanReset(){
   })
 }
 
+EditTripPlanReset(){
+  this.setState({
+    EditTripPlan: false
+  })
+}
+
 handleClickAddTP(){
   this.setState({
     CreateTripPlan: true
   })
 }
+
+updateTravelPlan(val) {
+  this.setState({
+    travelPlan: val
+  })
+}
+
+updatecurrentSquad(val) {
+  console.log(val)
+  this.setState({
+    currentSquad: [...this.state.currentSquad, val]
+  })
+}
+
+
+sendEachPlanToState(val){
+  this.setState({
+    eachPlan: val,
+    EditTripPlan: true
+  });
+}
+/*CreateTripPlanReset={this.CreateTripPlanReset} updateTravelPlan={this.updateTravelPlan}*/
 
 
   render() {
@@ -129,11 +163,11 @@ handleClickAddTP(){
     return (
     <div>
 
-    {this.state.createSquad?<CreateSquad createSquadReset={this.createSquadReset}/>:''}
-    {this.state.CreateTripPlan?<CreateTripPlan CreateTripPlanReset={this.CreateTripPlanReset}/>:''}
+    {this.state.createSquad?<CreateSquad createSquadReset={this.createSquadReset} updatecurrentSquad={this.updatecurrentSquad}/>:''}
+    {this.state.CreateTripPlan?<CreateTripPlan CreateTripPlanReset={this.CreateTripPlanReset} updateTravelPlan={this.updateTravelPlan}/>:''}
+    {this.state.EditTripPlan?<EditTripPlan eachPlan={this.state.eachPlan} EditTripPlanReset={this.EditTripPlanReset}/>:''}
 
-
-      <div style={this.state.createSquad || this.state.CreateTripPlan?style:{}}>
+      <div style={this.state.createSquad || this.state.CreateTripPlan || this.state.EditTripPlan?style:{}}>
       <Header />
       <Sidebar />
 
@@ -170,7 +204,7 @@ handleClickAddTP(){
 
                 <div className="listbtn">
                     <div>
-                      <button className="edittrip">Edit</button>
+                      <button className="edittrip" onClick={()=>{this.sendEachPlanToState(eachPlan)}}>Edit</button>
                       <button className="deletetrip" onClick={()=>{this.deleteTrip(eachPlan.travelplan_id)}}>Delete</button>
                     </div>
                 </div>

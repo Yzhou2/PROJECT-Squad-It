@@ -51,7 +51,11 @@ module.exports = {
   createTrip: (req, res) => {
     const db = req.app.get('db');
     console.log(req.user,'yas sure')
-    db.insertTrip([req.body.Country, req.body.City, req.body.Arrival, req.body.Depart, req.body.LVCity, req.body.LVState, req.body.LVCountry, req.user.userid]).then(trip => res.status(200).send(trip))
+    db.insertTrip([req.body.Country, req.body.City, req.body.Arrival,
+                   req.body.arDay, req.body.arMonth, req.body.arYEAR,
+                   req.body.Depart, req.body.dpDay, req.body.dpMonth,
+                   req.body.dpYear, req.body.LVCity, req.body.LVState,
+                   req.body.LVCountry, req.user.userid]).then(trip => res.status(200).send(trip))
   },
 
   viewTrip: (req, res) => {

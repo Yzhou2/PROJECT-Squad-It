@@ -2,24 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-export default class CreateTripPlan extends Component {
+export default class EditTripPlan extends Component {
     constructor(props) {
       super(props);
 
       this.state = {
-          City: null,
-          State: null,
-          Country: null,
-          GoingDay: null,
-          GoingMonth: null,
-          GoingYear: null,
-          LeavingDay: null,
-          LeavingMonth: null,
-          LeavingYear: null,
-          TripAvaliable: null,
-          LVCity: null,
-          LVState: null,
-          LVCountry: null
+          eachPlan: this.props.eachPlan,
+
 
       }
       this.handleChangeCity = this.handleChangeCity.bind(this);
@@ -32,7 +21,7 @@ export default class CreateTripPlan extends Component {
       this.handleChangeLeavingMonth = this.handleChangeLeavingMonth.bind(this);
       this.handleChangeLeavingYear = this.handleChangeLeavingYear.bind(this);
       this.handleChangeSquad = this.handleChangeSquad.bind(this);
-      this.handleClick = this.handleClick.bind(this);
+      // this.handleClick = this.handleClick.bind(this);
       this.handleChangeLVCity = this.handleChangeLVCity.bind(this);
       this.handleChangeLVState = this.handleChangeLVState.bind(this);
       this.handleChangeLVCountry = this.handleChangeLVCountry.bind(this);
@@ -41,7 +30,7 @@ export default class CreateTripPlan extends Component {
 
 handleChangeCity(event) {
   this.setState({
-    City:event.target.value
+    eachPlan: Object.assign(this.state.eachPlan, {city: event.target.value})
   })
 }
 
@@ -119,40 +108,34 @@ handleChangeLVCountry(event) {
 
 
 
-handleClick(){
-
-  var Arrival = this.state.GoingYear + "-" + this.state.GoingMonth + "-" + this.state.GoingDay;
-  var Depart = this.state.LeavingYear + "-" + this.state.LeavingMonth + "-" + this.state.LeavingDay;
-  axios.post('http://localhost:3001/api/createTrip', {
-    City: this.state.City,
-    State: this.state.State,
-    Country: this.state.Country,
-    Arrival: Arrival,
-    arDay:  this.state.GoingDay,
-    arMonth: this.state.GoingMonth,
-    arYEAR: this.state.GoingYear,
-    Depart: Depart,
-    dpDay:this.state.LeavingDay,
-    dpMonth: this.state.LeavingMonth,
-    dpYear: this.state.LeavingYear,
-    LVCity: this.state.LVCity,
-    LVState: this.state.LVState,
-    LVCountry: this.state.LVCountry,
-    TripAvaliable: this.state.TripAvaliable
-
-  }, {withCredentials:true}).then(res => {
-    axios.get('http://localhost:3001/api/viewTrip', {withCredentials:true}).then( response =>
-      this.props.updateTravelPlan(response.data)
-     );
-  });
-
-  this.props.CreateTripPlanReset();
-
-}
+// handleClick(){
+//
+//   var Arrival = this.state.GoingYear + "-" + this.state.GoingMonth + "-" + this.state.GoingDay;
+//   var Depart = this.state.LeavingYear + "-" + this.state.LeavingMonth + "-" + this.state.LeavingDay;
+//   axios.post('http://localhost:3001/api/createTrip', {
+//     City: this.state.City,
+//     State: this.state.State,
+//     Country: this.state.Country,
+//     Arrival: Arrival,
+//     Depart: Depart,
+//     LVCity: this.state.LVCity,
+//     LVState: this.state.LVState,
+//     LVCountry: this.state.LVCountry,
+//     TripAvaliable: this.state.TripAvaliable
+//
+//   }, {withCredentials:true}).then(res => {
+//     axios.get('http://localhost:3001/api/viewTrip', {withCredentials:true}).then( response =>
+//       this.props.updateTravelPlan(response.data)
+//      );
+//   });
+//
+//   this.props.CreateTripPlanReset();
+//
+// }
 
 
   render() {
-    console.log(this.props, 'our first bug')
+    console.log(this.state, 'whats on state')
     return (
 
         <div className="createSquadContainer">
@@ -164,19 +147,19 @@ handleClick(){
               <div className="innerWrapper">
                 <div>Where are You Going?</div>
                 <div className="innerInput">
-                  <input placeholder="City" onChange={this.handleChangeCity} placeholder="City"></input>
-                  <input placeholder="State" onChange={this.handleChangeState} placeholder="State"></input>
-                  <input placeholder="Country" onChange={this.handleChangeCountry} placeholder="Country"></input>
+                  <input onChange={this.handleChangeCity} defaultValue={this.state.eachPlan.city}></input>
+                  <input onChange={this.handleChangeState} placeholder={this.state.eachPlan.state}></input>
+                  <input onChange={this.handleChangeCountry} placeholder={this.state.eachPlan.country}></input>
                 </div>
               </div>
 
 
             <div className="innerWrapper">
-              <div>When are You going?</div>
+              <div>When are You Arriving?</div>
             <div className="innerInput">
-              <input onChange={this.handleChangeGoingDay} placeholder="Day"></input>
-              <input onChange={this.handleChangeGoingMonth} placeholder="Month"></input>
-              <input onChange={this.handleChangeGoingYear} placeholder="Year"></input>
+              <input onChange={this.handleChangeGoingDay} placeholder={this.state.eachPlan.arday}></input>
+              <input onChange={this.handleChangeGoingMonth} placeholder={this.state.eachPlan.armonth}></input>
+              <input onChange={this.handleChangeGoingYear} placeholder={this.state.eachPlan.aryear}></input>
             </div>
           </div>
 
@@ -184,18 +167,18 @@ handleClick(){
             <div className="innerWrapper">
               <div>When are You leaving?</div>
             <div className="innerInput">
-              <input onChange={this.handleChangeLeavingDay} placeholder="Day"></input>
-              <input onChange={this.handleChangeLeavingMonth} placeholder="Month"></input>
-              <input onChange={this.handleChangeLeavingYear} placeholder="Year"></input>
+              <input onChange={this.handleChangeLeavingDay} placeholder={this.state.eachPlan.dpday}></input>
+              <input onChange={this.handleChangeLeavingMonth} placeholder={this.state.eachPlan.dpmonth}></input>
+              <input onChange={this.handleChangeLeavingYear} placeholder={this.state.eachPlan.doyear}></input>
             </div>
             </div>
 
             <div className="innerWrapper">
               <div>Where are you Leaving From?</div>
               <div className="innerInput">
-                <input onChange={this.handleChangeLVCity} placeholder="City"></input>
-                <input onChange={this.handleChangeLVState} placeholder="State"></input>
-                <input onChange={this.handleChangeLVCountry} placeholder="Country"></input>
+                <input onChange={this.handleChangeLVCity} placeholder={this.state.eachPlan.lvcity}></input>
+                <input onChange={this.handleChangeLVState} placeholder={this.state.eachPlan.lvstate}></input>
+                <input onChange={this.handleChangeLVCountry} placeholder={this.state.eachPlan.lvcountry}></input>
               </div>
             </div>
 
@@ -210,7 +193,7 @@ handleClick(){
           </div>
           <div className="createBtn">
             <button onClick={this.handleClick}>save</button>
-            <button onClick={() => {this.props.CreateTripPlanReset()}}>Cancel</button>
+            <button onClick={() => {this.props.EditTripPlanReset()}}>Cancel</button>
           </div>
       </div>
     )

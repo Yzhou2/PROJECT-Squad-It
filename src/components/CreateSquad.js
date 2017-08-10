@@ -112,7 +112,10 @@ export default class CreateSquad extends Component {
 
     handleClick() {
       console.log('clicked save')
-    axios.post( 'http://localhost:3001/api/squad', this.state, {withCredentials:true} ).then( response => response)
+    axios.post( 'http://localhost:3001/api/squad', this.state, {withCredentials:true} ).then( response => {
+      this.props.updatecurrentSquad(this.state)
+    });
+    this.props.createSquadReset();
   }
 
     handleClickCancel() {
