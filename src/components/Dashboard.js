@@ -165,7 +165,7 @@ sendEachPlanToState(val){
 
     {this.state.createSquad?<CreateSquad createSquadReset={this.createSquadReset} updatecurrentSquad={this.updatecurrentSquad}/>:''}
     {this.state.CreateTripPlan?<CreateTripPlan CreateTripPlanReset={this.CreateTripPlanReset} updateTravelPlan={this.updateTravelPlan}/>:''}
-    {this.state.EditTripPlan?<EditTripPlan eachPlan={this.state.eachPlan} EditTripPlanReset={this.EditTripPlanReset}/>:''}
+    {this.state.EditTripPlan?<EditTripPlan eachPlan={this.state.eachPlan} EditTripPlanReset={this.EditTripPlanReset} updateTravelPlan={this.updateTravelPlan}/>:''}
 
       <div style={this.state.createSquad || this.state.CreateTripPlan || this.state.EditTripPlan?style:{}}>
       <Header />

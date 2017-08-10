@@ -85,6 +85,7 @@ massive( connectionString ).then( db => {
   app.get('/api/getPastSquad', controller.getPastSquad);
   app.delete('/api/removeTrip/:id', controller.removeTrip);
   app.delete('/api/removeSquad/:id', controller.removeSquad);
+  app.put('/api/editTrip', controller.editTrip);
 
   app.listen(3001, ()=>{
 

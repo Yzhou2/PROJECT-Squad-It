@@ -89,5 +89,16 @@ module.exports = {
     console.log(req.params, 'req.param')
     db.removeSquad([req.params.id, req.user.userid, req.params.id]).then( past_squad => {
       res.status(200).send(past_squad)})
+  },
+
+  editTrip: (req, res) => {
+    const db = req.app.get('db');
+    console.log('this is req.body for edit trip', req.body)
+    db.editTripPlan([req.body.eachPlan.country, req.body.eachPlan.city, req.body.eachPlan.arrival,
+                    req.body.eachPlan.arday, req.body.eachPlan.armonth, req.body.eachPlan.aryear,
+                    req.body.eachPlan.depart, req.body.eachPlan.dpday, req.body.eachPlan.dpmonth,
+                    req.body.eachPlan.dpyear, req.body.eachPlan.lcvity, req.body.eachPlan.lcstate,
+                    req.body.eachPlan.lvcountry, req.body.eachPlan.travelplan_id, req.body.eachPlan.userid]).then(  newPlan => {
+      res.status(200).send(newPlan)})
   }
 }

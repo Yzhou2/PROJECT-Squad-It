@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import dateCreator from './dateCreator';
 // import axios from 'axios';
 
 
@@ -9,7 +10,8 @@ export default class Chat_room extends Component {
       super();
 
       this.state = {
-        message: null
+        message: [],
+        newMessage: null,
       }
     this.handleChange = this.handleChange.bind(this);
     }
@@ -17,7 +19,7 @@ export default class Chat_room extends Component {
 
 handleChange(event) {
   this.setState({
-    message: event.target.value
+    newMessage: event.target.value
   })
 }
 
