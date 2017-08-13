@@ -27,14 +27,17 @@ export default class Profile extends Component {
       visited_countries: null,
       Fluent_Languages: null,
       description: null,
-      popUp: false
+      popUp: false,
+      flag: false,
+      userid:null,
     }
 
   this.handleClickEdit = this.handleClickEdit.bind(this);
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/user', {withCredentials:true}).then( response => {
+    const getProfileAPI = !this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+    axios.get(getProfileAPI, {withCredentials:true}).then( response => {
       console.log(response.data, 'this is responseeeeeee')
       this.setState({
         firstname: response.data[0].firstname,
@@ -80,8 +83,8 @@ handleClickEdit() {
          <EditProfile />
 
          <div style={this.state.popUp?blur:{}}>
-        <Header />
-        <Sidebar />
+
+
 
         <div className="ProfileContainer">
 
@@ -211,8 +214,6 @@ handleClickEdit() {
 
         <div>
 
-          <Header />
-          <Sidebar />
 
           <div className="ProfileContainer">
 

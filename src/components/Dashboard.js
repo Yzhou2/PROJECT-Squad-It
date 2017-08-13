@@ -6,6 +6,7 @@ import axios from 'axios';
 import CreateSquad from './CreateSquad';
 import CreateTripPlan from './CreateTripPlan';
 import EditTripPlan from './EditTripPlan';
+import Chat_room from './ChatRoom/Chat_room';
 
 export default class Dashboard extends Component{
   constructor() {
@@ -19,7 +20,10 @@ export default class Dashboard extends Component{
       createSquad: false,
       CreateTripPlan: false,
       EditTripPlan: false,
-      eachPlan: null
+      eachPlan: null,
+      eachSquadInfo: null,
+      eachsquadClicked: false,
+      events: null
 
     }
   this.handleCSDelete = this.handleCSDelete.bind(this);
@@ -30,6 +34,7 @@ export default class Dashboard extends Component{
   this.handleClickAddTP = this.handleClickAddTP.bind(this);
   this.updateTravelPlan = this.updateTravelPlan.bind(this);
   this.updatecurrentSquad = this.updatecurrentSquad.bind(this);
+  this.handleEachSquad = this.handleEachSquad.bind(this);
   }
 
 
@@ -50,14 +55,14 @@ export default class Dashboard extends Component{
        this.setState({
          pastSquad: response.data
        })
-    })
+    });
+
 
   }
 
 
 
   handleCSDelete(eachSquad) {
-    console.log('clicked delete')
     axios.put('http://localhost:3001/api/updateSquad',{eachSquad}, {withCredentials:true}).then(res => {
       axios.get('http://localhost:3001/api/getPastSquad', {withCredentials:true}).then( response => {
         this.setState({
@@ -150,26 +155,35 @@ sendEachPlanToState(val){
     EditTripPlan: true
   });
 }
-/*CreateTripPlanReset={this.CreateTripPlanReset} updateTravelPlan={this.updateTravelPlan}*/
+
+
+handleEachSquad(eachSquad) {
+  this.setState({
+    eachsquadClicked: true,
+    eachSquadInfo: eachSquad
+  })
+}
 
 
   render() {
 
-    console.log(this.state.pastSquad, 'im the pastSquad!!')
+    console.log('data on state', this.state.events)
     var style = {
       filter: 'blur(5px)'
     }
 
+    var style2 = {
+      display: 'none'
+    }
     return (
     <div>
 
     {this.state.createSquad?<CreateSquad createSquadReset={this.createSquadReset} updatecurrentSquad={this.updatecurrentSquad}/>:''}
     {this.state.CreateTripPlan?<CreateTripPlan CreateTripPlanReset={this.CreateTripPlanReset} updateTravelPlan={this.updateTravelPlan}/>:''}
     {this.state.EditTripPlan?<EditTripPlan eachPlan={this.state.eachPlan} EditTripPlanReset={this.EditTripPlanReset} updateTravelPlan={this.updateTravelPlan}/>:''}
+    {this.state.eachsquadClicked?<Chat_room eachSquadInfo={this.state.eachSquadInfo}/>:''}
 
-      <div style={this.state.createSquad || this.state.CreateTripPlan || this.state.EditTripPlan?style:{}}>
-      <Header />
-      <Sidebar />
+      <div style={this.state.eachsquadClicked?style2:this.state.createSquad || this.state.CreateTripPlan || this.state.EditTripPlan?style:{}}>
 
       <div className="DashboardContainer">
           <div className="tripPlan">
@@ -242,7 +256,7 @@ sendEachPlanToState(val){
                  {this.state.currentSquad ? this.state.currentSquad.map( (eachSquad, idx) => {
                    return (
                      <div className="squadListInner" key={idx}>
-                       <div> {eachSquad.name} </div>
+                       <div onClick= {()=>{this.handleEachSquad(eachSquad)}}> {eachSquad.name} </div>
                        <button className="squaddelete" onClick={()=>{this.handleCSDelete(eachSquad)}}>DELETE</button>
                      </div>
                    )
@@ -281,7 +295,6 @@ sendEachPlanToState(val){
               </div>
             </div>
         </div>
-
 
       </div>
       </div>

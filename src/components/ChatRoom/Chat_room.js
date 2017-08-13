@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from '../Header';
+import Sidebar from '../Sidebar';
 import dateCreator from './dateCreator';
-// import axios from 'axios';
+import axios from 'axios';
+// import subscribeToTimer from './socket';
+// import socket from 'socket.io';
+const io = require('socket.io-client')
+const socket = io();
 
 
 export default class Chat_room extends Component {
@@ -12,8 +16,17 @@ export default class Chat_room extends Component {
       this.state = {
         message: [],
         newMessage: null,
+
+
       }
+    // subscribeToTimer((err, timestamp) => this.setState({
+    //   timestamp
+    // }))
+
+
+
     this.handleChange = this.handleChange.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
     }
 
 
@@ -24,43 +37,63 @@ handleChange(event) {
 }
 
 
+// handleClick(ev){
+//   subscribeToTimer.emit('message', 'hi')
+// }
+
 // componentDidMount() {
-//   console.log('mounted')
-//   axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
-//   // console.log('response!!!!!!!',response.data[0].firstname)
+//   console.log('view msg mounted')
+//   axios.get( `http://localhost:3001/api/viewMessages${this.props.squad_id}`, {withCredentials:true} ).then( response => {
+//   console.log('response for message!!!!!!!',response.data)
 //   this.setState({
-//     firstname: response.data[0].firstname,
-//     profile_img_url: response.data[0].profile_img_url
-//
+//     message: response.data,
 //   });
 // });
 // }
 
   render() {
-    console.log(this.state.message,'chat message')
+    console.log(this.props,'prop sent to chat_room')
   return (
     <div>
-
-    <Header />
-    <Sidebar />
 
         <div className="chatRoomContainer">
 
           <div className="chatLeft">
             <div className="chatTop">
-              <div>title</div>
-              <div>description</div>
+              <div className="chatTitlte">Young & Free</div>
+              <i className="fa fa-angle-down" aria-hidden="true"></i>
             </div>
-                <div className="chatArea">chat area</div>
-                <div className="chatInput">
-                  <input onChange={this.handleChange}></input>
-                  <button>send</button>
+                <div className="chatArea">
+                  <div className="innerChat">
+                    <div className="chatProfile"></div>
+                    <div className="messageRight">
+                        <div className="messageRightTop">
+                          <div className="chatName">Yiran Zhou</div>
+                          <div className="time">2:35pm</div>
+                        </div>
+                      <div className="message">hey yo, how ya doin?</div>
+                    </div>
+                  </div>
                 </div>
+                <div className="chatInput">
+                  <input className="chat" onChange={this.handleChange}></input>
+                </div>
+
+
+
           </div>
 
           <div className="chatRight">
-            <div className="memberArea"> member area </div>
-            <div className="bucketList">bucket list </div>
+            <div className="memberArea">
+              <div className="mbrTitle">Members</div>
+              <div className="member">
+                <div className="avatar"></div>
+                <div className="name">Sam Heathcote</div>
+              </div>
+            </div>
+            <div className="bucketList">
+              <div className="mbrTitle">bucket list</div> 
+            </div>
           </div>
 
         </div>

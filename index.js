@@ -8,14 +8,27 @@ const app = express();
 const keys = require('./server/keys')
 const massive = require('massive');
 const controller = require('./server/controllers/controllers');
-
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const connectionString = keys.address;
+
 
 var corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200,
+  // 'Access-Control-Allow-Origin': '*'
+
+ // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('message', function(message){
+    console.log('received msg')
+  })
+});
+
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
@@ -26,6 +39,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 
 
@@ -43,6 +58,7 @@ massive( connectionString ).then( db => {
     // console.log(profile);
     db.getUserByAuthId([profile.id]).then(function(user) {
       //  console.log(user, 'hihihihihihihi')
+
         user = user[0];
         if (!user) { //if there isn't one, we'll create one!
           console.log('CREATING USER', profile);
@@ -68,10 +84,11 @@ massive( connectionString ).then( db => {
     done(null, profileFromSession);//obj is value from session
   });
 
+
   app.get('/auth', passport.authenticate('auth0'));
-  app.get('/auth/callback', passport.authenticate('auth0', {successRedirect:'http://localhost:3000/dashboard'}));
+  app.get('/auth/callback', passport.authenticate('auth0', {successRedirect:'http://localhost:3000/logged/dashboard'}));
   app.get('/me', function(req, res){
-    console.log(req.user,'this is req.user')
+    // console.log(req.user,'this is req.user')
     res.send(req.user)
   });
   // app.get('/api/profileImg', controller.getPic);
@@ -86,9 +103,16 @@ massive( connectionString ).then( db => {
   app.delete('/api/removeTrip/:id', controller.removeTrip);
   app.delete('/api/removeSquad/:id', controller.removeSquad);
   app.put('/api/editTrip', controller.editTrip);
+  app.get('/api/viewMessages/:id', controller.viewMessages);
+  app.get('/api/getEvent/:city', controller.getEvent);
+  app.get('/api/getUserByDest/:dest', controller.getUserByDest)
 
-  app.listen(3001, ()=>{
 
+  app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html')
+  })
+
+  server.listen(3001, ()=>{
     console.log('im listening on port 3001')
   })
 });

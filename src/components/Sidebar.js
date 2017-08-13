@@ -44,8 +44,8 @@ export default class Sidebar extends Component {
         <div className="sidebarName">{this.state.firstname+" "+this.state.lastname}</div>
       </div>
 
-      <Link to='/dashboard'><div className="sideBarSelection">Dashboard</div></Link>
-      <Link to='/profile'><div className="sideBarSelection">Profile</div></Link>
+      <Link to='/logged/dashboard'><div className="sideBarSelection">Dashboard</div></Link>
+      <Link to='/logged/profile'><div className="sideBarSelection">Profile</div></Link>
       <div className="sideBarSelection">Messages</div>
       <div className="sideBarSelection bottomLine">News Feed</div>
 

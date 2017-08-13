@@ -1,3 +1,7 @@
+const axios = require('axios');
+const keys = require('./keys')
+
+
 module.exports = {
   getPic: (req, res) => {
     const db = req.app.get('db');
@@ -8,12 +12,17 @@ module.exports = {
   },
   getUserProfile: (req, res) => {
     const db = req.app.get('db');
-    console.log('server req.user get', req.user)
+    if (!req.query.userid) {
     db.get_user_profile([req.user.authid]).then(
-
-      user => res.status(200).send(user))
-
-
+      user => {
+        console.log(user, 'inside if')
+        res.status(200).send(user)
+      })
+    } else {
+      console.log(req.query, 'this is req.query')
+      db.get_user_profile([req.query.userid]).then(
+        user => res.status(200).send(user))
+    }
   },
 
   updateProfile: (req, res) => {
@@ -86,7 +95,7 @@ module.exports = {
 
   removeSquad: (req, res) => {
     const db = req.app.get('db');
-    console.log(req.params, 'req.param')
+    // console.log(req.params, 'req.param')
     db.removeSquad([req.params.id, req.user.userid, req.params.id]).then( past_squad => {
       res.status(200).send(past_squad)})
   },
@@ -100,5 +109,32 @@ module.exports = {
                     req.body.eachPlan.dpyear, req.body.eachPlan.lcvity, req.body.eachPlan.lcstate,
                     req.body.eachPlan.lvcountry, req.body.eachPlan.travelplan_id, req.body.eachPlan.userid]).then(  newPlan => {
       res.status(200).send(newPlan)})
-  }
+  },
+
+//chatroom controllers
+
+  viewMessages: (req, res) => {
+    const db = req.app.get('db');
+    console.log(req.params, 'this is params for message')
+    db.viewMessages([req.params.squad_id]).then( squadMessage => {
+      res.status(200).send(squadMessage)})
+  },
+
+  getEvent: (req, res) => {
+    console.log(req.params.city, 'this is the city we are searching')
+    axios.get(`http://api.eventful.com/json/events/search?app_key={keys.eventAPI}&location=${req.params.city}`).then(
+      response => res.send(response.data)
+        // console.log('hey yo im response', response)
+
+      )
+  },
+
+
+  getUserByDest: (req, res) => {
+    const db = req.app.get('db');
+    // console.log(req.params.dest, 'desti')
+    db.getUserByDes([req.params.dest]).then( users => {
+      // console.log(users, 'this is the users')
+    res.status(200).send(users)})
+  },
 }

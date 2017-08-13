@@ -158,7 +158,7 @@ video {
 
 .sidebar {
   width: 12.7%;
-  height: 100vh;
+  height: 1230px;
   /*border: 2px solid orange;*/
   border-right: 1px solid lightgray;
   display: inline-block;
@@ -810,48 +810,79 @@ video {
 
 .chatRoomContainer {
   display: flex;
-  border: 2px solid red;
-  height: 700px;
+  /*border: 2px solid red;*/
+  height: 715px;
   width: 86.7%;
   background: #f4f4f5;
 
 }
 
 .chatLeft {
-  border: 2px solid teal;
+  /*border: 2px solid teal;*/
   width: 85%;
-  height: 700px;
+  height: 680px;
 
 }
 
 .chatRight {
-  border: 2px solid orange;
+  /*border: 2px solid orange;*/
   width: 15%;
   height: 100%;
+  border-left: 1px solid lightgray;
 }
 
 .chatTop {
-  border: 2px solid red;
-  height: 50px;
+  height: 30px;
+  width: 100%;
+  background: #f1f1f1;
+  color: #b5b5b5;
+  font-size: 16px;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+}
+
+.chatTop i {
+  margin-top: 8px;
+  margin-left: 5px;
+  color: #ffb033;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.chatTitlte {
+  margin-left: 15px;
+  padding-top: 6px;
 }
 
 .chatArea {
-  height: 610px;
-  border: 2px solid brown;
+  height: 640px;
+  /*border: 2px solid brown;*/
+  background: #f4f4f5;
+  /*background: white;*/
 }
+
+.chat {
+  width: 100%;
+  height: 100%;
+  border: 3px solid lightgray;
+}
+
 
 .memberArea {
   height: 450px;
-  border: 2px solid green;
+  /*border: 2px solid green;*/
+  background: white;
 }
 
 .bucketList {
-  height: 250px;
-  border: 2px solid green;
+  height: 265px;
+  border-top: 1px solid lightgray;
+  background: white;
 }
 
 .chatInput {
   height: 30px;
+  width: 100%;
   background-color: yellow;
 }
 
@@ -866,7 +897,374 @@ video {
   outline: none;
 }
 
-/*.chatInput input {
+
+
+
+/* search result(country) */
+.searchTopBar {
+  width: 100%;
+  height: 250px;
+  /*border: 2px solid red;*/
+  position: relative;
+}
+
+.searchTopBar img {
   width: 100%;
   height: 100%;
-}*/
+  overflow: hidden;
+}
+
+.searchTitle {
+  width: 250px;
+  height: 20px;
+  /*background-color: red;*/
+  color:white;
+  font-size: 18px;
+  position: absolute;
+  top:190px;
+  left:20px;
+}
+
+.searchBodyContainer{
+  display: flex;
+}
+
+.searchBodyLeft{
+  width: 80%;
+  height: 1000px;
+  /*border: 2px solid black;*/
+}
+
+
+.searchBodyRight {
+  width: 20%;
+  height: 1000px;
+  border-left: 1px solid lightgray;
+  background: white;
+}
+
+.CirclesContainer{
+  width: 95%;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  margin-top: 15px;
+  box-shadow: 3px 3px 1.25px #888888;
+  border: 2px solid lightgray;
+
+}
+
+.circle {
+  width: 180px;
+  height: 145px;
+  /*border: 2px solid orange;*/
+}
+
+.circleImg{
+  margin-left: 45px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: white;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightgray;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+}
+
+.circleImg:hover {
+  background-color: #fcc97e;
+}
+
+
+.circleImg img {
+  width: 55%;
+  height: 55%;
+
+}
+
+
+.circleTitle {
+  width: 180px;
+  font-size: 14px;
+  margin-top: 10px;
+  color: gray;
+  height: 25px;
+  /*border: 2px solid green;*/
+  text-align: center;
+}
+
+.countryInfo {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 100%;
+  height:820px;
+  /*border: 2px solid brown;*/
+}
+
+.rightBarTitle {
+  color: #b5b5b5;
+  margin-left: 15px;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+
+.singleEvent {
+  width: 230px;
+  height: 250px;
+  border: 1px solid #b5b5b5;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  box-shadow: 1px 1px 0.5px #888888;
+}
+
+.eventPic {
+  width: 100%;
+  height: 150px;
+  border-radius: 5px 5px 0px 0px;
+  border: 1px solid teal;
+}
+
+.eventDetail {
+  width: 95%;
+  margin: 0 auto;
+  height: 90px;
+  margin-top: 5px;
+  /*border: 1px solid black;*/
+  font-size: 12px;
+  color: #b5b5b5;
+}
+
+.eventTitle {
+  margin-top: 5px;
+  font-size: 18px;
+  color: #7e8794;
+  height: 55px;
+}
+
+.eventFooter {
+  display: flex;
+}
+
+.eventAds {
+  margin-left: 5px;
+}
+/*find squad + find squad member search result */
+.searchBodyBox {
+  border: 2px solid black;
+  height: 88%;
+  width: 100%;
+
+}
+
+.searchBar {
+  width: 100%;
+  height: 150px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 2px solid black;
+}
+
+.searchBarInner {
+  width: 90%;
+  height: 100%;
+  border: 2px solid orange;
+  margin: 0 auto;
+}
+
+.searchBodyInner {
+  height: 90%;
+  width: 90%;
+  margin:  0 auto;
+}
+
+.searchBarInnerBox {
+  margin: 0 auto;
+  height: 48%;
+  width: 100%;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ageInput {
+  display: flex;
+}
+
+.searchIndie {
+  border: 2px solid red;
+  height: 100%;
+  width: 33%;
+}
+
+.searchCard {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  height: 150px;
+  width: 100%;
+  border: 1px solid red;
+  margin-top: 15px;
+  display: flex;
+  background: white;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profilePic {
+  height: 120px;
+  width: 120px;
+  margin-top: 13px;
+  margin-left: 15px;
+  border-radius: 50%;
+  border: 2px solid red;
+}
+
+.cardRight {
+  width: 85%;
+  height: 90%;
+  border: 1px solid brown;
+  margin-top: 5px;
+  margin-left: 10px;
+  display:flex;
+  justify-content: space-between;
+}
+
+
+.profileName {
+  margin-top: 18px;
+  font-size: 19px;
+  color: #7e8794;
+  width: 200px;
+  height: 20px;
+  /*border: 1px solid black;*/
+}
+
+.MoreDetail {
+  display: flex;
+  font-size: 14px;
+  margin-top: 20px;
+  width: 250px;
+  height: 15px;
+  /*border: 1px solid black;*/
+  color: #b5b5b5;
+}
+
+.MoreDetail div {
+  margin-left: 5px;
+}
+
+.MoreDetail i {
+    color: #ffb033;
+}
+
+.btnContainer {
+  margin-top: 10px;
+  width: 145px;
+  height: 110px;
+  border: 2px solid red;
+}
+
+.btnContainer button {
+  color: white;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #e57a13;
+  font-size: 14px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+  margin-top: 15px;
+}
+
+.member {
+  /*border: 2px solid darkred;*/
+  height: 50px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.mbrTitle {
+  color: #b5b5b5;
+  margin-left: 5px;
+  padding-top: 5px;
+}
+.avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid orange;
+}
+
+.name {
+  font-size: 13px;
+  margin-left: 5px;
+  color: #b5b5b5;
+}
+
+
+/* inner chat message */
+.innerChat {
+  margin-bottom: 10px;
+  height: 70px;
+  width: 95%;
+  /*border: 2px solid red;*/
+  margin: 0 auto;
+  display: flex;
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  /*border: 1px solid lightgray;*/
+}
+
+.chatProfile {
+ height: 40px;
+ width: 40px;
+ border-radius: 50%;
+ border: 2px solid gray;
+ margin-top: 10px;
+ margin-left: 10px;
+}
+
+.messageRight {
+  /*border: 2px solid red;*/
+  margin-left: 5px;
+}
+
+.messageRightTop {
+  display: flex;
+  align-items: baseline;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.chatName {
+  color: #7e8794;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 3px;
+}
+
+.time {
+  color: #fcc87b;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.message {
+  font-size: 15px;
+  color: #7e8794;
+}
