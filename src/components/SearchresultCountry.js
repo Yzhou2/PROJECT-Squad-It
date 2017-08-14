@@ -9,7 +9,7 @@ export default class SearchresultCountry extends Component {
       super();
 
       this.state = {
-        events: null,
+        events: [],
         city: 'provo',
         bannerPic: ['https://i.imgur.com/oIwuby5.png', 'https://i.imgur.com/KE8Jjx7.png']
       }
@@ -39,7 +39,7 @@ componentDidMount() {
 }
 
   render() {
-
+console.log(this.state.events, 'event??!!!!!')
   return (
     <div>
 
@@ -78,18 +78,27 @@ componentDidMount() {
 
             <div className="searchBodyRight">
               <div className="rightBarTitle">Local Events</div>
+              {
+                this.state.events.map(event => {
+                  return (
+                    event.image?
+                    <div className="singleEvent">
+                      <div className="eventPic"></div>
+                      <div className="eventDetail">
+                        <div>{event.start_time}</div>
+                        <div className="eventTitle">{event.title}</div>
+                        <div className="eventFooter">
+                          <i className="fa fa-map-marker" aria-hidden="true"></i>
+                          <div className="eventAds"> {event.venue_name + ", " + event.venue_address}</div>
+                        </div>
+                      </div>
+                    </div>
+                    :
+                    ""
+                  )
+                })
+              }
 
-              <div className="singleEvent">
-                <div className="eventPic"></div>
-                <div className="eventDetail">
-                  <div>2017, sep 15th, 18:00pm</div>
-                  <div className="eventTitle">Meeting up and Chat With Me</div>
-                  <div className="eventFooter">
-                    <i className="fa fa-map-marker" aria-hidden="true"></i>
-                    <div className="eventAds"> 279 n 400 e, Provo, UT, USA</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

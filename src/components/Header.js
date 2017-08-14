@@ -24,15 +24,15 @@ handleChange(event) {
 }
 
 handleClick(){
-  console.log('prop passed', this.props)
-  this.props.update_destination(this.state.search);
-  axios.get(`http://localhost:3001/api/getUserByDest/${this.state.search}`, {withCredentials: true}).then(
-    res => {
-      this.setState({
-        searchresult: res.data
-      })
-    }
-  );
+  // console.log('prop passed', this.props)
+  // this.props.update_destination(this.state.search);
+  // axios.get(`http://localhost:3001/api/getUserByDest/${this.state.search}`, {withCredentials: true}).then(
+  //   res => {
+  //     this.setState({
+  //       searchresult: res.data
+  //     })
+  //   });
+  this.props.updateSearch(this.state.search)
 }
 
 
@@ -49,7 +49,6 @@ componentDidMount() {
 }
 
   render() {
-    console.log('whats the search result', this.state.searchresult)
   return (
     <div className="header">
       <div className="headerInner">

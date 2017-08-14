@@ -1034,6 +1034,12 @@ video {
   border: 1px solid teal;
 }
 
+.eventPic img {
+width: 100%;
+overflow: hidden;
+
+}
+
 .eventDetail {
   width: 95%;
   margin: 0 auto;
