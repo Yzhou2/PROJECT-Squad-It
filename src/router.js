@@ -10,7 +10,7 @@ import SearchResult from './components/SearchResult';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import SelectSquad from './components/SelectSquad';
-
+import Chat_room from './components/ChatRoom/Chat_room';
 
 
 export default class Router extends Component{
@@ -51,8 +51,9 @@ export default class Router extends Component{
     <Route component={ CreateSquad } path="/logged/createsquad" />
     <Route component={ CreateTripPlan } path="/logged/createtrip" />
     <Route component={ SearchresultCountry } path="/logged/searchresultCT/:search" updateFlag={this.updateFlag}/>
-    <Route render={props => <SearchResult updateFlag={this.updateFlag}/>} path='/logged/searchresult' />
+    <Route component={ SearchResult } path='/logged/searchresult' />
     <Route component={ SelectSquad } path='/logged/selectsquad' />
+    <Route component={ Chat_room } path="/logged/chat" />
 
   </Switch>
   </div>

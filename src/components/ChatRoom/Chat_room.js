@@ -18,6 +18,7 @@ export default class Chat_room extends Component {
         user: null,
         members: [],
 
+
       }
 
 
@@ -46,7 +47,7 @@ componentDidMount(){
       user: res.data[0]
     })
   });
-  axios.post(`http://localhost:3001/api/getSquadMembers/${this.props.eachSquadInfo.squad_id}`, {withCredentials:true} ).then(
+  axios.post(`http://localhost:3001/api/getSquadMembers/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ).then(
     response => {
       this.setState({
         members: response.data
@@ -74,7 +75,7 @@ getMsg(msg){
 
 
   render() {
-    console.log(this.state.user,'user on state??')
+    console.log(this.state.members,'members from state??????')
 
   return (
     <div>

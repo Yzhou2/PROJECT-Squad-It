@@ -148,7 +148,7 @@ componentWillReceiveProps(props){
                        </div>
 
                          <div className="btnContainer">
-                             <button onClick={()=>{this.props.updateFlag(true)}}><Link to='/logged/profile'>View Profile</Link></button>
+                             <button><Link to={{pathname:'/logged/profile', query:{flag:false}}}>View Profile</Link></button>
                              {console.log(user.userid, 'hey yo this is the userid')}
                              <button onClick={()=>{this.handleClick(user.userid)}}>+ To Your Squad</button>
                          </div>

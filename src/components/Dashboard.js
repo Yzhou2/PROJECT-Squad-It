@@ -6,7 +6,7 @@ import axios from 'axios';
 import CreateSquad from './CreateSquad';
 import CreateTripPlan from './CreateTripPlan';
 import EditTripPlan from './EditTripPlan';
-import Chat_room from './ChatRoom/Chat_room';
+
 
 
 export default class Dashboard extends Component{
@@ -177,7 +177,7 @@ handleEachSquad(eachSquad) {
 
   render() {
 
-    console.log('propsssssss', this.state.eachsquadClicked)
+    // console.log('propsssssss', this.state.eachsquadClicked)
 
 
     var style = {
@@ -193,7 +193,6 @@ handleEachSquad(eachSquad) {
     {this.state.createSquad?<CreateSquad createSquadReset={this.createSquadReset} updatecurrentSquad={this.updatecurrentSquad}/>:''}
     {this.state.CreateTripPlan?<CreateTripPlan CreateTripPlanReset={this.CreateTripPlanReset} updateTravelPlan={this.updateTravelPlan}/>:''}
     {this.state.EditTripPlan?<EditTripPlan eachPlan={this.state.eachPlan} EditTripPlanReset={this.EditTripPlanReset} updateTravelPlan={this.updateTravelPlan}/>:''}
-    {this.state.eachsquadClicked?<Chat_room eachSquadInfo={this.state.eachSquadInfo}/>:''}
 
       <div style={this.state.eachsquadClicked?style2:this.state.createSquad || this.state.CreateTripPlan || this.state.EditTripPlan?style:{}}>
 
@@ -267,10 +266,10 @@ handleEachSquad(eachSquad) {
                 <div className="squadList">
                  {this.state.currentSquad ? this.state.currentSquad.map( (eachSquad, idx) => {
                    return (
-                     <div className="squadListInner" key={idx}>
-                       <div onClick= {()=>{this.handleEachSquad(eachSquad)}}> {eachSquad.name} </div>
+                     <Link to={{pathname:"/logged/chat", query:{eachSquad: eachSquad}}} key={idx}><div className="squadListInner">
+                       <div> {eachSquad.name} </div>
                        <button className="squaddelete" onClick={()=>{this.handleCSDelete(eachSquad)}}>DELETE</button>
-                     </div>
+                     </div></Link>
                    )
                  }):[]}
                 </div>

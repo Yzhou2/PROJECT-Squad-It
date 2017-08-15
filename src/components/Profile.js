@@ -28,7 +28,7 @@ export default class Profile extends Component {
       Fluent_Languages: null,
       description: null,
       popUp: false,
-      flag: false,
+      flag: null,
       userid:null,
     }
 
@@ -36,7 +36,7 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    const getProfileAPI = !this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+    const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
     axios.get(getProfileAPI, {withCredentials:true}).then( response => {
       console.log(response.data, 'this is responseeeeeee')
       this.setState({
@@ -59,18 +59,23 @@ export default class Profile extends Component {
         description: response.data[0].description
 
 
-      });
+      })
+    });
+
+    this.setState({
+      flag: this.props.location.query.flag
     })
   }
 
 handleClickEdit() {
   this.setState({
-    popUp: true
+    popUp: this.props.location.query.flag
   })
 }
 
   render() {
-    // console.log(this.state.squadName)
+    console.log(this.props.location.query.flag, 'hey this is the props passed in ')
+    console.log(this.state.flag, 'what about state????')
     var blur = {
       filter: 'blur(5px)'
     }
