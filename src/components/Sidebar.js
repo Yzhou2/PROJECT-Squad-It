@@ -44,7 +44,7 @@ export default class Sidebar extends Component {
         <div className="sidebarName">{this.state.firstname+" "+this.state.lastname}</div>
       </div>
 
-      <Link to='/logged/dashboard'><div className="sideBarSelection">Dashboard</div></Link>
+      <div className="sideBarSelection">Dashboard</div>
       <div className="sideBarSelection" onClick={()=>{this.props.updateFlag(false)}}><Link to='/logged/profile'>Profile</Link></div>
       <div className="sideBarSelection">Messages</div>
       <div className="sideBarSelection bottomLine">News Feed</div>

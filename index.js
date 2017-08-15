@@ -23,9 +23,10 @@ var corsOptions = {
 }
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+  console.log('a user connected, yayyyy');
   socket.on('message', function(message){
-    console.log('received msg')
+    console.log('received msg', message)
+    io.emit('receive-msg', message);
   })
 });
 
@@ -105,7 +106,9 @@ massive( connectionString ).then( db => {
   app.put('/api/editTrip', controller.editTrip);
   app.get('/api/viewMessages/:id', controller.viewMessages);
   app.get('/api/getEvent/:city', controller.getEvent);
-  app.get('/api/getUserByDest/:dest', controller.getUserByDest)
+  app.get('/api/getUserByDest/:dest', controller.getUserByDest);
+  app.post('/api/addSquadMember', controller.addSquadMember);
+  app.post('/api/getSquadMembers/:squad_id', controller.getSquadMembers)
 
 
   app.get('/', (req, res) => {

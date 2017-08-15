@@ -76,7 +76,7 @@ CREATE Table bucketList (
 )
 
 CREATE Table Message (
-  id int,
+  id Serial PRIMARY KEY,
   squad_id int REFERENCES squad(squad_id),
   content TEXT,
   sender TEXT,

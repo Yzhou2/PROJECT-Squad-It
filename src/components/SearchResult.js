@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
+import SelectSquad from './SelectSquad';
 
 
 export default class SearchresultCountry extends Component {
@@ -13,8 +14,11 @@ export default class SearchresultCountry extends Component {
         events: null,
         city: this.props.city,
         users: null,
-        bannerPic: ['https://i.imgur.com/oIwuby5.png', 'https://i.imgur.com/KE8Jjx7.png']
+        bannerPic: ['https://i.imgur.com/oIwuby5.png', 'https://i.imgur.com/KE8Jjx7.png'],
+        SelectSquad: false,
+        selectUserId: null,
       }
+      this.handleClick = this.handleClick.bind(this);
     }
 
 
@@ -25,6 +29,14 @@ export default class SearchresultCountry extends Component {
 // }
 //
 //
+
+handleClick(val){
+  console.log(val)
+this.setState({
+  selectUserId: val,
+  SelectSquad: true
+})
+}
 
 
 
@@ -103,10 +115,10 @@ componentWillReceiveProps(props){
 // </div>
 
   render() {
- console.log(this.props, 'this is the props')
+ console.log(this.state.selectUserId, 'this is the userid on state')
   return (
     <div>
-
+      <SelectSquad userid={this.state.selectUserId}/>
         <div className="ProfileContainer searchOverwrite">
           <div className="searchTopBar">
             <img src={this.state.bannerPic} />
@@ -137,7 +149,8 @@ componentWillReceiveProps(props){
 
                          <div className="btnContainer">
                              <button onClick={()=>{this.props.updateFlag(true)}}><Link to='/logged/profile'>View Profile</Link></button>
-                             <button>+ To Your Squad</button>
+                             {console.log(user.userid, 'hey yo this is the userid')}
+                             <button onClick={()=>{this.handleClick(user.userid)}}>+ To Your Squad</button>
                          </div>
                        </div>
                    </div>

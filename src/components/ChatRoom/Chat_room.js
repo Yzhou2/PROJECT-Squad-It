@@ -3,31 +3,33 @@ import Header from '../Header';
 import Sidebar from '../Sidebar';
 import dateCreator from './dateCreator';
 import axios from 'axios';
-// import subscribeToTimer from './socket';
-// import socket from 'socket.io';
-const io = require('socket.io-client')
+const io = require('socket.io-client');
 const socket = io();
 
 
+
 export default class Chat_room extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
 
       this.state = {
-        message: [],
+        messagePack: [],
         newMessage: null,
-
+        user: null,
+        members: [],
 
       }
-    // subscribeToTimer((err, timestamp) => this.setState({
-    //   timestamp
-    // }))
+
 
 
 
     this.handleChange = this.handleChange.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.getMsg = this.getMsg.bind(this);
     }
+
+
+
 
 
 handleChange(event) {
@@ -37,22 +39,43 @@ handleChange(event) {
 }
 
 
-// handleClick(ev){
-//   subscribeToTimer.emit('message', 'hi')
-// }
+componentDidMount(){
+  socket.on('receive-msg', this.getMsg);
+  axios.get('http://localhost:3001/api/user', {withCredentials:true}).then(res=>{
+    this.setState({
+      user: res.data[0]
+    })
+  });
+  axios.post(`http://localhost:3001/api/getSquadMembers/${this.props.eachSquadInfo.squad_id}`, {withCredentials:true} ).then(
+    response => {
+      this.setState({
+        members: response.data
+      })
+    }
+  )
+}
 
-// componentDidMount() {
-//   console.log('view msg mounted')
-//   axios.get( `http://localhost:3001/api/viewMessages${this.props.squad_id}`, {withCredentials:true} ).then( response => {
-//   console.log('response for message!!!!!!!',response.data)
-//   this.setState({
-//     message: response.data,
-//   });
-// });
-// }
+
+handleClick(val){
+  socket.emit('message', {
+    message: val,
+    name: this.state.user.firstname + ' ' + this.state.user.lastname,
+    profile_url: this.state.user.profile_img_url,
+    time: dateCreator()
+  })
+}
+
+getMsg(msg){
+  this.setState({
+    messagePack: [...this.state.messagePack, msg],
+  })
+}
+
+
 
   render() {
-    console.log(this.props,'prop sent to chat_room')
+    console.log(this.state.user,'user on state??')
+
   return (
     <div>
 
@@ -64,20 +87,27 @@ handleChange(event) {
               <i className="fa fa-angle-down" aria-hidden="true"></i>
             </div>
                 <div className="chatArea">
-                  <div className="innerChat">
-                    <div className="chatProfile"></div>
-                    <div className="messageRight">
-                        <div className="messageRightTop">
-                          <div className="chatName">Yiran Zhou</div>
-                          <div className="time">2:35pm</div>
+                {
+                  this.state.messagePack.map((mes,idx) => {
+                    return (
+                      <div className="innerChat" key={idx}>
+                        <div className="chatProfile"></div>
+                        <div className="messageRight">
+                            <div className="messageRightTop">
+                              <div className="chatName">{mes.name}</div>
+                              <div className="time">{mes.time}</div>
+                            </div>
+                          <div className="message">{mes.message}</div>
                         </div>
-                      <div className="message">hey yo, how ya doin?</div>
-                    </div>
-                  </div>
+                      </div>
+                    )
+                  })
+                }
                 </div>
                 <div className="chatInput">
                   <input className="chat" onChange={this.handleChange}></input>
                 </div>
+                <button onClick={()=>{this.handleClick(this.state.newMessage)}}>send</button>
 
 
 
@@ -86,13 +116,17 @@ handleChange(event) {
           <div className="chatRight">
             <div className="memberArea">
               <div className="mbrTitle">Members</div>
-              <div className="member">
-                <div className="avatar"></div>
-                <div className="name">Sam Heathcote</div>
-              </div>
+                { this.state.members.map((member, idx) => {
+                return (
+                  <div className="member" key={idx}>
+                    <div className="avatar"></div>
+                    <div className="name">{member.firstname + ' ' + member.lastname}</div>
+                  </div>
+                )
+              })}
             </div>
             <div className="bucketList">
-              <div className="mbrTitle">bucket list</div> 
+              <div className="mbrTitle">bucket list</div>
             </div>
           </div>
 

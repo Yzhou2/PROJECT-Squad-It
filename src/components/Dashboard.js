@@ -8,6 +8,7 @@ import CreateTripPlan from './CreateTripPlan';
 import EditTripPlan from './EditTripPlan';
 import Chat_room from './ChatRoom/Chat_room';
 
+
 export default class Dashboard extends Component{
   constructor() {
     super();
@@ -39,6 +40,11 @@ export default class Dashboard extends Component{
 
 
   componentDidMount() {
+    console.log('componentDidMount', this.props.location.query)
+    this.setState({
+      eachsquadClicked: this.props.location.query
+    });
+
     axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>
       this.setState({
         currentSquad: response.data,
@@ -60,6 +66,10 @@ export default class Dashboard extends Component{
 
   }
 
+  //<Link to=`dashboard/squad/${id of the squad}`> once there pull Id from ulr match.params.id   CompDidMnt db for that squad
+
+
+  // <Link to={{pathname: '', query:{the: 'query'}}} />
 
 
   handleCSDelete(eachSquad) {
@@ -167,7 +177,9 @@ handleEachSquad(eachSquad) {
 
   render() {
 
-    console.log('data on state', this.state.events)
+    console.log('propsssssss', this.state.eachsquadClicked)
+
+
     var style = {
       filter: 'blur(5px)'
     }
@@ -295,7 +307,6 @@ handleEachSquad(eachSquad) {
               </div>
             </div>
         </div>
-
       </div>
       </div>
     </div>

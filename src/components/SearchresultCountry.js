@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import SearchResult from './SearchResult';
+import keys from './keys';
 
 
 
@@ -41,22 +42,22 @@ OpenSqdMember(){
 componentDidMount() {
   // console.log('mounted')
 
- axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
-   headers: {"user-key":{keys.zomatoAPI}}
- }).then( response => {
-console.log(response.data.location_suggestions[0], 'this is city code')
-axios.get(`https://developers.zomato.com/api/v2.1/location_details?entity_id=${response.data.location_suggestions[0].entity_id}&entity_type=${response.data.location_suggestions[0].entity_type}`, {
-  headers: {"user-key":{keys.zomatoAPI}}
-}).then( response => {
-  this.setState({
-    topDinning: response.data.best_rated_restaurant
-  })
-});
-
- });
-
+//  axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
+//    headers: {"user-key":keys.zomatoAPI}
+//  }).then( response => {
+// console.log(response.data.location_suggestions[0], 'this is city code')
+// axios.get(`https://developers.zomato.com/api/v2.1/location_details?entity_id=${response.data.location_suggestions[0].entity_id}&entity_type=${response.data.location_suggestions[0].entity_type}`, {
+//   headers: {"user-key":keys.zomatoAPI}
+// }).then( response => {
+//   this.setState({
+//     topDinning: response.data.best_rated_restaurant
+//   })
+// });
+//
+//  });
+// 
 // axios.get('https://trailapi-trailapi.p.mashape.com/?q[city_cont]=Denver', {
-//    headers: {"X-Mashape-Key":"wwfhjFbrbnmshzonoGJFgYCNcTUGp1sIpLSjsnOVhZADdXB1sh"}
+//    headers: {"X-Mashape-Key":keys.trialAPI}
 //  }).then(res => {
 //    this.setState({
 //      trails: res.data.places
@@ -75,7 +76,8 @@ componentWillReceiveProps(props){
 }
 
   render() {
-    console.log(this.props, 'this is from trailsApi')
+    // console.log(this.props, 'this is from trailsApi')
+    console.log(this.state.trails, 'whats my trails ')
  var hidden={
    display:"none"
  }
