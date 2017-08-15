@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Router from './Router';
 import Landing from './components/Landing';
 import './App.css';
 import MainRoute from './components/MainRoute';
@@ -11,9 +10,9 @@ import CreateSquad from './components/CreateSquad';
 import CreateTripPlan from './components/CreateTripPlan';
 import SearchresultCountry from './components/SearchresultCountry';
 import SearchResult from './components/SearchResult';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-
+// import Header from './components/Header';
+// import Sidebar from './components/Sidebar';
+import Router from './Router';
 
 
 
@@ -24,7 +23,7 @@ class App extends Component {
 
       <Switch>
         <Route exact path="/" component={ Landing } />
-        <Route path="/logged" component={ MainRoute } />
+        <Route path="/logged" component={ Router } />
       </Switch>
       </div>
     );

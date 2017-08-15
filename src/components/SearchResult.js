@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
 
 
 export default class SearchresultCountry extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
 
       this.state = {
         events: null,
-        destination: null,
+        city: this.props.city,
         users: null,
         bannerPic: ['https://i.imgur.com/oIwuby5.png', 'https://i.imgur.com/KE8Jjx7.png']
       }
-      this.update_destination = this.update_destination.bind(this);
     }
 
 
@@ -27,21 +27,32 @@ export default class SearchresultCountry extends Component {
 //
 
 
-update_destination(val){
-  this.setState({
-    destination: val
-  })
+
+
+componentDidMount(){
+  axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
+    res => {
+      this.setState({
+        users: res.data
+      })
+    });
+
 }
 
-// componentDidMount(){
-//   axios.get(`http://localhost:3001/api/getUserByDest/${this.state.destination}`, {withCredentials: true}).then(
-//     res => {
-//       this.setState({
-//         users: res.data
-//       })
-//     }
-//   )
-// }
+componentWillReceiveProps(props){
+  console.log(props,'props props')
+  this.setState({
+    city: props.city
+  });
+
+  axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
+    res => {
+      this.setState({
+        users: res.data
+      })
+    });
+}
+
 
 // <div className="searchBar">
 //     <div className="searchBarInner">
@@ -92,45 +103,51 @@ update_destination(val){
 // </div>
 
   render() {
- console.log(this.state.events, 'this is the state of search result')
+ console.log(this.props, 'this is the props')
   return (
     <div>
 
         <div className="ProfileContainer searchOverwrite">
           <div className="searchTopBar">
             <img src={this.state.bannerPic} />
-            <div className="searchTitle">name</div>
+            <div className="searchTitle">{this.state.city}</div>
           </div>
 
           <div className="searchBodyBox">
+            {this.state.users?  this.state.users.map(
+              (user, idx) => {
+               return (
+                 <div className="searchBodyInner" key={idx}>
+                   <div className="searchCard">
+                     <div className="profilePic"></div>
+                       <div className="cardRight">
 
+                         <div className="InnerCard">
+                             <div className="profileName">{user.firstname + " " + user.lastname}</div>
+                             <div className="MoreDetail">
+                               <i className="fa fa-comment-o" aria-hidden="true"></i>
+                               <div>Speaks English</div>
+                             </div>
 
+                             <div className="MoreDetail">
+                               <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
+                               <div>Avaliable To Join Squad</div>
+                             </div>
+                       </div>
 
-              <div className="searchBodyInner">
-                <div className="searchCard">
-                  <div className="profilePic"></div>
-                    <div className="cardRight">
-
-                      <div className="InnerCard">
-                          <div className="profileName">Jessica Heathcote</div>
-                          <div className="MoreDetail">
-                            <i className="fa fa-comment-o" aria-hidden="true"></i>
-                            <div>Speaks English</div>
-                          </div>
-
-                          <div className="MoreDetail">
-                            <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
-                            <div>Avaliable To Join Squad</div>
-                          </div>
-                    </div>
-
-                      <div className="btnContainer">
-                          <button>View Profile</button>
-                          <button>+ To Your Squad</button>
-                      </div>
-                    </div>
-                </div>
-              </div>
+                         <div className="btnContainer">
+                             <button onClick={()=>{this.props.updateFlag(true)}}><Link to='/logged/profile'>View Profile</Link></button>
+                             <button>+ To Your Squad</button>
+                         </div>
+                       </div>
+                   </div>
+                 </div>
+               )
+              }
+            )
+            :
+            "There's No User Ready For Squad"
+          }
             </div>
 
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 export default class Header extends Component {
@@ -13,7 +14,7 @@ export default class Header extends Component {
           searchresult:null
       }
       this.handleChange = this.handleChange.bind(this);
-      this.handleClick = this.handleClick.bind(this);
+      // this.handleClick = this.handleClick.bind(this);
     }
 
 
@@ -23,21 +24,14 @@ handleChange(event) {
   })
 }
 
-handleClick(){
-  // console.log('prop passed', this.props)
-  // this.props.update_destination(this.state.search);
-  // axios.get(`http://localhost:3001/api/getUserByDest/${this.state.search}`, {withCredentials: true}).then(
-  //   res => {
-  //     this.setState({
-  //       searchresult: res.data
-  //     })
-  //   });
-  this.props.updateSearch(this.state.search)
-}
+// handleClick(){
+//
+//   this.props.history.push(`/logged/searchresultCT/${this.state.search}`)
+// }
 
 
 componentDidMount() {
-  console.log('mounted')
+  console.log('mounted', this.props)
   axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
   console.log('response!!!!!!!',response.data)//empty
   this.setState({
@@ -49,6 +43,7 @@ componentDidMount() {
 }
 
   render() {
+    console.log(this.state.search)
   return (
     <div className="header">
       <div className="headerInner">
@@ -56,7 +51,7 @@ componentDidMount() {
 
         <div>
         <input onChange={this.handleChange} />
-        <button className="search" onClick={this.handleClick}><i className="fa fa-search" aria-hidden="true"></i></button>
+        <Link to={`/logged/searchresultCT/${this.state.search}`}><button className="search"><i className="fa fa-search" aria-hidden="true"></i></button></Link>
         </div>
 
       </div>

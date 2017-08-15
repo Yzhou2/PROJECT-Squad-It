@@ -45,7 +45,7 @@ export default class Sidebar extends Component {
       </div>
 
       <Link to='/logged/dashboard'><div className="sideBarSelection">Dashboard</div></Link>
-      <Link to='/logged/profile'><div className="sideBarSelection">Profile</div></Link>
+      <div className="sideBarSelection" onClick={()=>{this.props.updateFlag(false)}}><Link to='/logged/profile'>Profile</Link></div>
       <div className="sideBarSelection">Messages</div>
       <div className="sideBarSelection bottomLine">News Feed</div>
 

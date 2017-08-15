@@ -1,4 +1,6 @@
 const axios = require('axios');
+const keys = require('../keys');
+
 module.exports = {
   getPic: (req, res) => {
     const db = req.app.get('db');
@@ -119,7 +121,7 @@ module.exports = {
 
   getEvent: (req, res) => {
     console.log(req.params.city, 'this is the city we are searching')
-    axios.get(`http://api.eventful.com/json/events/search?app_key={keys.apikey}&location=${req.params.city}`).then(
+    axios.get(`http://api.eventful.com/json/events/search?app_key=${keys.eventAPI}&location=${req.params.city}`).then(
       response => res.send(response.data)
         // console.log('hey yo im response', response)
 
