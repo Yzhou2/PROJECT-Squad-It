@@ -20,7 +20,9 @@ module.exports = {
     } else {
       console.log(req.query, 'this is req.query')
       db.get_user_profile([req.query.userid]).then(
-        user => res.status(200).send(user))
+        user => {
+          console.log(user, 'this is user')
+          return res.status(200).send(user)})
     }
   },
 

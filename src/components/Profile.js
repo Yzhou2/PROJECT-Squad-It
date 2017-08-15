@@ -38,7 +38,8 @@ export default class Profile extends Component {
   componentDidMount() {
 
         this.setState({
-          flag: this.props.location.query.flag
+          flag: this.props.location.query.flag,
+          userid: this.props.location.query.userid
         }, function(){
           const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
           console.log(getProfileAPI,'linky linky link')
