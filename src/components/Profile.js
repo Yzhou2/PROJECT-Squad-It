@@ -36,35 +36,43 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
-    axios.get(getProfileAPI, {withCredentials:true}).then( response => {
-      console.log(response.data, 'this is responseeeeeee')
-      this.setState({
-        firstname: response.data[0].firstname,
-        lastname: response.data[0].lastname,
-        profile_img_url: response.data[0].profile_img_url,
-        gender: response.data[0].gender,
-        squad_status: response.data[0].squad_status,
-        city: response.data[0].city,
-        country: response.data[0].country,
-        birthday: response.data[0].birthday,
-        smoker: response.data[0].smoker,
-        drinker: response.data[0].drinker,
-        dstolerance: response.data[0].dstolerance,
-        avaliableforhostdinner: response.data[0].avaliableforhostdinner,
-        typeoftraveller: response.data[0].typeoftraveller,
-        occupation: response.data[0].occupation,
-        // visited_countries: response.data[0].profile_img_url,
-        // Fluent_Languages: response.data[0].profile_img_url,
-        description: response.data[0].description
+
+        this.setState({
+          flag: this.props.location.query.flag
+        }, function(){
+          const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+          console.log(getProfileAPI,'linky linky link')
+          axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+            console.log(response.data, 'this is responseeeeeee')
+            this.setState({
+              firstname: response.data[0].firstname,
+              lastname: response.data[0].lastname,
+              profile_img_url: response.data[0].profile_img_url,
+              gender: response.data[0].gender,
+              squad_status: response.data[0].squad_status,
+              city: response.data[0].city,
+              country: response.data[0].country,
+              birthday: response.data[0].birthday,
+              smoker: response.data[0].smoker,
+              drinker: response.data[0].drinker,
+              dstolerance: response.data[0].dstolerance,
+              avaliableforhostdinner: response.data[0].avaliableforhostdinner,
+              typeoftraveller: response.data[0].typeoftraveller,
+              occupation: response.data[0].occupation,
+              // visited_countries: response.data[0].profile_img_url,
+              // Fluent_Languages: response.data[0].profile_img_url,
+              description: response.data[0].description
 
 
-      })
-    });
+            })
+          });
 
-    this.setState({
-      flag: this.props.location.query.flag
-    })
+        });
+
+
+
+
+
   }
 
 handleClickEdit() {

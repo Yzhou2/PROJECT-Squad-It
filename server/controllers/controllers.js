@@ -1,5 +1,5 @@
 const axios = require('axios');
-const keys = require('../keys');
+
 
 module.exports = {
   getPic: (req, res) => {
@@ -14,11 +14,11 @@ module.exports = {
     if (!req.query.userid) {
     db.get_user_profile([req.user.authid]).then(
       user => {
-        // console.log(user, 'inside if')
+        console.log(user, 'inside if')
         res.status(200).send(user)
       })
     } else {
-      // console.log(req.query, 'this is req.query')
+      console.log(req.query, 'this is req.query')
       db.get_user_profile([req.query.userid]).then(
         user => res.status(200).send(user))
     }
@@ -117,15 +117,6 @@ module.exports = {
     // console.log(req.params, 'this is params for message')
     db.viewMessages([req.params.squad_id]).then( squadMessage => {
       res.status(200).send(squadMessage)})
-  },
-
-  getEvent: (req, res) => {
-    // console.log(req.params.city, 'this is the city we are searching')
-    axios.get(`http://api.eventful.com/json/events/search?app_key=${keys.eventAPI}&location=${req.params.city}`).then(
-      response => res.send(response.data)
-        // console.log('hey yo im response', response)
-
-      )
   },
 
 

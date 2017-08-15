@@ -5,12 +5,12 @@ const Auth = require('passport-auth0');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express();
-const keys = require('./server/keys')
+const config = require('./server/config')
 const massive = require('massive');
 const controller = require('./server/controllers/controllers');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-const connectionString = keys.address;
+const connectionString = config.address;
 
 
 var corsOptions = {
@@ -50,9 +50,9 @@ massive( connectionString ).then( db => {
   app.set('db', db)
 
   passport.use(new Auth({
-    domain: keys.domain,
-    clientID: keys.clientID,
-    clientSecret: keys.clientSecret,
+    domain: config.domain,
+    clientID: config.clientID,
+    clientSecret: config.clientSecret,
     callbackURL: 'http://localhost:3001/auth/callback'
   }, function(accessToken, refreshToken, extraParams, profile, done){
     //db find and create user
@@ -105,7 +105,6 @@ massive( connectionString ).then( db => {
   app.delete('/api/removeSquad/:id', controller.removeSquad);
   app.put('/api/editTrip', controller.editTrip);
   app.get('/api/viewMessages/:id', controller.viewMessages);
-  app.get('/api/getEvent/:city', controller.getEvent);
   app.get('/api/getUserByDest/:dest', controller.getUserByDest);
   app.post('/api/addSquadMember', controller.addSquadMember);
   app.post('/api/getSquadMembers/:squad_id', controller.getSquadMembers)
