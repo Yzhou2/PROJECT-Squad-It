@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import axios from 'axios';
 import EditProfile from './EditProfile';
 import SelectSquad from './SelectSquad';
+import S3uploader from './S3uploader';
 
 export default class Profile extends Component {
   constructor() {
@@ -97,6 +98,7 @@ closePop(){
     }
     return (
       <div>
+      <S3uploader />
       {this.state.popUp?<EditProfile closePop={this.closePop}/>:""}
       <div className="ProfileContainer">
       <SelectSquad userid={this.state.userid} />

@@ -40,7 +40,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use('/s3', require('react-dropzone-s3-uploader/s3router')({
+  bucket: 'squadit',                           // required
+  headers: {'Access-Control-Allow-Origin': '*'},  // optional
+  ACL: 'private',                                 // this is the default - set to `public-read` to let anyone view uploads
+}));
 
 
 
