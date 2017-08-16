@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class EditProfile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       Gender: null,
@@ -53,10 +53,13 @@ export default class EditProfile extends Component {
       AvaliableForHostDinner: this.state.AvaliableForHostDinner,
       TypeOfTraveller: this.state.TypeOfTraveller,
       Occupation: this.state.Occupation,
-      Description: this.state.Description
+      Description: this.state.Description,
+      visited_countries: this.state.visited_countries,
+      Fluent_Languages: this.state.Fluent_Languages,
 
-    }, {withCredentials:true}).then(res => res)
+    }, {withCredentials:true}).then(res => res);
 
+    this.props.closePop()
   }
 
 
@@ -144,6 +147,11 @@ export default class EditProfile extends Component {
     })
   }
 
+  // <div className="edirFormSection">
+  //   <p>My Interests</p>
+  //   <input onChange={this.handleChangeTags} className="barInput"></input>
+  // </div>
+
 
   render() {
     console.log(this.state)
@@ -212,10 +220,6 @@ export default class EditProfile extends Component {
               <input onChange={this.handleChangeOccupation} className="barInput"></input>
             </div>
 
-            <div className="edirFormSection">
-              <p>My Interests</p>
-              <input onChange={this.handleChangeTags} className="barInput"></input>
-            </div>
 
             <div className="edirFormSection">
               <p>Do You Smoke?</p>
@@ -261,7 +265,8 @@ export default class EditProfile extends Component {
 
           </div>
 
-          <button onClick={ this.handleClick } className="editProfileSave">save</button>
+          <button onClick={ this.handleClick } className="editProfileSave">Save</button>
+          <button onClick={()=>{this.props.closePop()} } className="editProfileSave">Cancel</button>
 
         </div>
 

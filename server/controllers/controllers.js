@@ -12,7 +12,7 @@ module.exports = {
   getUserProfile: (req, res) => {
     const db = req.app.get('db');
     if (!req.query.userid) {
-    db.get_user_profile([req.user.authid]).then(
+    db.get_user_profile([req.user.userid]).then(
       user => {
         console.log(user, 'inside if')
         res.status(200).send(user)
@@ -29,7 +29,9 @@ module.exports = {
   updateProfile: (req, res) => {
     const db = req.app.get('db');
     // console.log('server req.user update', req.user)
-    db.update_user_profile([req.body.Gender, req.body.Squad_Status, req.body.City, req.body.Country, req.body.Smoker, req.body.Drinker, req.body.DSTolerance, req.body.AvaliableForHostDinner, req.body.TypeOfTraveller, req.body.Occupation, req.body.Description, req.user.authid]).then(
+    db.update_user_profile([req.body.Gender, req.body.Squad_Status, req.body.City, req.body.Country, req.body.Smoker, req.body.Drinker, req.body.DSTolerance, req.body.AvaliableForHostDinner, req.body.TypeOfTraveller, req.body.Occupation,
+      req.body.Description, req.body.visited_countries, req.body.Fluent_Languages,
+      req.user.authid]).then(
       user => res.status(200).send(user)
     )
   },
@@ -140,10 +142,19 @@ module.exports = {
   },
 
   getSquadMembers: (req, res) => {
-    console.log('mounted')
     const db = req.app.get('db');
     console.log(req.params, 'lets see whats on params')
     db.getSquadMembers([req.params.squad_id]).then( members => {
     res.status(200).send(members)})
   },
+
+  //search result for find host
+
+  getUserByHostStat: (req, res) => {
+    const db = req.app.get('db');
+    console.log(req.params.dest, 'this is the destination')
+    db.getUserByHostStat([req.params.dest]).then( members => {
+      console.log(members, 'this is the member list for dinner host')
+    res.status(200).send(members)})
+  }
 }

@@ -266,10 +266,10 @@ handleEachSquad(eachSquad) {
                 <div className="squadList">
                  {this.state.currentSquad ? this.state.currentSquad.map( (eachSquad, idx) => {
                    return (
-                     <Link to={{pathname:"/logged/chat", query:{eachSquad: eachSquad}}} key={idx}><div className="squadListInner">
-                       <div> {eachSquad.name} </div>
+                     <div className="squadListInner" key={idx}>
+                       <Link to={{pathname:"/logged/chat", query:{eachSquad: eachSquad}}}><div> {eachSquad.name} </div></Link>
                        <button className="squaddelete" onClick={()=>{this.handleCSDelete(eachSquad)}}>DELETE</button>
-                     </div></Link>
+                     </div>
                    )
                  }):[]}
                 </div>

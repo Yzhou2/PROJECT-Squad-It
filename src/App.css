@@ -583,7 +583,9 @@ video {
   outline: none;
 }
 
-
+.inviteBtn {
+  width: 200px;
+}
 
 .profileAlbum {
   border-radius: 10px;
@@ -966,6 +968,7 @@ video {
 .circle {
   width: 180px;
   height: 145px;
+
   /*border: 2px solid orange;*/
 }
 
@@ -1216,7 +1219,7 @@ height: 100%;
 }
 .avatar {
   height: 40px;
-  width: 40px;
+  min-width: 40px;
   border-radius: 50%;
   border: 2px solid orange;
 }

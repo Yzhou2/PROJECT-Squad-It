@@ -1,6 +1,7 @@
 UPDATE users SET gender = $1, Squad_Status = $2, City = $3, Country = $4, Smoker = $5, Drinker = $6,
-DSTolerance = $7, AvaliableForHostDinner = $8, TypeOfTraveller = $9, Occupation = $10, Description = $11
-WHERE authid = $12;
+DSTolerance = $7, AvaliableForHostDinner = $8, TypeOfTraveller = $9, Occupation = $10, Description = $11,
+visited_countries = $12, Fluent_Languages=$13
+WHERE authid = $14;
 
 
   -- // const { Gender, Squad_Status, City, Country, Smoker, Drinker, DSTolerance, AvaliableForHostDinner, TypeOfTraveller, Occupation, visited_countries, Fluent_Languages, Description} = req.body

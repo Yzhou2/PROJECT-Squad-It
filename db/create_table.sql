@@ -1,6 +1,6 @@
 CREATE TABLE users (
     UserID Serial PRIMARY KEY,
-    authID TEXT PRIMARY KEY,
+    authID TEXT,
     LastName varchar(255),
     FirstName varchar(255),
     Email varchar(255),
@@ -13,17 +13,14 @@ CREATE TABLE users (
     Smoker TEXT,
     Drinker TEXT,
     DSTolerance TEXT,
-    TravelPlan_ID int,
-    Tags_ID int,
+    Tags TEXT,
     AvaliableForHostDinner Text,
     TypeOfTraveller Text,
     photo_album_id int,
     Occupation TEXT,
-    visited_country_id Int,
-    Fluent_Languages_id int,
-    Description TEXT,
-    -- squad_list_id int,
-    friends_list_id int
+    visited_countries TEXT,
+    Fluent_Languages TEXT,
+    Description TEXT
 );
 
 

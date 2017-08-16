@@ -17,6 +17,7 @@ export default class SearchresultCountry extends Component {
         bannerPic: ['https://i.imgur.com/oIwuby5.png', 'https://i.imgur.com/KE8Jjx7.png'],
         SelectSquad: false,
         selectUserId: null,
+        flag: false
       }
       this.handleClick = this.handleClick.bind(this);
     }
@@ -42,12 +43,19 @@ this.setState({
 
 
 componentDidMount(){
-  axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
-    res => {
-      this.setState({
-        users: res.data
-      })
-    });
+  // axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
+  //   res => {
+  //     this.setState({
+  //       users: res.data
+  //     })
+  //   });
+
+    axios.get(`http://localhost:3001/api/getUserByHostStat/${this.state.city}`, {withCredentials: true}).then(
+      res => {
+        this.setState({
+          users: res.data
+        })
+      });
 
 }
 

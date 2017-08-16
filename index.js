@@ -107,7 +107,8 @@ massive( connectionString ).then( db => {
   app.get('/api/viewMessages/:id', controller.viewMessages);
   app.get('/api/getUserByDest/:dest', controller.getUserByDest);
   app.post('/api/addSquadMember', controller.addSquadMember);
-  app.post('/api/getSquadMembers/:squad_id', controller.getSquadMembers)
+  app.post('/api/getSquadMembers/:squad_id', controller.getSquadMembers);
+  app.get('/api/getUserByHostStat/:dest', controller.getUserByHostStat)
 
 
   app.get('/', (req, res) => {
