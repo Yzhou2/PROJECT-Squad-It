@@ -4,7 +4,35 @@ import Sidebar from './Sidebar';
 import axios from 'axios';
 import EditProfile from './EditProfile';
 import SelectSquad from './SelectSquad';
-import S3uploader from './S3uploader';
+import Dropzone from 'react-dropzone';
+
+
+const uploadImage = (file) => {
+  return axios.post("/api/getSignedURL", {
+    filename: file.name,
+    filetype: file.type
+  })
+  .then(res => {
+    // console.log(res);
+    let options = {
+      headers: {
+        'Content-Type': file.type
+      }
+    }
+    return axios.put(res.data.url, file, options)
+    .then(res => {
+       return res.config.url.match(/.*\?/)[0].slice(0,-1)
+      // console.log(res.config.url, 'res url!!!')
+      // return res.config.url
+    })
+  })
+}
+
+
+
+
+
+
 
 export default class Profile extends Component {
   constructor() {
@@ -32,10 +60,17 @@ export default class Profile extends Component {
       popUp: false,
       flag: null,
       userid:null,
+      pictures: '',
+      review: [],
+      reviewsDisplay: [],
     }
 
   this.handleClickEdit = this.handleClickEdit.bind(this);
   this.closePop = this.closePop.bind(this);
+  this.onDrop = this.onDrop.bind(this);
+  this.submitPic  = this.submitPic.bind(this);
+  this.handleChange = this.handleChange.bind(this);
+  this.handleClickReview = this.handleClickReview.bind(this);
   }
 
   componentDidMount() {
@@ -79,6 +114,57 @@ export default class Profile extends Component {
 
   }
 
+  onDrop(accepted, rejected){
+  uploadImage(accepted[0])
+  .then(url => this.setState({pictures: url}))
+}
+
+submitPic(){
+  axios.post('/api/uploadPic', {picurl: this.state.pictures}, {withCredentials:true}).then(
+    res => {
+      const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+      // console.log(getProfileAPI,'linky linky link')
+      axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+        // console.log(response.data, 'this is responseeeeeee')
+        this.setState({
+          firstname: response.data[0].firstname,
+          lastname: response.data[0].lastname,
+          profile_img_url: response.data[0].profile_img_url,
+          gender: response.data[0].gender,
+          squad_status: response.data[0].squad_status,
+          city: response.data[0].city,
+          country: response.data[0].country,
+          birthday: response.data[0].birthday,
+          smoker: response.data[0].smoker,
+          drinker: response.data[0].drinker,
+          dstolerance: response.data[0].dstolerance,
+          avaliableforhostdinner: response.data[0].avaliableforhostdinner,
+          typeoftraveller: response.data[0].typeoftraveller,
+          occupation: response.data[0].occupation,
+          // visited_countries: response.data[0].profile_img_url,
+          // Fluent_Languages: response.data[0].profile_img_url,
+          description: response.data[0].description
+        })
+      });
+    }
+  )
+}
+
+
+handleChange(event){
+  this.setState({
+    review: event.target.value
+  })
+}
+
+
+handleClickReview(){
+  axios.post('/api/postReviews', {userid:this.state.userid, review:this.state.review}, {withCredentials:true}).then(res => {
+    console.log('succeess send review')
+  })
+}
+
+
 handleClickEdit() {
   this.setState({
     popUp: true
@@ -93,15 +179,20 @@ closePop(){
 }
 
   render() {
+    console.log(this.state.userid, 'whats the otherpersonid !!!')
     var blur = {
       filter: 'blur(5px)'
     }
     return (
       <div>
-      <S3uploader />
+      <Dropzone onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)} />
+      <button onClick={this.submitPic}>submit</button>
+
       {this.state.popUp?<EditProfile closePop={this.closePop}/>:""}
       <div className="ProfileContainer">
       <SelectSquad userid={this.state.userid} />
+      <input onChange={this.handleChange}/>
+      <button onClick={this.handleClickReview}>review</button>
       <div className="popUpProfile">
         <div className="ProfileTopBar">
           <div className="ProfilePicBox">

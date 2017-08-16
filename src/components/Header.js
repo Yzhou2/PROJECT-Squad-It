@@ -47,7 +47,7 @@ componentDidMount() {
   return (
     <div className="header">
       <div className="headerInner">
-        <div className="leftMargin headerlogo"><img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/></div>
+        <Link to="/logged/dashboard"><div className="leftMargin headerlogo"><img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/></div></Link>
 
         <div>
         <input onChange={this.handleChange} />
@@ -59,7 +59,7 @@ componentDidMount() {
     <div className="headerInner">
       <div className="notification"><i className="fa fa-bell" aria-hidden="true"></i></div>
       <div className="headerNav">{this.state.firstname}</div>
-      <div className="headerNav headerimg"><img src={this.state.profile_img_url} alt="fixed"/></div>
+      <Link to="/logged/dashboard"><div className="headerNav headerimg"><img src={this.state.profile_img_url} alt="fixed"/></div></Link>
     </div>
 
     </div>

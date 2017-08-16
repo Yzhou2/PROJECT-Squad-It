@@ -79,3 +79,10 @@ CREATE Table Message (
   sender TEXT,
   TM TEXT,
 )
+
+Create Table reviews (
+  id Serial PRIMARY KEY,
+  to_userid int REFERENCES users(userid),
+  from_userid int,
+  review TEXT
+)
