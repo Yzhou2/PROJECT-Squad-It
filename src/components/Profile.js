@@ -70,7 +70,7 @@ export default class Profile extends Component {
   this.handleClickEdit = this.handleClickEdit.bind(this);
   this.closePop = this.closePop.bind(this);
   this.onDrop = this.onDrop.bind(this);
-  this.submitPic  = this.submitPic.bind(this);
+  // this.submitPic  = this.submitPic.bind(this);
   this.selectSquad = this.selectSquad.bind(this);
   this.unSelectSquad = this.unSelectSquad.bind(this);
   this.postReview = this.postReview.bind(this);
@@ -127,39 +127,52 @@ export default class Profile extends Component {
 
   onDrop(accepted, rejected){
   uploadImage(accepted[0])
-  .then(url => this.setState({pictures: url}))
+  .then(url => {
+    axios.post('/api/uploadPic', {picurl: url}, {withCredentials:true}).then(
+      res => {
+        const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+        // console.log(getProfileAPI,'linky linky link')
+        axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+          // console.log(response.data, 'this is responseeeeeee')
+          this.setState({
+            profile_img_url: response.data[0].profile_img_url,
+          })
+        });
+      }
+    )
+  })
 }
 
-submitPic(){
-  axios.post('/api/uploadPic', {picurl: this.state.pictures}, {withCredentials:true}).then(
-    res => {
-      const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
-      // console.log(getProfileAPI,'linky linky link')
-      axios.get(getProfileAPI, {withCredentials:true}).then( response => {
-        // console.log(response.data, 'this is responseeeeeee')
-        this.setState({
-          firstname: response.data[0].firstname,
-          lastname: response.data[0].lastname,
-          profile_img_url: response.data[0].profile_img_url,
-          gender: response.data[0].gender,
-          // squad_status: response.data[0].squad_status,
-          city: response.data[0].city,
-          country: response.data[0].country,
-          birthday: response.data[0].birthday,
-          smoker: response.data[0].smoker,
-          drinker: response.data[0].drinker,
-          dstolerance: response.data[0].dstolerance,
-          // avaliableforhostdinner: response.data[0].avaliableforhostdinner,
-          typeoftraveller: response.data[0].typeoftraveller,
-          occupation: response.data[0].occupation,
-          // visited_countries: response.data[0].profile_img_url,
-          // Fluent_Languages: response.data[0].profile_img_url,
-          description: response.data[0].description
-        })
-      });
-    }
-  )
-}
+// submitPic(){
+//   axios.post('/api/uploadPic', {picurl: this.state.pictures}, {withCredentials:true}).then(
+//     res => {
+//       const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+//       // console.log(getProfileAPI,'linky linky link')
+//       axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+//         // console.log(response.data, 'this is responseeeeeee')
+//         this.setState({
+//           // firstname: response.data[0].firstname,
+//           // lastname: response.data[0].lastname,
+//           profile_img_url: response.data[0].profile_img_url,
+//           // gender: response.data[0].gender,
+//           // squad_status: response.data[0].squad_status,
+//           // city: response.data[0].city,
+//           // country: response.data[0].country,
+//           // birthday: response.data[0].birthday,
+//           // smoker: response.data[0].smoker,
+//           // drinker: response.data[0].drinker,
+//           // dstolerance: response.data[0].dstolerance,
+//           // avaliableforhostdinner: response.data[0].avaliableforhostdinner,
+//           // typeoftraveller: response.data[0].typeoftraveller,
+//           // occupation: response.data[0].occupation,
+//           // visited_countries: response.data[0].profile_img_url,
+//           // Fluent_Languages: response.data[0].profile_img_url,
+//           // description: response.data[0].description
+//         })
+//       });
+//     }
+//   )
+// }
 
 
 unSelectSquad(){
@@ -204,6 +217,7 @@ closePop(){
   })
 }
 
+// <Dropzone onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)} />
   render() {
     console.log(this.state.visited_countries, 'whats countries')
     // console.log(this.state.reviewsDisplay.profile_img_url, 'this is what i was looking for url !!!!')
@@ -219,6 +233,7 @@ closePop(){
     return (
 
       <div>
+
       {this.state.popUp?<EditProfile closePop={this.closePop} profile_img_url={this.state.profile_img_url}/>:""}
       {this.state.selectSquad? <SelectSquad userid={this.state.userid} unSelectSquad={this.unSelectSquad}/> :"" }
       {this.state.postReview?<PostReview unPostReview={this.unPostReview} userid={this.state.userid}/>:""}

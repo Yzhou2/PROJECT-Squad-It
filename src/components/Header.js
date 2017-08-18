@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+// const io = require('socket.io-client');
+// const socket = io();
+import socket from './socket';
 
 
 export default class Header extends Component {
@@ -15,6 +18,7 @@ export default class Header extends Component {
       }
       this.handleChange = this.handleChange.bind(this);
 
+
     }
 
 
@@ -27,6 +31,9 @@ handleChange(event) {
 
 
 componentDidMount() {
+  socket.on('receive-not', function(res){
+    console.log(res,'this is res received')
+  })
   // console.log('mounted', this.props)
   axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
   // console.log('response!!!!!!!',response.data)//empty
@@ -37,6 +44,12 @@ componentDidMount() {
   });
 });
 }
+
+// compontWillMount(){
+//   socket.on('receive-not', function(res){
+//     console.log(res,'res from socket')
+//   })
+// }
 
   render() {
     // console.log(this.state.search)
@@ -53,7 +66,7 @@ componentDidMount() {
       </div>
 
     <div className="headerInner">
-      <div className="notification"><i className="fa fa-bell"></i></div>
+      <div className="notification"><i className="fa fa-bell"></i><div className="dot"></div></div>
       <div className="headerNav">
         <div>{this.state.firstname}</div>
         <i className="fa fa-caret-down" aria-hidden="true"></i>

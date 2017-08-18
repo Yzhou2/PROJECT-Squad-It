@@ -1,5 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
+
+
+const uploadImage = (file) => {
+  return axios.post("/api/getSignedURL", {
+    filename: file.name,
+    filetype: file.type
+  })
+  .then(res => {
+    // console.log(res);
+    let options = {
+      headers: {
+        'Content-Type': file.type
+      }
+    }
+    return axios.put(res.data.url, file, options)
+    .then(res => {
+       return res.config.url.match(/.*\?/)[0].slice(0,-1)
+      // console.log(res.config.url, 'res url!!!')
+      // return res.config.url
+    })
+  })
+}
+
+
+
 
 export default class EditProfile extends Component {
   constructor(props) {
@@ -40,6 +66,24 @@ export default class EditProfile extends Component {
   this.handleClick = this.handleClick.bind(this);
   }
 
+
+  onDrop(accepted, rejected){
+  uploadImage(accepted[0])
+  .then(url => {
+    axios.post('/api/uploadPic', {picurl: url}, {withCredentials:true}).then(
+      res => {
+        const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+        // console.log(getProfileAPI,'linky linky link')
+        axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+          // console.log(response.data, 'this is responseeeeeee')
+          this.setState({
+            profile_img_url: response.data[0].profile_img_url,
+          })
+        });
+      }
+    )
+  })
+}
 
   handleClick(){
     axios.put('http://localhost:3001/api/editprofile', {
@@ -154,18 +198,26 @@ export default class EditProfile extends Component {
 
 
   render() {
-    console.log(this.state)
+    console.log(this.state, 'this is the state in edit profile')
+    const overlayStyle = {
+      position: 'absolute',
+      height: '100px',
+      width: '100px',
+      top: '55px',
+      left: '360px',
+      cursor: 'pointer',
+    };
       return (
         <div className="editProfile">
           <div className="editprofileTitle"><span>Edit Profile</span></div>
 
-
+          <Dropzone onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)} style={overlayStyle}/>
           <div className="updatePicContainer">
             <div className="updatePic"><img src={this.props.profile_img_url} alt="fixed" /></div>
             <div className="camera">
               <i className="fa fa-camera" aria-hidden="true"></i>
             </div>
-          </div>  
+          </div>
 
 
 

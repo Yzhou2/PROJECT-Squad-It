@@ -30,7 +30,18 @@ io.on('connection', function(socket){
   socket.on('message', function(message){
     console.log('received msg', message)
     io.emit('receive-msg', message);
-  })
+  });
+  //
+  // socket.on('receive-not', function(res){
+  //   console.log(res, '|||||||||||||||||||||| res from socket |||||||||||||||||||||||||')
+  //   io.emit('receive-not', res);
+  // })
+  socket.on('apple', function(res){
+      console.log(res, '|||||||||||||||||||||| res from socket |||||||||||||||||||||||||')
+      io.emit('apple', res);
+  });
+
+
 });
 
 
@@ -85,12 +96,12 @@ massive( connectionString ).then( db => {
   ));
 
   passport.serializeUser(function(profileToSession, done) {
-    console.log('serialize');
+    //console.log('serialize');
     done(null, profileToSession);//puts argument on session
   });
 
   passport.deserializeUser(function(profileFromSession, done) {
-    console.log('deserializeUser');
+    //console.log('deserializeUser');
     done(null, profileFromSession);//obj is value from session
   });
 

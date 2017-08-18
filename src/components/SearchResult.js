@@ -4,6 +4,10 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import SelectSquad from './SelectSquad';
+// import io from 'socket.io-client';
+// const socket = io();
+import socket from './socket';
+
 
 
 export default class SearchresultCountry extends Component {
@@ -36,6 +40,9 @@ handleClick(val){
 this.setState({
   selectUserId: val,
   SelectSquad: true
+}, function(){
+  console.log("I am emitting to recieve-not");
+  socket.emit('apple', {test: 'hi this works yayy'})
 })
 }
 
@@ -126,7 +133,7 @@ componentWillReceiveProps(props){
  console.log(this.state.selectUserId, 'this is the userid on state')
   return (
     <div>
-      <SelectSquad userid={this.state.selectUserId}/>
+      {this.state.SelectSquad?<SelectSquad userid={this.state.selectUserId}/>:""}
         <div className="ProfileContainer searchOverwrite">
           <div className="searchTopBar">
             <img src={this.state.bannerPic} />

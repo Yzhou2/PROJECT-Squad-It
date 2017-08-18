@@ -39,7 +39,7 @@ handleChange(event){
         <div className="createSquadTop">
           <div>Leave a Review</div>
         </div>
-          <input className="reviewInput" onChange={this.handleChange}></input>
+          <textarea className="reviewInput" onChange={this.handleChange}></textarea>
           <div className="createBtn">
             <button onClick={this.handleClick}>Post</button>
             <button onClick={()=>{this.props.unPostReview()}}>Cancel</button>
