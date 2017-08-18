@@ -2,8 +2,8 @@ const aws = require('aws-sdk');
 const config = require('../config');
 
 aws.config.update({
-  accessKeyId: 'AKIAIJBOR7J2R7JDFQ7Q',
-  secretAccessKey: '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'
+  accessKeyId: config.accessKeyId,
+  secretAccessKey: config.secretAccessKey
 
 })
 

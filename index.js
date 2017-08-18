@@ -127,6 +127,8 @@ massive( connectionString ).then( db => {
     )
   });
   app.post('/api/postReviews', controller.postReviews);
+  app.get('/api/getReviews/:id', controller.getReviews);
+
 
 
   app.get('/', (req, res) => {

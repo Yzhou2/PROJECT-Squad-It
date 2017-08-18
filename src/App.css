@@ -117,6 +117,50 @@ video {
 .headerInner input{
   height: 23px;
   width: 38vw;
+  border: 1px solid lightgray;
+  outline: none;
+  /*border-radius: 50vh;*/
+}
+
+.headerInner input:focus {
+  border: 2px solid #ffb033;
+  /*border-color: #ffb033;*/
+}
+
+
+.dropDown {
+   position: absolute;
+   top: 45px;
+   right: 55px;
+   width: 185px;
+   height: 125px;
+   line-height: 125px;
+   border: 1px solid lightgray;
+   display:none;
+   color: white;
+   text-align: center;
+   padding: 0px;
+   background: white;
+   border-radius: 10px;
+   -webkit-filter: drop-shadow(4px 3px 2px #A3A3A3);
+   filter: drop-shadow(4px 3px 2px #A3A3A3);
+}
+
+.dropDown:after {
+   content: '';
+   position: absolute;
+   border-style: solid;
+   border-width: 0 9px 10px;
+   border-color: white transparent;
+   display: block;
+   width: 0;
+   z-index: 1;
+   top: -10px;
+   left: 141px;
+}
+
+.headerNav i:hover .dropDown {
+  display: block;
 }
 
 .search {
@@ -128,6 +172,18 @@ video {
   /*border: 2px solid gray;*/
   height: 15px;
   width: 100px;
+  position: relative;
+  display: flex;
+}
+
+.headerNav div {
+  margin-right: 8px;
+  margin-left: 25px;
+}
+
+.headerNav i {
+  color:orange;
+  margin-top: 2px;
 }
 
 .notification {
@@ -230,6 +286,25 @@ video {
   width: 86.7%;
   background: #f4f4f5;
 }
+.profileBackground{
+  background: white;
+}
+
+.InnerContainer {
+  width: 85%;
+  height: 1450px;
+  /*border: 2px solid red;*/
+  margin: 0 auto;
+  display: flex;
+  margin-top: 15px;
+}
+
+.InnerLeft {
+  width: 20%;
+  height: 1450px;
+  /*border: 2px solid green;*/
+
+}
 
 .aboutMeDetailContainer {
   margin-top: 20px;
@@ -238,14 +313,22 @@ video {
   /*border: 2px solid black;*/
 }
 
-.basicInfoList {
-  margin: 0 auto;
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  border-top: 0.5px solid lightgray;
-  width: 100%;
-  height: 55px;
+.reviewInput {
+  height: 30px;
+  width: 80%;
+  border-radius: 5px;
+  margin: 10px;
+  margin-left: 10%;
+  -webkit-transition:height  .35s ease-in-out;
+  transition: height .35s ease-in-out;
+  margin-bottom: 20px;
+  border: solid 1px lightgray;
+  outline: none;
+}
+
+.reviewInput:focus {
+  height: 100px;
+  border-color: #e57a13 !important;
 }
 
 .Profilereview {
@@ -270,9 +353,14 @@ video {
   height: 56px;
 }
 
-.aboutMeTitle, .aboutMeDetail {
+.aboutMeTitle, .aboutMeDetail, .mt {
   display: flex;
   align-items: center;
+}
+
+.mt {
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .DashboardImg {
@@ -453,20 +541,13 @@ video {
   background-color: #ffb033;
 }
 
-.ProfileTopBar {
-  height: 130px;
-  width: 100%;
-  background: url('https://i.imgur.com/tHtIR3y.png') no-repeat;
- background-size: 100%;
-}
+
 
 .ProfilePicBox {
-  height: 120px;
-  width: 120px;
+  height: 200px;
+  width: 100%;
   background: lightgreen;
-  position: relative;
-  top: 50px;
-  left: 42.5%;
+  margin-bottom: 20px;
 }
 
 .ProfilePicBox img {
@@ -474,48 +555,182 @@ video {
   height: 100%;
 }
 
-.profileTopUnder {
-  background: white;
-  width: 100%;
-  height: 60px;
-  margin-bottom: 30px;
-  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+.details {
+      width: 100%;
+      margin-bottom: 24px;
+      border: 1px solid lightgray;
+      background-color: white;
+      font-size: 14px;
+      line-height: 1.43;
+      color: #484848;
 }
 
-.avaliableFor {
-  /*border: 2px solid green;*/
-  height: 80px;
+
+.detailHeader {
+    background-color: #edefed;
+    color: #7e8794;
+    font-size: 16px;
+    border-bottom: 1px solid #dce0e0;
+    position: relative;
+    padding: 8px;
+    border-top: 1px solid #dce0e0;
+
+}
+
+.detailHeader div {
+  margin-left: 10px;
+}
+
+.detailBody {
+  padding: 20px;
+  margin: 0;
+  color: #7e8794;
+  line-height: 1.25em;
+}
+
+.basicInfoList, .moreInfoList {
+  margin: 0 auto;
   width: 90%;
-  margin: 0 auto;
-  border-radius: 10px;
-  background: white;
-  /*margin-bottom: 30px;*/
-  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 4px 4px 2px lightgray;
-}
-
-.avaliableForContent {
-  width: 98%;
-  height: 100%;
-  /*border: 2px solid red;*/
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  margin-bottom: 25px;
 }
 
-.avaliableStatus {
-  color: #636b75;
-  font-family: 'Lobster';
-  font-size: 25px;
+.moreInfoList {
+  display: block;
+  line-height: 1.45;
+  /*border: 2px solid red;*/
+}
+
+.InnerRight {
+  width: 79%;
+  height: 1450px;
+  /*border: 2px solid brown;*/
+}
+
+.profileHeader {
+  width: calc(100% - 40px);
+  height: 195px;
+  /*border: 2px solid black;*/
+  min-height: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 1.43;
+}
+
+.HeaderName{
+  font-size: 40px;
+  color: #7e8794;
+  margin-bottom: 10px;
+}
+
+.HeaderDescri {
+  font-weight: normal;
+  color: #7e8794;
+  margin-top: 30px;
+}
+
+.HeaderLoc {
+  font-weight: bold;
+  color: #7e8794;
+  margin-top: 5px;
+  display: flex;
+
+}
+
+.headerItem {
+  margin-right: 10px;
+}
+
+.singleReview {
+  display: flex;
+}
+
+.reviewInner {
+  width: 90%;
+  margin-top: 20px;
+  margin-left: 50px;
+  /*border: 2px solid green;*/
+  /*height: 1000px*/
+}
+
+.rs_avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: black;
+}
+
+.rs_avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.rs_name {
+  margin-left: 3px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #b5b5b5;
+  /*border: 2px solid red;*/
+  width: 60px;
+  height: 15px;
+  text-align: center;
+}
+
+.rs_content_wrapper {
+  vertical-align: baseline;
+  height: 100%;
+  margin-left: 15px;
+}
+
+.rs_content_wrapper i {
+  margin-left: 15px;
+  color: #b5b5b5;
+}
+
+.rs_content_wrapper span {
+  display: flex;
+  align-items: baseline;
+}
+
+
+
+.rs_content {
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  color: #7e8794;
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.re_loc {
+  margin-top: 30px;
+  font-size: 13px;
+  line-height: 1.43;
+  color: #b5b5b5;
+  margin-left: 15px;
+}
+
+.hrline {
+  background-color: #c7c5be;
+  color: #c7c5be;
+  width: 80%;
+  margin-left: 85px;
+  margin-top: 25px;
+  height: 0.5px;
+}
+
+
+.editForm {
+  padding-bottom: 25px;
 }
 
 .editProfile {
   margin: 0 auto;
-  height: 590px;
+  /*height: 590px;*/
   width: 800px;
   border: 1px solid lightgray;
   border-top: 3px solid #e57a13;
@@ -530,27 +745,34 @@ video {
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-.editProfileSave {
-  height: 30px;
-  width: 130px;
-  color: white;
-  background-color: #e57a13;
-  font-size: 18px;
-  border: none;
-  text-decoration: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+.updatePic {
+  width: 100px;
+  height: 100px;
+  margin-left: 45%;
+  margin-top: 15px;
+  margin-bottom: 15px;
   cursor: pointer;
-  border-radius: 50vh;
-  outline: none;
-  /*border: 2px solid teal;*/
-  margin-top: 10px;
-  margin-left: 42%;
 }
 
-/*.popUpProfile {
-  filter: blur(20px);
-}*/
+.updatePic img {
+  width: 100%;
+  height: 100%;
+}
 
+.camera {
+  position: absolute;
+  top: 200px;
+  left:200px;
+  top: 135px;
+  left: 435px;
+  display: none;
+
+}
+
+.updatePicContainer:hover .camera {
+  display:block;
+}
 
 
 .editprofileTitle {
@@ -569,119 +791,67 @@ video {
 
 .editProfileBtn {
   height: 30px;
-  width: 130px;
+  width: 110px;
   color: white;
   background-color: #e57a13;
-  font-size: 15px;
-  margin-left: 5px;
+  font-size: 13px;
   border: none;
   text-decoration: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 10px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 50vh;
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
 }
 
+
 .inviteBtn {
-  width: 200px;
+  width: 140px;
+  background-color: #ffb033;
 }
 
-.profileAlbum {
-  border-radius: 10px;
-  height: 220px;
-  width: 90%;
-  background: white;
-  margin: 0 auto;
-  margin-top: 30px;
-  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 4px 4px 2px lightgray;
-}
 
-.profileAlbum p {
-  color: #7e8794;
-}
-
-.albumText {
-  /*border: 2px solid red;*/
-  width: 97%;
-  color: #7e8794;
-  font-weight: bold;
-  margin: 0 auto;
+.viewTrip {
   display: flex;
-  justify-content: space-between;
 }
 
-.albumPic {
-  width: 97%;
-  margin: 0 auto;
-  /*border: 2px solid red;*/
-  display: flex;
-  justify-content: space-between;
-}
-.albumInner {
-  height: 150px;
-  width: 150px;
-  background: orange;
-  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 4px 4px 2px lightgray;
-  border-radius: 10px;
-}
-
-
-.aboutMe {
-  height: 35px;
+.reviewContainer {
   width: 100%;
-  background: #e57a13;
-  display: flex;
-  align-items: center;
-  color: white;
-  border-radius: 10px 10px 0px 0px;
+  /*height: calc(1450px - 195px);*/
+  /*border: 2px solid blue;*/
 }
 
-.aboutMe div {
-  margin-left: 17px;
+.reviews {
+  font-size: 30px;
+  line-height: 1.1;
+  padding-left: 20px;
+  color: #7e8794;
+  margin-top: 5px;
 }
 
-.profileUpcoming {
-  height: 150px;
-  width: 90%;
-  margin: 0 auto;
-  background: red;
-  margin-top: 30px;
-}
-
-
-.AboutMeContainer {
-  height: 840px;
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 30px;
-  background: white;
-  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 4px 4px 2px lightgray;
-  border-radius: 10px;
-}
-
-.aboutMeContent{
-  width: 97%;
-  margin: 0 auto;
+.addReview {
   /*border: 2px solid red;*/
-  margin-top: 15px;
-
-}
-
-
-.profileTags {
-  display: flex;
-}
-
-.tag {
+  margin-top: 3px;
   margin-left: 20px;
+  display: flex;
+  font-size: 13px;
+  color: #b5b5b5;
 }
+
+.addReview:hover {
+  color: #e57a13;
+  cursor: pointer;
+
+}
+
+.addReview i {
+color: #e57a13;
+margin-right: 3px;
+}
+
+
 
 .edirFormSection {
   margin: 0 auto;
@@ -718,7 +888,7 @@ video {
   align-items: center;
   font-size: 15px;
   width: 500px;
-  height: 450px;
+  /*height: 450px;*/
   position: absolute;
   top:30%;
   left:35%;
@@ -732,15 +902,21 @@ video {
   animation: zoominoutsinglefeatured 0.5s forwards;
 }
 
+.selectSquadContainer {
+  width: 300px;
+  margin-left: 150px;
+}
+
 .createBtn {
   width: 80%;
   justify-content: space-between;
   /*border: 2px solid red;*/
   margin: 0 auto;
   display: flex;
+  padding-bottom: 35px;
 }
 
-.createBtn button {
+.createBtn button, .selectCancel {
   height: 30px;
   width: 49%;
   color: white;
@@ -787,6 +963,33 @@ video {
   margin: 0 auto;
   margin-top: 20px;
   font-size: 14px;
+}
+
+.selectSquad {
+  margin-top: 0;
+  width: 100%;
+  text-align: center;
+  height: 30px;
+  cursor: pointer;
+
+  /*border: 2px solid red;*/
+}
+
+.selectSquad span {
+  margin-top: 8px;
+}
+
+.selectSquadWrapper {
+  padding: 20px;
+}
+.innerWrapperContainer:hover {
+  background-color: rgba(255, 176, 51, 0.35);
+}
+
+.selectCancel {
+margin-left: 28%;
+margin-top: 20px;
+border-radius: 5px;
 }
 
 .innerInput {
