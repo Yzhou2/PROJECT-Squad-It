@@ -14,14 +14,14 @@ module.exports = {
     if (!req.query.userid) {
     db.get_user_profile([req.user.userid]).then(
       user => {
-        console.log(user, 'inside if')
+        // console.log(user, 'inside if')
         res.status(200).send(user)
       })
     } else {
-      console.log(req.query, 'this is req.query')
+      // console.log(req.query, 'this is req.query')
       db.get_user_profile([req.query.userid]).then(
         user => {
-          console.log(user, 'this is user')
+          // console.log(user, 'this is user')
           return res.status(200).send(user)})
     }
   },
@@ -37,7 +37,7 @@ module.exports = {
   },
 
   CreateSquad: (req, res) => {
-    console.log('create_squad')
+    // console.log('create_squad')
 
     const db = req.app.get('db');
     db.create_squad([req.body.name, req.body.Description, req.body.Address, req.body.City, req.body.Country, req.body.StartDate, req.body.EndDate]).then(
@@ -143,7 +143,7 @@ module.exports = {
 
   getSquadMembers: (req, res) => {
     const db = req.app.get('db');
-    console.log(req.params, 'lets see whats on params')
+    // console.log(req.params, 'lets see whats on params')
     db.getSquadMembers([req.params.squad_id]).then( members => {
     res.status(200).send(members)})
   },
@@ -152,9 +152,22 @@ module.exports = {
 
   getUserByHostStat: (req, res) => {
     const db = req.app.get('db');
-    console.log(req.params.dest, 'this is the destination')
+    // console.log(req.params.dest, 'this is the destination')
     db.getUserByHostStat([req.params.dest]).then( members => {
-      console.log(members, 'this is the member list for dinner host')
+      // console.log(members, 'this is the member list for dinner host')
     res.status(200).send(members)})
-  }
+  },
+
+  postReviews: (req, res) => {
+     const db = req.app.get('db');
+     db.insertIntoReview([req.body.userid, req.user.userid, req.body.review]).then( reviews => {
+     res.status(200).send(reviews)})
+   },
+
+  getReviews: (req, res) => {
+     const db = req.app.get('db');
+     console.log(req.params, 'this is the params')
+     db.getReviewsByUserid([req.params.id]).then( reviews => {
+     res.status(200).send(reviews)}).catch( err => res.status(500).send( err ))
+    }
 }

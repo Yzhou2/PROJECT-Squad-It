@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import socket from './socket';
 
 export default class Header extends Component {
     constructor(props) {
@@ -32,6 +32,9 @@ handleChange(event) {
 
 componentDidMount() {
   console.log('mounted', this.props)
+  socket.on('new-notification', function(val){
+    console.log('lets check out the val', val)
+  })
   axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
   console.log('response!!!!!!!',response.data)//empty
   this.setState({
@@ -47,7 +50,7 @@ componentDidMount() {
   return (
     <div className="header">
       <div className="headerInner">
-        <div className="leftMargin headerlogo"><img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/></div>
+      <Link to="/logged/dashboard"><div className="leftMargin headerlogo"><img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/></div></Link>
 
         <div>
         <input onChange={this.handleChange} />
@@ -59,7 +62,7 @@ componentDidMount() {
     <div className="headerInner">
       <div className="notification"><i className="fa fa-bell" aria-hidden="true"></i></div>
       <div className="headerNav">{this.state.firstname}</div>
-      <div className="headerNav headerimg"><img src={this.state.profile_img_url} alt="fixed"/></div>
+      <Link to="/logged/dashboard"><div className="headerNav headerimg"><img src={this.state.profile_img_url} alt="fixed"/></div></Link>
     </div>
 
     </div>

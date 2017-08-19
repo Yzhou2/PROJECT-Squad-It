@@ -11,14 +11,16 @@ export default class SelectSquad extends Component {
 
 
       }
-      // this.handleClick = this.handleClick.bind(this);
+
   }
 
 
 handleClick(squad_id){
   axios.post('http://localhost:3001/api/addSquadMember', {squad_id:squad_id, user_id:this.props.userid}, {withCredentials: true}).then(response => {
     console.log(response)
-  })
+  });
+
+  this.props.unSelectSquad();
 }
 
 componentDidMount(){
@@ -29,24 +31,49 @@ componentDidMount(){
   });
 }
 
+// {
+//   this.state.all_squads?
+//   <div className="innerWrapperContainer">
+//   {
+//     this.state.all_squads.map((squad, idx) => {
+//        return <div key={idx} onClick={()=>{this.handleClick(squad.squad_id)}}>{squad.name}</div>
+//     })
+//   }
+//   </div>
+//   :
+//   ""
+// }
+
 
   render() {
     console.log(this.props, 'propsss for selectSquad!!!!!!')
     return (
-      <div>
-      hihi
-      {
-        this.state.all_squads?
-        <div>
-        {
-          this.state.all_squads.map((squad, idx) => {
-             return <div key={idx} onClick={()=>{this.handleClick(squad.squad_id)}}>{squad.name}</div>
-          })
-        }
+      <div className="createSquadContainer selectSquadContainer">
+        <div className="createSquadTop">
+          <div>Select a Squad</div>
         </div>
-        :
-        ""
-      }
+
+          <div className="selectSquadWrapper">
+
+
+            {
+              this.state.all_squads?
+
+
+                this.state.all_squads.map((squad, idx) => {
+                   return (<div  className="innerWrapperContainer selectSquad" key={idx} onClick={()=>{this.handleClick(squad.squad_id)}}>
+                            <span>{squad.name}</span>
+                          </div>)
+                })
+
+              :
+              ""
+            }
+
+
+          <button className="selectCancel" onClick={()=>{this.props.unSelectSquad()}}>Cancel</button>
+        </div>
+
       </div>
     )
   }

@@ -4,6 +4,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import SelectSquad from './SelectSquad';
+import socket from './socket';
 
 
 export default class SearchresultCountry extends Component {
@@ -17,9 +18,11 @@ export default class SearchresultCountry extends Component {
         bannerPic: ['https://i.imgur.com/oIwuby5.png', 'https://i.imgur.com/KE8Jjx7.png'],
         SelectSquad: false,
         selectUserId: null,
-        flag: false
+        flag: false,
+        notification: null
       }
       this.handleClick = this.handleClick.bind(this);
+      this.saveNoti = this.saveNoti.bind(this);
     }
 
 
@@ -39,10 +42,18 @@ this.setState({
 })
 }
 
+saveNoti(val){
+  console.log(val,'did we receive msg back')
+  this.setState({
+    notification: val
+  })
+}
 
 
 
 componentDidMount(){
+  socket.emit('notification', 'just wanna see if you get it');
+
   // axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
   //   res => {
   //     this.setState({
@@ -52,9 +63,7 @@ componentDidMount(){
 
     axios.get(`http://localhost:3001/api/getUserByHostStat/${this.state.city}`, {withCredentials: true}).then(
       res => {
-        this.setState({
-          users: res.data
-        })
+        socket.on('mynotification', this.saveNoti)
       });
 
 }
@@ -123,7 +132,7 @@ componentWillReceiveProps(props){
 // </div>
 
   render() {
- console.log(this.state.selectUserId, 'this is the userid on state')
+ console.log(this.state.notification, 'miracle happens or not?')
   return (
     <div>
       <SelectSquad userid={this.state.selectUserId}/>

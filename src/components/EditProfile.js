@@ -159,6 +159,13 @@ export default class EditProfile extends Component {
         <div className="editProfile">
           <div className="editprofileTitle"><span>Edit Profile</span></div>
 
+                    <div className="updatePicContainer">
+             <div className="updatePic"><img src={this.props.profile_img_url} alt="fixed" /></div>
+             <div className="camera">
+               <i className="fa fa-camera" aria-hidden="true"></i>
+             </div>
+           </div>
+
 
           <div className="editForm">
             <div className="edirFormSection">
@@ -265,8 +272,10 @@ export default class EditProfile extends Component {
 
           </div>
 
-          <button onClick={ this.handleClick } className="editProfileSave">Save</button>
-          <button onClick={()=>{this.props.closePop()} } className="editProfileSave">Cancel</button>
+              <div className="createBtn">
+                 <button onClick={ this.handleClick }>Save</button>
+                 <button onClick={()=>{this.props.closePop()} } >Cancel</button>
+               </div>
 
         </div>
 

@@ -3,8 +3,9 @@ import Header from '../Header';
 import Sidebar from '../Sidebar';
 import dateCreator from './dateCreator';
 import axios from 'axios';
-const io = require('socket.io-client');
-const socket = io();
+import socket from '../socket';
+// const io = require('socket.io-client');
+// const socket = io();
 
 
 

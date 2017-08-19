@@ -10,6 +10,7 @@ const massive = require('massive');
 const controller = require('./server/controllers/controllers');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const s3Controller = require('./server/controllers/s3Controller');
 const connectionString = config.address;
 
 
@@ -24,6 +25,14 @@ var corsOptions = {
 
 io.on('connection', function(socket){
   console.log('a user connected, yayyyy');
+
+socket.on('notification', function(val){
+  console.log('notification!!!!!!!', val)
+  io.emit('new-notification', val);
+  console.log('notification emit ran!!!')
+})
+
+
   socket.on('message', function(message){
     console.log('received msg', message)
     io.emit('receive-msg', message);
@@ -112,7 +121,18 @@ massive( connectionString ).then( db => {
   app.get('/api/getUserByDest/:dest', controller.getUserByDest);
   app.post('/api/addSquadMember', controller.addSquadMember);
   app.post('/api/getSquadMembers/:squad_id', controller.getSquadMembers);
-  app.get('/api/getUserByHostStat/:dest', controller.getUserByHostStat)
+  // app.get('/api/getUserByHostStat/:dest', controller.getUserByHostStat);
+  // app.get('/api/getUserByHostStat/:dest', controller.getUserByHostStat);
+  app.post('/api/getSignedURL', s3Controller.getSignedURL);
+  app.post('/api/uploadPic', (req,res) => {
+   const db = req.app.get('db');
+   const {picurl} = req.body;
+   db.insertPicUrl([picurl, req.user.userid]).then(
+     url => res.status(200).send(url)
+   )
+ });
+  app.post('/api/postReviews', controller.postReviews);
+  app.get('/api/getReviews/:id', controller.getReviews);
 
 
   app.get('/', (req, res) => {

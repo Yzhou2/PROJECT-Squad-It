@@ -41,7 +41,7 @@ OpenSqdMember(){
 
 componentDidMount() {
   // console.log('mounted')
-
+// 
 //  axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
 //    headers: {"user-key":keys.zomatoAPI}
 //  }).then( response => {
@@ -55,7 +55,7 @@ componentDidMount() {
 // });
 //
 //  });
-// 
+//
 // axios.get('https://trailapi-trailapi.p.mashape.com/?q[city_cont]=Denver', {
 //    headers: {"X-Mashape-Key":keys.trialAPI}
 //  }).then(res => {
