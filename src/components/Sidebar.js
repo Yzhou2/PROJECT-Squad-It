@@ -10,7 +10,8 @@ export default class Sidebar extends Component {
     this.state = {
       firstname: null,
       lastname: null,
-      profile_img_url: null
+      profile_img_url: null,
+      userid: null
     }
 
 
@@ -26,7 +27,8 @@ export default class Sidebar extends Component {
     this.setState({
       firstname: response.data[0].firstname,
       lastname: response.data[0].lastname,
-      profile_img_url: response.data[0].profile_img_url
+      profile_img_url: response.data[0].profile_img_url,
+      userid: response.data[0].userid
 
     });
   });
@@ -45,7 +47,7 @@ export default class Sidebar extends Component {
       </div>
 
       <Link to="/logged/dashboard"><div className="sideBarSelection">Dashboard</div></Link>
-      <div className="sideBarSelection"><Link to={{pathname:'/logged/profile', query:{flag:true}}}>Profile</Link></div>
+      <div className="sideBarSelection"><Link to={{pathname:'/logged/profile', query:{flag:true, userid:this.state.userid}}}>Profile</Link></div>
       <div className="sideBarSelection">Messages</div>
       <div className="sideBarSelection bottomLine">News Feed</div>
 

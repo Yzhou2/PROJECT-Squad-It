@@ -1153,7 +1153,7 @@ border-radius: 5px;
   background: white;
 }
 
-.CirclesContainer{
+.CirclesContainer, .trailContainer{
   width: 95%;
   height: 150px;
   display: flex;
@@ -1212,12 +1212,129 @@ border-radius: 5px;
   text-align: center;
 }
 
-.countryInfo {
+
+
+.trailContainer {
+  height: 310px;
+  margin-top: 20px;
+  border-top: 5px solid #e57a13;
+  display: block;
+}
+.trailHeader {
+  color: #7e8794;
+  margin-left: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.trail {
+  border: 1px solid lightgray;
+  -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  height: 240px;
+  width: 200px;
+  margin-left: 15px;
+  margin-right: 15px;
+  color: #b5b5b5;
+}
+
+.trailmain {
+  display: flex;
+  width: 100%;
+  /*border: 2px solid green;*/
+  justify-content: space-between;
+}
+
+.trailText {
+  display: flex;
+}
+
+.trailTitle {
+  font-weight: bold;
+  color: #7e8794;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.trailText i {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.trailLocation {
+  color: #b5b5b5;
+  font-size: 13px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.trail_img {
+  height: 170px;
+  width: 100%;
+  /*border: 2px solid orange;*/
+}
+/*.countryInfo {
   margin: 0 auto;
   margin-top: 10px;
   width: 100%;
   height:820px;
-  /*border: 2px solid brown;*/
+  border: 2px solid brown;
+}*/
+
+.attraction {
+  height: 150px;
+  width: 95%;
+  margin: 0 auto;
+  border: 2px solid red;
+  display: flex;
+  margin-top: 10px;
+}
+
+.attractionsContainer {
+  border-top: 5px solid #ffb033;
+}
+
+
+.topPlace {
+  display: flex;
+  flex-direction: column;
+}
+
+.attract_pic {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  border: 2px solid red;
+  margin-top: 12px;
+  margin-left: 10px;
+
+}
+
+.attract_pic img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.attract_rightbox {
+  height: 120px;
+  width: 82%;
+  border: 2px solid brown;
+  margin-top: 12px;
+  margin-left: 10px;
+  font-size: 13px;
+}
+
+.attract_name {
+  margin-top: 14px;
+  font-size: 18px;
+  color: #7e8794
+  /*font-weight: bold;*/
+}
+
+.attract_Desc {
+  color: #b5b5b5;
+  margin-top:10px;
 }
 
 .rightBarTitle {

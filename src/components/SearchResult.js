@@ -23,6 +23,7 @@ export default class SearchresultCountry extends Component {
       }
       this.handleClick = this.handleClick.bind(this);
       this.saveNoti = this.saveNoti.bind(this);
+      this.unSelectSquad = this.unSelectSquad.bind(this);
     }
 
 
@@ -33,6 +34,13 @@ export default class SearchresultCountry extends Component {
 // }
 //
 //
+unSelectSquad(){
+  // console.log('clicked cancel|||||||||||||')
+  this.setState({
+    SelectSquad:false
+  })
+}
+
 
 handleClick(val){
   console.log(val)
@@ -52,19 +60,19 @@ saveNoti(val){
 
 
 componentDidMount(){
-  socket.emit('notification', 'just wanna see if you get it');
+  // socket.emit('notification', 'just wanna see if you get it');
 
-  // axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
-  //   res => {
-  //     this.setState({
-  //       users: res.data
-  //     })
-  //   });
+  axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
+    res => {
+      this.setState({
+        users: res.data
+      })
+    });
 
-    axios.get(`http://localhost:3001/api/getUserByHostStat/${this.state.city}`, {withCredentials: true}).then(
-      res => {
-        socket.on('mynotification', this.saveNoti)
-      });
+    // axios.get(`http://localhost:3001/api/getUserByHostStat/${this.state.city}`, {withCredentials: true}).then(
+    //   res => {
+    //     socket.on('mynotification', this.saveNoti)
+    //   });
 
 }
 
@@ -132,10 +140,10 @@ componentWillReceiveProps(props){
 // </div>
 
   render() {
- console.log(this.state.notification, 'miracle happens or not?')
+ console.log(this.state.SelectSquad, 'SelectSquad??!!!!!?!?!?!?!?!?')
   return (
     <div>
-      <SelectSquad userid={this.state.selectUserId}/>
+      {this.state.SelectSquad?<SelectSquad userid={this.state.selectUserId} unSelectSquad={this.unSelectSquad}/>:""}
         <div className="ProfileContainer searchOverwrite">
           <div className="searchTopBar">
             <img src={this.state.bannerPic} />
