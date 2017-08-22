@@ -147,7 +147,7 @@ handleClick(){
   });
 
   this.props.CreateTripPlanReset();
-
+  
 }
 
 

@@ -121,8 +121,7 @@ massive( connectionString ).then( db => {
   app.get('/api/getUserByDest/:dest', controller.getUserByDest);
   app.post('/api/addSquadMember', controller.addSquadMember);
   app.post('/api/getSquadMembers/:squad_id', controller.getSquadMembers);
-  // app.get('/api/getUserByHostStat/:dest', controller.getUserByHostStat);
-  // app.get('/api/getUserByHostStat/:dest', controller.getUserByHostStat);
+  app.get('/api/getUserByHostStat/:dest', controller.getUserByHostStat);
   app.post('/api/getSignedURL', s3Controller.getSignedURL);
   app.post('/api/uploadPic', (req,res) => {
    const db = req.app.get('db');

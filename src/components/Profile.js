@@ -4,30 +4,7 @@ import Sidebar from './Sidebar';
 import axios from 'axios';
 import EditProfile from './EditProfile';
 import SelectSquad from './SelectSquad';
-import Dropzone from 'react-dropzone';
 import PostReview from './PostReview.js';
-
-
-const uploadImage = (file) => {
-   return axios.post("/api/getSignedURL", {
-     filename: file.name,
-     filetype: file.type
-   })
-   .then(res => {
-     // console.log(res);
-     let options = {
-       headers: {
-         'Content-Type': file.type
-       }
-     }
-     return axios.put(res.data.url, file, options)
-     .then(res => {
-        return res.config.url.match(/.*\?/)[0].slice(0,-1)
-       console.log(res.config.url, 'res url!!!')
-       // return res.config.url
-     })
-   })
- }
 
 
 
@@ -66,8 +43,6 @@ export default class Profile extends Component {
 
   this.handleClickEdit = this.handleClickEdit.bind(this);
   this.closePop = this.closePop.bind(this);
-  this.onDrop = this.onDrop.bind(this);
-  this.submitPic  = this.submitPic.bind(this);
   this.selectSquad = this.selectSquad.bind(this);
   this.unSelectSquad = this.unSelectSquad.bind(this);
   this.postReview = this.postReview.bind(this);
@@ -101,7 +76,8 @@ export default class Profile extends Component {
               occupation: response.data[0].occupation,
               visited_countries: response.data[0].visited_countries,
               Fluent_Languages: response.data[0].Fluent_Languages,
-              description: response.data[0].description
+              description: response.data[0].description,
+
 
 
             })
@@ -113,6 +89,7 @@ export default class Profile extends Component {
 
               axios.get(`http://localhost:3001/api/getReviews/${this.props.location.query.userid}`).then(res=>{
                  // console.log('get reviews successfully', res)
+                 console.log(this.props.location.query.userid, 'this is my userid passed into getreviews')
                  this.setState({
                    reviewsDisplay: res.data
                  })
@@ -121,44 +98,6 @@ export default class Profile extends Component {
 
 
   }
-
-
-
-    onDrop(accepted, rejected){
-     uploadImage(accepted[0])
-     .then(url => this.setState({pictures: url}))
-   }
-
-   submitPic(){
-     axios.post('/api/uploadPic', {picurl: this.state.pictures}, {withCredentials:true}).then(
-       res => {
-         const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
-         // console.log(getProfileAPI,'linky linky link')
-         axios.get(getProfileAPI, {withCredentials:true}).then( response => {
-           // console.log(response.data, 'this is responseeeeeee')
-           this.setState({
-             firstname: response.data[0].firstname,
-             lastname: response.data[0].lastname,
-             profile_img_url: response.data[0].profile_img_url,
-             gender: response.data[0].gender,
-            //  squad_status: response.data[0].squad_status,
-             city: response.data[0].city,
-             country: response.data[0].country,
-             birthday: response.data[0].birthday,
-             smoker: response.data[0].smoker,
-             drinker: response.data[0].drinker,
-             dstolerance: response.data[0].dstolerance,
-            //  avaliableforhostdinner: response.data[0].avaliableforhostdinner,
-             typeoftraveller: response.data[0].typeoftraveller,
-             occupation: response.data[0].occupation,
-             visited_countries: response.data[0].profile_img_url,
-             Fluent_Languages: response.data[0].profile_img_url,
-             description: response.data[0].description
-           })
-         });
-       }
-     )
-   }
 
 
 
@@ -173,6 +112,10 @@ export default class Profile extends Component {
         selectSquad: true
         })
       }
+
+
+
+
 
    postReview(){
      this.setState({
@@ -199,7 +142,40 @@ handleClickEdit() {
 closePop(){
   this.setState({
     popUp: false
+  },function(){
+      const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+      // console.log(getProfileAPI,'linky linky link')
+      axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+        // console.log(response.data, 'this is responseeeeeee')
+        this.setState({
+          // firstname: response.data[0].firstname,
+          // lastname: response.data[0].lastname,
+          profile_img_url: response.data[0].profile_img_url,
+          // gender: response.data[0].gender,
+          // squad_status: response.data[0].squad_status,
+          // city: response.data[0].city,
+          // country: response.data[0].country,
+          // birthday: response.data[0].birthday,
+          // smoker: response.data[0].smoker,
+          // drinker: response.data[0].drinker,
+          // dstolerance: response.data[0].dstolerance,
+          // avaliableforhostdinner: response.data[0].avaliableforhostdinner,
+          // typeoftraveller: response.data[0].typeoftraveller,
+          // occupation: response.data[0].occupation,
+          // visited_countries: response.data[0].visited_countries,
+          // Fluent_Languages: response.data[0].Fluent_Languages,
+          // description: response.data[0].description
+
+
+        })
+      });
+
+
+
   })
+
+
+
 }
 
   render() {
@@ -208,7 +184,7 @@ closePop(){
     }
     return (
       <div>
-      {this.state.popUp?<EditProfile closePop={this.closePop} profile_img_url={this.state.profile_img_url}/>:""}
+      {this.state.popUp?<EditProfile closePop={this.closePop} profile_img_url={this.state.profile_img_url} refreshImg={this.refreshImg}/>:""}
       {this.state.selectSquad? <SelectSquad userid={this.state.userid} unSelectSquad={this.unSelectSquad}/> :"" }
       {this.state.postReview?<PostReview unPostReview={this.unPostReview} userid={this.state.userid}/>:""}
       <div className="ProfileContainer profileBackground" style={this.state.popUp?blur:{}}>

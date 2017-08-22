@@ -40,9 +40,10 @@ export default class Dashboard extends Component{
 
 
   componentDidMount() {
-    console.log('componentDidMount', this.props.location.query)
+    // console.log('componentDidMount', this.props.location.query)
     this.setState({
-      eachsquadClicked: this.props.location.query
+      // eachsquadClicked: this.props.location.query
+      eachsquadClicked: false
     });
 
     axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>
@@ -118,12 +119,15 @@ handleClick() {
   this.setState({
     createSquad: true
   })
+  this.props.blur();
 }
 
 createSquadReset(){
   this.setState({
     createSquad: false
-  })
+  });
+
+  this.props.unblur();
 }
 
 CreateTripPlanReset(){
@@ -131,18 +135,22 @@ CreateTripPlanReset(){
   this.setState({
     CreateTripPlan: false
   })
+  this.props.unblur();
 }
 
 EditTripPlanReset(){
+  console.log('edit trip plan clicked')
   this.setState({
     EditTripPlan: false
-  })
+  });
+  this.props.unblur();
 }
 
 handleClickAddTP(){
   this.setState({
     CreateTripPlan: true
-  })
+  });
+  this.props.blur();
 }
 
 updateTravelPlan(val) {
@@ -164,6 +172,7 @@ sendEachPlanToState(val){
     eachPlan: val,
     EditTripPlan: true
   });
+  this.props.blur();
 }
 
 
@@ -177,7 +186,7 @@ handleEachSquad(eachSquad) {
 
   render() {
 
-    // console.log('propsssssss', this.state.eachsquadClicked)
+    console.log(this.props, 'props passed in what')
 
 
     var style = {
@@ -200,42 +209,56 @@ handleEachSquad(eachSquad) {
           <div className="tripPlan">
 
               <div className="TopBox">
-                <div className="YourTrip">Your Travel Plans</div>
-                <button className="AddTrip" onClick={this.handleClickAddTP}> + Add Trip Plans</button>
-              </div>
-
-              <div className="tripList">Your List of Trips </div>
-              <div className="line"></div>
+              <div className="YourTrip">To-Do Lists</div>
+          </div>
 
             <div>
 
-              {this.state.travelPlan ? this.state.travelPlan.map( (eachPlan, idx) => {
-                return (
-              <div className="listWrapper" key={idx}>
-                <div className="lists">
-                    <div className="tripList1">
-                      <div className="triploc">{eachPlan.city +', ' + eachPlan.country}</div>
-                      <div className="tripdate">{eachPlan.arrival}</div>
-                    </div>
 
-                    <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-
-
-                    <div className="tripList2">
-                      <div className="triploc">{eachPlan.city +', ' + eachPlan.country}</div>
-                      <div className="tripdate">{eachPlan.depart}</div>
-                    </div>
+            <div className="listWrapper">
+              <div className="todo_list">
+                <div className="todoImg">
+                    <img src='https://i.imgur.com/AjbHfmU.png' />
+                </div>
+                <div className="todoText">
+                  <div className="todoTitle"> Safety </div>
+                  <div className="todpDescri">Whether you’re hosting a guest, surfing, or hanging out with fellow Couchsurfers, we want you to be safe.</div>
                 </div>
 
-                <div className="listbtn">
-                    <div>
-                      <button className="edittrip" onClick={()=>{this.sendEachPlanToState(eachPlan)}}>Edit</button>
-                      <button className="deletetrip" onClick={()=>{this.deleteTrip(eachPlan.travelplan_id)}}>Delete</button>
-                    </div>
+                <div className="todoBtn">
+                  <button>Read</button>
+                  <button>Dismiss</button>
                 </div>
               </div>
-                )
-              }):[]}
+              <div className="todo_list"></div>
+              <div className="todo_list"></div>
+            </div>
+
+
+
+
+
+
+            <div className="listWrapper">
+              <div className="todo_list">
+                <div className="todoImg">
+                    <img src='https://i.imgur.com/K7GtP53.png' />
+                </div>
+                <div className="todoText">
+                  <div className="todoTitle"> Complete Your Profile </div>
+                  <div className="todpDescri">Please Complete Your Profile so Other Squads Can Find You.</div>
+                </div>
+
+                <div className="todoBtn">
+                  <button>Complete Profile</button>
+                  <button> Dismiss</button>
+                </div>
+              </div>
+              <div className="todo_list"></div>
+              <div className="todo_list"></div>
+            </div>
+
+
 
 
 
@@ -303,12 +326,67 @@ handleEachSquad(eachSquad) {
 
 
                 </div>
+
               </div>
+
+
+            </div>
+
+
+
+        </div>
+
+        <div className="tripPlan">
+
+            <div className="TopBox">
+              <div className="YourTrip">Your Travel Plans</div>
+              <button className="AddTrip" onClick={this.handleClickAddTP}> + Add Trip Plans</button>
+            </div>
+
+            <div className="tripList">Your List of Trips </div>
+            <div className="line"></div>
+
+          <div>
+
+            {this.state.travelPlan ? this.state.travelPlan.map( (eachPlan, idx) => {
+              return (
+            <div className="listWrapper" key={idx}>
+              <div className="lists">
+                  <div className="tripList1">
+                    <div className="triploc">{eachPlan.city +', ' + eachPlan.country}</div>
+                    <div className="tripdate">{eachPlan.arrival}</div>
+                  </div>
+
+                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+
+
+                  <div className="tripList2">
+                    <div className="triploc">{eachPlan.city +', ' + eachPlan.country}</div>
+                    <div className="tripdate">{eachPlan.depart}</div>
+                  </div>
+              </div>
+
+              <div className="listbtn">
+                  <div>
+                    <button className="edittrip" onClick={()=>{this.sendEachPlanToState(eachPlan)}}>Edit</button>
+                    <button className="deletetrip" onClick={()=>{this.deleteTrip(eachPlan.travelplan_id)}}>Delete</button>
+                  </div>
+              </div>
+            </div>
+              )
+            }):[]}
+
+
+
+
+
+
+
             </div>
         </div>
       </div>
-      </div>
     </div>
+  </div>
     )
   }
 }
