@@ -88,8 +88,12 @@ export default class Profile extends Component {
 
 
               axios.get(`http://localhost:3001/api/getReviews/${this.props.location.query.userid}`).then(res=>{
+<<<<<<< HEAD
                  // console.log('get reviews successfully', res)
                  console.log(this.props.location.query.userid, 'this is my userid passed into getreviews')
+=======
+                 console.log(this.props.location.query.userid, 'get userid from sidebar successfully')
+>>>>>>> master
                  this.setState({
                    reviewsDisplay: res.data
                  })

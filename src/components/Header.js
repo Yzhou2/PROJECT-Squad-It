@@ -32,9 +32,9 @@ handleChange(event) {
 
 componentDidMount() {
   console.log('mounted', this.props)
-  socket.on('new-notification', function(val){
-    console.log('lets check out the val', val)
-  })
+  // socket.on('new-notification', function(val){
+  //   console.log('lets check out the val', val)
+  // })
   axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
   console.log('response!!!!!!!',response.data)//empty
   this.setState({
