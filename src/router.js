@@ -18,40 +18,45 @@ export default class Router extends Component{
     super();
 
     this.state={
-      search: null,
-      flag: null,
+      blur: null,
     }
-  this.updateSearch = this.updateSearch.bind(this);
-  this.updateFlag = this.updateFlag.bind(this);
+this.blur = this.blur.bind(this);
+this.unblur = this.unblur.bind(this);
   }
 
-  updateSearch(val){
-   this.setState({
-     search: val,
-   })
-  }
-
-  updateFlag(bool){
+  blur(){
     this.setState({
-      flag: bool
+      blur: true
+    })
+  }
+
+  unblur(){
+    console.log('clicked unblur')
+    this.setState({
+      blur: false
     })
   }
 
   render(){
-    console.log(this.state.flag, 'checkkkkkkk')
+    var blur = {
+        filter: 'blur(5px)'
+    }
+    console.log(this.state.blur, 'blur is turned on or not')
   return (
   <div>
-  <Header history={this.props.history} updateSearch={this.updateSearch}/>
-  <Sidebar updateFlag={this.updateFlag}/>
+    <div style={this.state.blur?blur:{}}>
+        <Header history={this.props.history} />
+        <Sidebar/>
+    </div>
 
   <Switch>
-    <Route path="/logged/dashboard" component={ Dashboard } />
+    <Route path="/logged/dashboard" render={props => <Dashboard blur = {this.blur} unblur = {this.unblur}/>}/>
     <Route component={ Profile } path="/logged/profile" />
     <Route component={ EditProfile } path="/logged/editProfile" />
     <Route component={ CreateSquad } path="/logged/createsquad" />
     <Route component={ CreateTripPlan } path="/logged/createtrip" />
-    <Route component={ SearchresultCountry } path="/logged/searchresultCT/:search" updateFlag={this.updateFlag}/>
-    <Route component={ SearchResult } path='/logged/searchresult' />
+    <Route component={ SearchresultCountry } path="/logged/searchresultCT/:search" />
+    <Route component={ SearchResult } path='/logged/searchresult/:category/:dest' />
     <Route component={ SelectSquad } path='/logged/selectsquad' />
     <Route component={ Chat_room } path="/logged/chat" />
 

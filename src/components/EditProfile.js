@@ -1,5 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
+
+const uploadImage = (file) => {
+   return axios.post("/api/getSignedURL", {
+     filename: file.name,
+     filetype: file.type
+   })
+   .then(res => {
+     // console.log(res);
+     let options = {
+       headers: {
+         'Content-Type': file.type
+       }
+     }
+     return axios.put(res.data.url, file, options)
+     .then(res => {
+        return res.config.url.match(/.*\?/)[0].slice(0,-1)
+       console.log(res.config.url, 'res url!!!')
+       // return res.config.url
+     })
+   })
+ }
+
+
 
 export default class EditProfile extends Component {
   constructor(props) {
@@ -20,7 +44,8 @@ export default class EditProfile extends Component {
       Tags: null,
       visited_countries: null,
       Fluent_Languages: null,
-      Description: null
+      Description: null,
+      pictures: this.props.profile_img_url
 
     }
   this.handleChangeGender = this.handleChangeGender.bind(this);
@@ -38,6 +63,8 @@ export default class EditProfile extends Component {
   this.handleChangeOccupation = this.handleChangeOccupation.bind(this);
   this.handleChangeTags = this.handleChangeTags.bind(this);
   this.handleClick = this.handleClick.bind(this);
+  this.onDrop = this.onDrop.bind(this);
+  // this.submitPic  = this.submitPic.bind(this);
   }
 
 
@@ -57,10 +84,29 @@ export default class EditProfile extends Component {
       visited_countries: this.state.visited_countries,
       Fluent_Languages: this.state.Fluent_Languages,
 
-    }, {withCredentials:true}).then(res => res);
+    }, {withCredentials:true}).then(res => res)
+
+    axios.post('/api/uploadPic', {picurl: this.state.pictures}, {withCredentials:true}).then(
+      res => {
+        const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+        // console.log(getProfileAPI,'linky linky link')
+        axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+          // console.log(response.data, 'this is responseeeeeee')
+          this.setState({
+            pictures: response.data[0].profile_img_url,
+          })
+        });
+      }
+    );
 
     this.props.closePop()
   }
+
+  onDrop(accepted, rejected){
+   uploadImage(accepted[0])
+   .then(url => this.setState({pictures: url}))
+ }
+
 
 
   handleChangeGender(event) {
@@ -147,20 +193,25 @@ export default class EditProfile extends Component {
     })
   }
 
-  // <div className="edirFormSection">
-  //   <p>My Interests</p>
-  //   <input onChange={this.handleChangeTags} className="barInput"></input>
-  // </div>
+
 
 
   render() {
     console.log(this.state)
+    var dropStyle = {
+      position: "absolute",
+      // border: "2px solid red",
+      width: "100px",
+      height: "100px"
+    }
       return (
         <div className="editProfile">
           <div className="editprofileTitle"><span>Edit Profile</span></div>
-
-                    <div className="updatePicContainer">
-             <div className="updatePic"><img src={this.props.profile_img_url} alt="fixed" /></div>
+            <div className="updatePicContainer">
+             <div className="updatePic">
+              <Dropzone onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)} style={dropStyle}/>
+              <img src={this.state.pictures} alt="fixed" />
+             </div>
              <div className="camera">
                <i className="fa fa-camera" aria-hidden="true"></i>
              </div>
@@ -273,9 +324,9 @@ export default class EditProfile extends Component {
             <div className="edirFormSection">
             <p>What Type Of Traveller Are You?</p>
             <select onChange={this.handleChangeTypeOfTraveller} className="formInput">
-              <option>budget</option>
-              <option>adventure</option>
-              <option>luxuryvocation</option>
+              <option>Budget</option>
+              <option>Adventurous</option>
+              <option>Luxury</option>
             </select>
             </div>
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import socket from './socket';
 
 
 export default class SelectSquad extends Component {
@@ -24,6 +25,11 @@ handleClick(squad_id){
 }
 
 componentDidMount(){
+  console.log(this.state, 'this is the state for search result')
+  socket.emit('notification', 'just wanna see if you get it');
+
+
+
   axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response => {
     this.setState({
       all_squads: response.data,
@@ -46,7 +52,11 @@ componentDidMount(){
 
 
   render() {
+<<<<<<< HEAD
+    console.log(this.props, 'states for selectSquad!!!!!!')
+=======
     // console.log(this.props.unSelectSquad, 'propsss for selectSquad!!!!!!')
+>>>>>>> master
     return (
       <div className="createSquadContainer selectSquadContainer">
         <div className="createSquadTop">

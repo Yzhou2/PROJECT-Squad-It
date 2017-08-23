@@ -122,12 +122,12 @@ handleClick(){
      );
   });
 
-  this.props.EditTripPlanReset();
-
+this.props.EditTripPlanReset();
 }
 
 
   render() {
+    console.log('props for edittrip', this.props)
     console.log(this.state, 'whats on state')
     return (
 
@@ -186,7 +186,7 @@ handleClick(){
           </div>
           <div className="createBtn">
             <button onClick={this.handleClick}>save</button>
-            <button onClick={() => {this.props.EditTripPlanReset()}}>Cancel</button>
+            <button onClick={() => this.props.EditTripPlanReset()}>Cancel</button>
           </div>
       </div>
     )

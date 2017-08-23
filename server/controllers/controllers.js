@@ -152,12 +152,15 @@ module.exports = {
 
   getUserByHostStat: (req, res) => {
     const db = req.app.get('db');
-    // console.log(req.params.dest, 'this is the destination')
+    console.log('at least it hit the endpoint')
+    console.log(req.params.dest, 'this is the destination')
     db.getUserByHostStat([req.params.dest]).then( members => {
-      // console.log(members, 'this is the member list for dinner host')
+      console.log(members, 'this is the member list for dinner host')
     res.status(200).send(members)})
   },
 
+
+//review for profile
   postReviews: (req, res) => {
      const db = req.app.get('db');
      db.insertIntoReview([req.body.userid, req.user.userid, req.body.review]).then( reviews => {

@@ -8,6 +8,10 @@ export default function Landing() {
 
     <div className="landingTop">
       <img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/>
+      <div className="topNav">
+        <a href='http://localhost:3001/auth'><div className="topNavJoin">SIGN IN</div></a>
+        <a href='http://localhost:3001/auth'><div className="topNavJoin">JOIN</div></a>
+      </div>
     </div>
 
 

@@ -26,8 +26,8 @@ export default class Chat_room extends Component {
 
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.getMsg = this.getMsg.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
 
@@ -38,6 +38,21 @@ handleChange(event) {
   this.setState({
     newMessage: event.target.value
   })
+}
+
+
+handleKeyPress(event){
+   if ( event.key === "Enter" && this.state.newMessage.length !== 0 ) {
+     socket.emit('message', {
+       message: this.state.newMessage,
+       name: this.state.user.firstname + ' ' + this.state.user.lastname,
+       profile_url: this.state.user.profile_img_url,
+       time: dateCreator()
+     })
+        this.setState({
+          newMessage: ''
+        })
+   }
 }
 
 
@@ -58,14 +73,7 @@ componentDidMount(){
 }
 
 
-handleClick(val){
-  socket.emit('message', {
-    message: val,
-    name: this.state.user.firstname + ' ' + this.state.user.lastname,
-    profile_url: this.state.user.profile_img_url,
-    time: dateCreator()
-  })
-}
+
 
 getMsg(msg){
   this.setState({
@@ -76,7 +84,8 @@ getMsg(msg){
 
 
   render() {
-    console.log(this.state.members,'members from state??????')
+    // console.log(this.state.members,'members from state??????')
+    console.log(this.props, 'any props passed in chatroom???')
 
   return (
     <div>
@@ -85,7 +94,7 @@ getMsg(msg){
 
           <div className="chatLeft">
             <div className="chatTop">
-              <div className="chatTitlte">Young & Free</div>
+              <div className="chatTitlte">{this.props.location.query.eachSquad.name}</div>
               <i className="fa fa-angle-down" aria-hidden="true"></i>
             </div>
                 <div className="chatArea">
@@ -107,9 +116,12 @@ getMsg(msg){
                 }
                 </div>
                 <div className="chatInput">
-                  <input className="chat" onChange={this.handleChange}></input>
+                  <input className="chat"
+                    value={this.state.newMessage}
+                    onChange= {this.handleChange}
+                    onKeyPress={ this.handleKeyPress }></input>
                 </div>
-                <button onClick={()=>{this.handleClick(this.state.newMessage)}}>send</button>
+
 
 
 
@@ -121,7 +133,7 @@ getMsg(msg){
                 { this.state.members.map((member, idx) => {
                 return (
                   <div className="member" key={idx}>
-                    <div className="avatar"></div>
+                    <div className="avatar"><img src={member.profile_img_url} alt="fixed"/></div>
                     <div className="name">{member.firstname + ' ' + member.lastname}</div>
                   </div>
                 )
