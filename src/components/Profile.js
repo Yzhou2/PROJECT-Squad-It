@@ -203,6 +203,8 @@ closePop(){
 }
 
   render() {
+    console.log(this.state.visited_countries, 'whats countries')
+    // console.log(this.state.reviewsDisplay.profile_img_url, 'this is what i was looking for url !!!!')
     var blur = {
       filter: 'blur(5px)'
     }

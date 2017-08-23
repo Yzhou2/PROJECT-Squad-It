@@ -11,10 +11,10 @@ export default class Header extends Component {
           firstname:null,
           profile_img_url: null,
           search: null,
-          searchresult:null
+          // searchresult:null
       }
       this.handleChange = this.handleChange.bind(this);
-      // this.handleClick = this.handleClick.bind(this);
+
     }
 
 
@@ -24,10 +24,6 @@ handleChange(event) {
   })
 }
 
-// handleClick(){
-//
-//   this.props.history.push(`/logged/searchresultCT/${this.state.search}`)
-// }
 
 
 componentDidMount() {
@@ -36,7 +32,7 @@ componentDidMount() {
   //   console.log('lets check out the val', val)
   // })
   axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
-  console.log('response!!!!!!!',response.data)//empty
+  // console.log('response!!!!!!!',response.data)//empty
   this.setState({
     firstname: response.data[0].firstname,
     profile_img_url: response.data[0].profile_img_url
@@ -46,14 +42,14 @@ componentDidMount() {
 }
 
   render() {
-    console.log(this.state.search)
+    // console.log(this.state.search)
   return (
     <div className="header">
       <div className="headerInner">
       <Link to="/logged/dashboard"><div className="leftMargin headerlogo"><img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/></div></Link>
 
         <div>
-        <input onChange={this.handleChange} />
+        <input onChange={this.handleChange}/>
         <Link to={`/logged/searchresultCT/${this.state.search}`}><button className="search"><i className="fa fa-search" aria-hidden="true"></i></button></Link>
         </div>
 
@@ -64,6 +60,8 @@ componentDidMount() {
       <div className="headerNav">{this.state.firstname}</div>
       <Link to="/logged/dashboard"><div className="headerNav headerimg"><img src={this.state.profile_img_url} alt="fixed"/></div></Link>
     </div>
+
+
 
     </div>
   )

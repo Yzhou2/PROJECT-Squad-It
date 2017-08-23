@@ -38,6 +38,7 @@ export default class Sidebar extends Component {
     // console.log('state!!!!!!', this.state)
     // console.log('user on state!!!!', this.state.user)
     // console.log('firstname in user obj!!!!', this.state.user.firstname)
+    console.log(this.state.userid, 'userid on sidebar sent to profile')
 
   return (
     <div className="sidebar">
