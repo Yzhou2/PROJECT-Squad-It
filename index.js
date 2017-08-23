@@ -40,6 +40,8 @@ socket.on('notification', function(val){
 });
 
 
+
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(session({
