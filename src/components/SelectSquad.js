@@ -52,11 +52,8 @@ componentDidMount(){
 
 
   render() {
-<<<<<<< HEAD
     console.log(this.props, 'states for selectSquad!!!!!!')
-=======
-    // console.log(this.props.unSelectSquad, 'propsss for selectSquad!!!!!!')
->>>>>>> master
+
     return (
       <div className="createSquadContainer selectSquadContainer">
         <div className="createSquadTop">

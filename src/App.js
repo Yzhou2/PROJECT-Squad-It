@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Landing from './components/Landing';
 import './App.css';
-import Router from './Router';
+import Router from './router';
 
 
 

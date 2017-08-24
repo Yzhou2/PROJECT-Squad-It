@@ -19,13 +19,9 @@ export default class SearchresultCountry extends Component {
         searchMember: false,
         PlaceCode: null,
         topDinning: null,
-<<<<<<< HEAD
         trails: null,
         attractions:[]
-=======
-        trails: [],
-        attractions: [],
->>>>>>> master
+
       }
 
     }
@@ -43,7 +39,7 @@ export default class SearchresultCountry extends Component {
 
 componentDidMount() {
   // console.log('mounted')
-<<<<<<< HEAD
+
 //
  axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
    headers: {"user-key":keys.zomatoAPI}
@@ -77,51 +73,6 @@ console.log(response.data.location_suggestions[0], 'this is city code')
 });
 
 
-
-
-=======
-//
-//  axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
-//    headers: {"user-key":keys.zomatoAPI}
-//  }).then( response => {
-// // console.log(response.data.location_suggestions[0], 'this is city code')
-// axios.get(`https://developers.zomato.com/api/v2.1/location_details?entity_id=${response.data.location_suggestions[0].entity_id}&entity_type=${response.data.location_suggestions[0].entity_type}`, {
-//   headers: {"user-key":keys.zomatoAPI}
-// }).then( response => {
-//   this.setState({
-//     topDinning: response.data.best_rated_restaurant
-//   })
-// });
-//
-// axios.get(`https://fizplaces-fiz-places-v1.p.mashape.com/content/api/v2/places/?lat=${response.data.location_suggestions[0].latitude}&lon=${response.data.location_suggestions[0].longitude}`, {
-//   headers: {"FIZAPIKEY":keys.fIZAPIKEY, "X-Mashape-Key":keys.xMashapeKey }
-// }).then(res => {
-//   // console.log(res.data.results, 'whats the results?????')
-//   this.setState({
-//     attractions: res.data.results
-//   })
-// })
-//
-//  });
-// //
-// // console.log(this.state.city, 'whats the city on state ')
-// axios.get(`https://trailapi-trailapi.p.mashape.com/?q[city_cont]=${this.state.city}`, {
-//    headers: {"X-Mashape-Key":keys.trialAPI}
-//  }).then(res => {
-//   //  console.log(res.data.places, 'this is the places')
-//    var newRes = res.data.places.filter( placeObj => placeObj.pictures !== null)
-//    console.log(newRes, 'return list of places with pic')
-//    this.setState({
-//      trails: newRes
-//    })
-//
-//
-//  })
->>>>>>> master
-
-
-
-
 }
 componentWillReceiveProps(props){
   // console.log(props,'props props')
@@ -134,12 +85,10 @@ componentWillReceiveProps(props){
 
   render() {
     // console.log(this.props, 'this is from trailsApi')
-<<<<<<< HEAD
+
     console.log(this.state.topDinning, 'whats dinning ')
     console.log(this.state.attractions,'whats acctraction')
-=======
-    // console.log(this.state.attractions, 'whats my attractions!!!! ')
->>>>>>> master
+
  var hidden={
    display:"none"
  }
@@ -198,7 +147,7 @@ componentWillReceiveProps(props){
                   </div>
               </div>
 
-<<<<<<< HEAD
+
               <div className="attractionContainer">
                   <div className="attractionHeader">Highest Ranked Attractions</div>
                   {
@@ -216,28 +165,7 @@ componentWillReceiveProps(props){
                       )
                     })
                   }
-=======
-              <div className="trailContainer attractionsContainer">
-                  <div className="trailHeader">Highest Rated Attractions</div>
-                  <div className="trailmain topPlace">
-                    {this.state.attractions.map( place => {
-                      return (
-                        place.pictures.image?
-                        <div className="attraction">
-                          <div className="attract_pic">
-                            <img src={place.pictures.image} />
-                          </div>
-                          <div className="attract_rightbox">
-                            <div className="attract_name">{place.name}</div>
-                            <div className="attract_Desc">{place.description}</div>
-                          </div>
-                        </div>
-                        :
-                        ""
-                      )
-                    } )}
-                  </div>
->>>>>>> master
+
               </div>
 
 

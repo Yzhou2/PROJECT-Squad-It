@@ -57,8 +57,17 @@ componentDidMount() {
       </div>
 
     <div className="headerInner">
+      <i className="message_header fa fa-comments" aria-hidden="true"></i>
       <div className="notification"><i className="fa fa-bell" aria-hidden="true"></i></div>
-      <div className="headerNav"><div>{this.state.firstname}</div></div>
+      <div className="headerNav">
+        <div>{this.state.firstname}</div>
+        <i className="fa fa-angle-down" aria-hidden="true"></i>
+      </div>
+      <div className="dropDown">
+        <Link to="/logged/dashboard"><div className="drop_menu"><div>Dashboard</div></div></Link>
+        <Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}><div className="drop_menu"><div>Profile</div></div></Link>
+        <div className="drop_menu"><div>Log Out</div></div>
+      </div>
       <Link to="/logged/dashboard"><div className="headerNav headerimg"><img src={this.state.profile_img_url} alt="fixed"/></div></Link>
     </div>
 

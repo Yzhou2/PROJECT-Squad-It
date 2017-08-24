@@ -85,7 +85,7 @@ getMsg(msg){
 
   render() {
     // console.log(this.state.members,'members from state??????')
-    console.log(this.props, 'any props passed in chatroom???')
+    console.log(this.state.messagePack, 'how does it look???')
 
   return (
     <div>
@@ -102,7 +102,9 @@ getMsg(msg){
                   this.state.messagePack.map((mes,idx) => {
                     return (
                       <div className="innerChat" key={idx}>
-                        <div className="chatProfile"></div>
+                        <div className="chatProfile">
+                          <img src={mes.profile_url} alt="" />
+                        </div>
                         <div className="messageRight">
                             <div className="messageRightTop">
                               <div className="chatName">{mes.name}</div>

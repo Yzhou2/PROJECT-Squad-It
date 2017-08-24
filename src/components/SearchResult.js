@@ -25,31 +25,9 @@ export default class SearchresultCountry extends Component {
       this.unSelectSquad = this.unSelectSquad.bind(this);
       this.handleClick = this.handleClick.bind(this);
       this.saveNoti = this.saveNoti.bind(this);
-<<<<<<< HEAD
-=======
-      this.unSelectSquad = this.unSelectSquad.bind(this);
-    }
->>>>>>> master
 
     }
 
-<<<<<<< HEAD
-=======
-// handleChange(event) {
-//   this.setState({
-//     search: event.target.value
-//   })
-// }
-//
-//
-unSelectSquad(){
-  // console.log('clicked cancel|||||||||||||')
-  this.setState({
-    SelectSquad:false
-  })
-}
-
->>>>>>> master
 
 handleClick(val){
   console.log(val)
@@ -77,7 +55,7 @@ saveNoti(val){
 
 
 componentDidMount(){
-<<<<<<< HEAD
+
 
 this.state.category === 'member' ?
 
@@ -95,21 +73,7 @@ this.state.category === 'member' ?
               users: res.data
             })
       });
-=======
-  // socket.emit('notification', 'just wanna see if you get it');
 
-  axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
-    res => {
-      this.setState({
-        users: res.data
-      })
-    });
-
-    // axios.get(`http://localhost:3001/api/getUserByHostStat/${this.state.city}`, {withCredentials: true}).then(
-    //   res => {
-    //     socket.on('mynotification', this.saveNoti)
-    //   });
->>>>>>> master
 
 }
 
@@ -177,15 +141,11 @@ this.state.category === 'member' ?
 // </div>
 
   render() {
-<<<<<<< HEAD
  // console.log(this.state.notification, 'miracle happens or not?')
  // console.log(this.props.match.params, 'whats the params')
  // console.log(this.state.category, 'did i send host to searchresult')
  // console.log(this.state.city,'city on state is')
  console.log(this.state.users, 'the users from database')
-=======
- console.log(this.state.SelectSquad, 'SelectSquad??!!!!!?!?!?!?!?!?')
->>>>>>> master
   return (
     <div>
       {this.state.SelectSquad?<SelectSquad userid={this.state.selectUserId} unSelectSquad={this.unSelectSquad}/>:""}

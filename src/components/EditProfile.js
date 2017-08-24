@@ -218,13 +218,6 @@ export default class EditProfile extends Component {
            </div>
 
 
-          <div className="updatePicContainer">
-            <div className="updatePic"><img src={this.props.profile_img_url} alt="fixed" /></div>
-            <div className="camera">
-              <i className="fa fa-camera" aria-hidden="true"></i>
-            </div>
-          </div>  
-
 
 
 
