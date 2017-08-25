@@ -4,7 +4,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import SelectSquad from './SelectSquad';
-
+import socket from './socket';
 
 
 export default class SearchresultCountry extends Component {
@@ -24,7 +24,6 @@ export default class SearchresultCountry extends Component {
       }
       this.unSelectSquad = this.unSelectSquad.bind(this);
       this.handleClick = this.handleClick.bind(this);
-      this.saveNoti = this.saveNoti.bind(this);
 
     }
 
@@ -45,12 +44,6 @@ unSelectSquad(){
   })
 }
 
-saveNoti(val){
-  // console.log(val,'did we receive msg back')
-  this.setState({
-    notification: val
-  })
-}
 
 
 
@@ -148,7 +141,11 @@ this.state.category === 'member' ?
  console.log(this.state.users, 'the users from database')
   return (
     <div>
-      {this.state.SelectSquad?<SelectSquad userid={this.state.selectUserId} unSelectSquad={this.unSelectSquad}/>:""}
+      {this.state.SelectSquad?
+        <SelectSquad
+            userid={this.state.selectUserId}
+            city={this.state.city}
+            unSelectSquad={this.unSelectSquad}/>:""}
         <div className="ProfileContainer searchOverwrite">
           <div className="searchTopBar">
             <img src={this.state.bannerPic} />

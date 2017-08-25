@@ -251,10 +251,22 @@ video {
 
 .notification {
   margin-right: 10px;
+  display: flex;
+}
+
+.dot {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: red;
+  /*box-shadow: 0 3px 1px #B8ADA2;*/
+  display: none;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .headerimg {
-  margin-left: 5px;
+  margin-left: 15px;
   margin-right: 25px;
   width: 30px;
   height: 30px;
@@ -672,7 +684,7 @@ video {
 
 
 .ProfilePicBox {
-  height: 250px;
+  height: 230px;
   width: 100%;
   background: lightgreen;
   margin-bottom: 20px;

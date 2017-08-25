@@ -11,10 +11,12 @@ export default class Header extends Component {
           firstname:null,
           profile_img_url: null,
           search: null,
+          notification: null,
+          notificationOn:false
           // searchresult:null
       }
       this.handleChange = this.handleChange.bind(this);
-
+      this.saveSocketInfo = this.saveSocketInfo.bind(this);
     }
 
 
@@ -25,12 +27,20 @@ handleChange(event) {
 }
 
 
+saveSocketInfo(val){
+  this.setState({
+    notification: val,
+    notificationOn: val.stat
+  })
+}
+
 
 componentDidMount() {
   console.log('mounted', this.props)
   // socket.on('new-notification', function(val){
   //   console.log('lets check out the val', val)
   // })
+  socket.on('new-notification', this.saveSocketInfo)
   axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
   // console.log('response!!!!!!!',response.data)//empty
   this.setState({
@@ -42,7 +52,7 @@ componentDidMount() {
 }
 
   render() {
-    // console.log(this.state.search)
+    console.log(this.state, 'notification saved on state')
   return (
     <div className="header">
       <div className="headerInner">
@@ -58,7 +68,10 @@ componentDidMount() {
 
     <div className="headerInner">
       <i className="message_header fa fa-comments" aria-hidden="true"></i>
-      <div className="notification"><i className="fa fa-bell" aria-hidden="true"></i></div>
+      <div className="notification">
+        <i className="fa fa-bell" aria-hidden="true"></i>
+        <div className="dot"></div>
+      </div>
       <div className="headerNav">
         <div>{this.state.firstname}</div>
         <i className="fa fa-angle-down" aria-hidden="true"></i>

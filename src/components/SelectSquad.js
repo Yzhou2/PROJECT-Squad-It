@@ -17,10 +17,15 @@ export default class SelectSquad extends Component {
 
 
 handleClick(squad_id){
-  axios.post('http://localhost:3001/api/addSquadMember', {squad_id:squad_id, user_id:this.props.userid}, {withCredentials: true}).then(response => {
-    console.log(response)
+  // axios.post('http://localhost:3001/api/addSquadMember', {squad_id:squad_id, user_id:this.props.userid}, {withCredentials: true}).then(response => {
+  //   console.log(response)
+  // });
+  socket.emit('notification', {
+    squad_id: squad_id,
+    user_id: this.props.userid,
+    city: this.props.city,
+    stat: true
   });
-
   this.props.unSelectSquad();
 }
 
