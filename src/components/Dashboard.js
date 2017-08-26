@@ -24,7 +24,9 @@ export default class Dashboard extends Component{
       eachPlan: null,
       eachSquadInfo: null,
       eachsquadClicked: false,
-      events: null
+      events: null,
+      dismissSafe: false,
+      dismissProf: false
 
     }
   this.handleCSDelete = this.handleCSDelete.bind(this);
@@ -36,6 +38,8 @@ export default class Dashboard extends Component{
   this.updateTravelPlan = this.updateTravelPlan.bind(this);
   this.updatecurrentSquad = this.updatecurrentSquad.bind(this);
   this.handleEachSquad = this.handleEachSquad.bind(this);
+  this.dismissSafe = this.dismissSafe.bind(this);
+  this.dismissProf = this.dismissProf.bind(this);
   }
 
 
@@ -87,6 +91,19 @@ export default class Dashboard extends Component{
         );
       });
 
+    })
+  }
+
+
+  dismissSafe(){
+    this.setState({
+      dismissSafe:true
+    })
+  }
+
+  dismissProf(){
+    this.setState({
+      dismissProf:true
     })
   }
 
@@ -216,18 +233,18 @@ handleEachSquad(eachSquad) {
 
 
             <div className="listWrapper">
-              <div className="todo_list">
+              <div className="todo_list" style={this.state.dismissSafe?style2:{}}>
                 <div className="todoImg">
                     <img src='https://i.imgur.com/AjbHfmU.png' />
                 </div>
                 <div className="todoText">
-                  <div className="todoTitle"> Safety </div>
+                  <div className="todoTitle">Safety</div>
                   <div className="todpDescri">Whether you’re hosting a guest, surfing, or hanging out with fellow Couchsurfers, we want you to be safe.</div>
                 </div>
 
                 <div className="todoBtn">
-                  <button>Read</button>
-                  <button>Dismiss</button>
+                  <Link to="/logged/safety"><button>Read</button></Link>
+                  <button onClick={this.dismissSafe}>Dismiss</button>
                 </div>
               </div>
               <div className="todo_list"></div>
@@ -240,18 +257,22 @@ handleEachSquad(eachSquad) {
 
 
             <div className="listWrapper">
-              <div className="todo_list">
+              <div className="todo_list" style={this.state.dismissProf?style2:{}}>
                 <div className="todoImg">
-                    <img src='https://i.imgur.com/K7GtP53.png' />
+                    <img src='https://i.imgur.com/K7GtP53.png' alt="" />
                 </div>
                 <div className="todoText">
-                  <div className="todoTitle"> Complete Your Profile </div>
+
+                    <div className="todoTitle">
+                          Complete Your Profile
+                    </div>
+
                   <div className="todpDescri">Please Complete Your Profile so Other Squads Can Find You.</div>
                 </div>
 
                 <div className="todoBtn">
                   <button>Complete Profile</button>
-                  <button> Dismiss</button>
+                  <button onClick={this.dismissProf}> Dismiss</button>
                 </div>
               </div>
               <div className="todo_list"></div>

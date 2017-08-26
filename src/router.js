@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import SelectSquad from './components/SelectSquad';
 import Chat_room from './components/ChatRoom/Chat_room';
+import Safety from './components/Safety';
 
 
 export default class Router extends Component{
@@ -59,6 +60,7 @@ this.unblur = this.unblur.bind(this);
     <Route component={ SearchResult } path='/logged/searchresult/:category/:dest' />
     <Route component={ SelectSquad } path='/logged/selectsquad' />
     <Route component={ Chat_room } path="/logged/chat" />
+    <Route component={ Safety } path="/logged/safety" />
 
   </Switch>
   </div>

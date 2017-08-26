@@ -16,13 +16,12 @@ export default class SelectSquad extends Component {
   }
 
 
-handleClick(squad_id){
-  // axios.post('http://localhost:3001/api/addSquadMember', {squad_id:squad_id, user_id:this.props.userid}, {withCredentials: true}).then(response => {
-  //   console.log(response)
-  // });
+handleClick(name, squad_id){
+
   socket.emit('notification', {
+    squadName: name,
     squad_id: squad_id,
-    user_id: this.props.userid,
+    userid: this.props.userid,
     city: this.props.city,
     stat: true
   });
@@ -73,7 +72,7 @@ componentDidMount(){
 
 
                 this.state.all_squads.map((squad, idx) => {
-                   return (<div  className="innerWrapperContainer selectSquad" key={idx} onClick={()=>{this.handleClick(squad.squad_id)}}>
+                   return (<div  className="innerWrapperContainer selectSquad" key={idx} onClick={()=>{this.handleClick(squad.name, squad.squad_id)}}>
                             <span>{squad.name}</span>
                           </div>)
                 })
