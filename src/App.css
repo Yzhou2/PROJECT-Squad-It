@@ -9,6 +9,7 @@ a:hover {
     color: #ffb033;
 }
 
+
 video {
   position: fixed;
   min-width: 100%;
@@ -128,7 +129,9 @@ video {
   border-bottom: 1px solid lightgray;
   align-items: center;
   height: 45px;
+  width: 100%;
   background: white;
+  position: fixed;
 }
 
 .message_header {
@@ -197,11 +200,11 @@ video {
 .dropDown {
    position: absolute;
    top: 45px;
-   right: 35px;
+   right: 45px;;
    width: 185px;
    /*line-height: 1.25px;*/
    border: 1px solid lightgray;
-   display:none;
+   display: none;
    z-index: 100;
    background-color: white;
    color: gray;
@@ -229,17 +232,16 @@ video {
 
 .drop_menu {
   height: 42px;
-  /*border: 2px solid red;*/
+  border-bottom: 1px solid lightgray;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
 }
 
-/*.drop_menu:hover {
+.drop_menu:hover {
   background-color: #fff4e5;
   color: #e57a13;
-}*/
+}
 
 .notif-drop{
   right: 15px;
@@ -340,10 +342,12 @@ video {
   height: calc(100vh - 60px);
   /*border: 2px solid orange;*/
   border-right: 1px solid lightgray;
+  border-top: 1px solid lightgray;
   display: inline-block;
   float: left;
   color:#b5b5b5;
   background:white;
+  position: fixed;
 }
 
 .sidebarTop {
@@ -396,7 +400,6 @@ video {
   /*border: 2px solid teal;*/
   display: inline-block;
   float: left;
-  height: 100vh;
   width: 86.7%;
   background: #f4f4f5;
 }
@@ -682,6 +685,7 @@ video {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   border-radius: 50vh;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 
@@ -1905,4 +1909,78 @@ height: 100%;
   color: #7e8794;
   line-height: 1.8em;
   letter-spacing: 1.5px
+}
+
+/* explore */
+.exploreContainer {
+width: 87.2%;
+ background-image: url('https://i.imgur.com/8M6cjh7.jpg');
+ background-size: cover;
+}
+
+
+.explore {
+  position: fixed;
+  top: 50%;
+  left: 38%;
+  text-align: center;
+  color: white;
+  /*border: 2px solid red;*/
+  width: 600px;
+  height: 120px;
+  background: rgba(89, 144, 140, 0.4);
+  border-radius: 5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.exploreTitle {
+  font-size: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.exploreInput {
+  width: 250px;
+  background-color: rgba(255,255,255,0.05);
+}
+
+.exploreInput:focus {
+  outline: none;
+  border: 2px solid white;
+  color: white;
+}
+
+.explore button {
+  background-color: #6f3824;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.headerPH {
+height: 45px;
+width: 100%;
+}
+
+.sidebarPH {
+  width: 12.7%;
+  height: 600px;
+  /*background-color: red;*/
+  float: left;
+}
+
+.bktHeader {
+  display: flex;
+}
+
+.addLst {
+  font-size: 10px;
+  color: #ffb033;
+  margin-top: 8px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.bucketContainer {
+  margin-bottom: 15px;
 }

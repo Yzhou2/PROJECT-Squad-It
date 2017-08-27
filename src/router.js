@@ -12,6 +12,7 @@ import Sidebar from './components/Sidebar';
 import SelectSquad from './components/SelectSquad';
 import Chat_room from './components/ChatRoom/Chat_room';
 import Safety from './components/Safety';
+import Explore from './components/Explore';
 
 
 export default class Router extends Component{
@@ -47,7 +48,9 @@ this.unblur = this.unblur.bind(this);
   <div>
     <div style={this.state.blur?blur:{}}>
         <Header history={this.props.history} />
+        <div className="headerPH"></div>
         <Sidebar/>
+        <div className="sidebarPH"></div>
     </div>
 
   <Switch>
@@ -61,6 +64,7 @@ this.unblur = this.unblur.bind(this);
     <Route component={ SelectSquad } path='/logged/selectsquad' />
     <Route component={ Chat_room } path="/logged/chat" />
     <Route component={ Safety } path="/logged/safety" />
+    <Route component={ Explore } path="/logged/explore" />
 
   </Switch>
   </div>

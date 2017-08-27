@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import formatInput from './formatInput';
 
 export default class CreateSquad extends Component {
   constructor(props){
@@ -58,13 +58,13 @@ export default class CreateSquad extends Component {
 
     handlechangeCity(event) {
       this.setState({
-        City: event.target.value
+        City: formatInput(event.target.value)
       })
     }
 
     handlechangeCountry(event) {
       this.setState({
-        Country: event.target.value
+        Country: formatInput(event.target.value)
       })
     }
 

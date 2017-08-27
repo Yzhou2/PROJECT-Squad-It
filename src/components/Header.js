@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import socket from './socket';
+import formatInput from './formatInput';
 
 export default class Header extends Component {
     constructor(props) {
@@ -13,32 +14,39 @@ export default class Header extends Component {
           search: null,
           notification: [],
           notificationOn:false,
-          notificationClick: false
-          // searchresult:null
+          notificationClick: false,
+          userDD: false// searchresult:null
       }
       this.handleChange = this.handleChange.bind(this);
       this.saveSocketInfo = this.saveSocketInfo.bind(this);
       this.accept = this.accept.bind(this);
-      this.notificationClick = this.notificationClick.bind(this);
+      this.toggle = this.toggle.bind(this);
+      this.toggleUser = this.toggleUser.bind(this);
 
     }
 
 
 handleChange(event) {
   this.setState({
-    search: event.target.value
+    search: formatInput(event.target.value)
   })
 }
 
-notificationClick(){
+toggle(){
   this.setState({
-    notificationClick: true
+    notificationClick: ! this.state.notificationClick
+  })
+}
+
+toggleUser(){
+  this.setState({
+    userDD: ! this.state.userDD
   })
 }
 
 
 accept(){
-  console.log('clicked')
+  // console.log('clicked')
   axios.post('http://localhost:3001/api/addSquadMember', {squad_id:this.state.notification.squad_id, user_id:this.state.notification.userid}, {withCredentials: true}).then(response => {
     console.log(response,'response from adding squad')
   });
@@ -55,7 +63,7 @@ saveSocketInfo(val){
 
 
 componentDidMount() {
-  console.log('mounted', this.props)
+  // console.log('mounted', this.props)
   // socket.on('new-notification', function(val){
   //   console.log('lets check out the val', val)
   // })
@@ -71,7 +79,9 @@ componentDidMount() {
 }
 
   render() {
-    console.log(this.state.notification.squadName,  this.state.notification.city,   'notification saved on state')
+    // console.log(this.state.search, 'formated?????|||||')
+    // console.log('this is the userDD', this.state.userDD)
+    // console.log(this.state.notification.squadName,  this.state.notification.city,   'notification saved on state')
     var unhide = {
       display: "block"
     }
@@ -91,7 +101,7 @@ componentDidMount() {
     <div className="headerInner">
       <i className="message_header fa fa-comments" aria-hidden="true"></i>
       <div className="notification">
-        <i className="fa fa-bell" aria-hidden="true" onClick={this.notificationClick}></i>
+        <i className="fa fa-bell" aria-hidden="true" onClick={this.toggle}></i>
         <div className="dot" style={this.state.notificationOn?unhide:{}}></div>
       </div>
 
@@ -110,11 +120,11 @@ componentDidMount() {
         }
       </div>
 
-      <div className="headerNav">
+      <div className="headerNav" onClick={this.toggleUser}>
         <div>{this.state.firstname}</div>
         <i className="fa fa-angle-down" aria-hidden="true"></i>
       </div>
-      <div className="dropDown">
+      <div className="dropDown" style={this.state.userDD?unhide:{}}>
         <Link to="/logged/dashboard"><div className="drop_menu"><div>Dashboard</div></div></Link>
         <Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}><div className="drop_menu"><div>Profile</div></div></Link>
         <div className="drop_menu"><div>Log Out</div></div>

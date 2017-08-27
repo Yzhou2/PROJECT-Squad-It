@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import formatInput from './formatInput';
 
 
 export default class CreateTripPlan extends Component {
@@ -41,19 +42,19 @@ export default class CreateTripPlan extends Component {
 
 handleChangeCity(event) {
   this.setState({
-    City:event.target.value
+    City:formatInput(event.target.value)
   })
 }
 
 handleChangeState(event) {
   this.setState({
-    State:event.target.value
+    State:formatInput(event.target.value)
   })
 }
 
 handleChangeCountry(event) {
   this.setState({
-    Country:event.target.value
+    Country:formatInput(event.target.value)
   })
 }
 
@@ -101,19 +102,19 @@ handleChangeSquad(event) {
 
 handleChangeLVCity(event) {
   this.setState({
-    LVCity:event.target.value
+    LVCity:formatInput(event.target.value)
   })
 }
 
 handleChangeLVState(event) {
   this.setState({
-    LVState:event.target.value
+    LVState:formatInput(event.target.value)
   })
 }
 
 handleChangeLVCountry(event) {
   this.setState({
-    LVCountry:event.target.value
+    LVCountry:formatInput(event.target.value)
   })
 }
 
@@ -147,7 +148,7 @@ handleClick(){
   });
 
   this.props.CreateTripPlanReset();
-  
+
 }
 
 

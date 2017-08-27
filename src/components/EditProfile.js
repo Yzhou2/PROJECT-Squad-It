@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
+import formatInput from './formatInput';
 
 const uploadImage = (file) => {
    return axios.post("/api/getSignedURL", {
@@ -30,16 +31,16 @@ export default class EditProfile extends Component {
     super(props);
 
     this.state = {
-      Gender: null,
-      Squad_Status: null,
+      Gender: "Male",
+      Squad_Status: "Yes",
       City: null,
       Country: null,
       Birthday: null,
-      Smoker: null,
-      Drinker: null,
-      DSTolerance: null,
-      AvaliableForHostDinner: null,
-      TypeOfTraveller: null,
+      Smoker: "Yes",
+      Drinker: "Yes",
+      DSTolerance: "Yes",
+      AvaliableForHostDinner: "Yes",
+      TypeOfTraveller: "Budget",
       Occupation: null,
       Tags: null,
       visited_countries: null,
@@ -123,13 +124,13 @@ export default class EditProfile extends Component {
 
   handleChangeCity(event) {
     this.setState({
-      City: event.target.value
+      City: formatInput(event.target.value)
     })
   }
 
   handleChangeCountry(event) {
     this.setState({
-      Country: event.target.value
+      Country: formatInput(event.target.value)
     })
   }
 
@@ -165,13 +166,13 @@ export default class EditProfile extends Component {
 
   handleChangeVisitedCountries(event) {
     this.setState({
-      visited_countries: event.target.value
+      visited_countries: formatInput(event.target.value)
     })
   }
 
   handleChangeFluentLanguages(event) {
     this.setState({
-      Fluent_Languages: event.target.value
+      Fluent_Languages: formatInput(event.target.value)
     })
   }
 
@@ -183,7 +184,7 @@ export default class EditProfile extends Component {
 
   handleChangeOccupation(event) {
     this.setState({
-      Occupation: event.target.value
+      Occupation: formatInput(event.target.value)
     })
   }
 

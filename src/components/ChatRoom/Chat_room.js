@@ -4,8 +4,8 @@ import Sidebar from '../Sidebar';
 import dateCreator from './dateCreator';
 import axios from 'axios';
 import socket from '../socket';
-// const io = require('socket.io-client');
-// const socket = io();
+import CreateBucketList from '../CreateBucketList';
+
 
 
 
@@ -18,7 +18,7 @@ export default class Chat_room extends Component {
         newMessage: null,
         user: null,
         members: [],
-
+        createBkt: false,
 
       }
 
@@ -28,11 +28,23 @@ export default class Chat_room extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.getMsg = this.getMsg.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.createBkt = this.createBkt.bind(this);
+    this.CreateBktReset = this.CreateBktReset.bind(this);
     }
 
 
 
+createBkt(){
+  this.setState({
+    createBkt: true
+  })
+}
 
+CreateBktReset(){
+  this.setState({
+    createBkt: false
+  })
+}
 
 handleChange(event) {
   this.setState({
@@ -89,9 +101,8 @@ getMsg(msg){
 
   return (
     <div>
-
+        {this.state.createBkt?<CreateBucketList CreateBktReset={this.CreateBktReset}/> :""}
         <div className="chatRoomContainer">
-
           <div className="chatLeft">
             <div className="chatTop">
               <div className="chatTitlte">{this.props.location.query.eachSquad.name}</div>
@@ -142,7 +153,10 @@ getMsg(msg){
               })}
             </div>
             <div className="bucketList">
-              <div className="mbrTitle">bucket list</div>
+                <div className="bktHeader">
+                  <div className="mbrTitle">bucket list</div>
+                  <i className="addLst fa fa-plus" aria-hidden="true" onClick={this.createBkt}></i>
+                </div>
             </div>
           </div>
 

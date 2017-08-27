@@ -204,6 +204,7 @@ handleEachSquad(eachSquad) {
   render() {
 
     console.log(this.props, 'props passed in what')
+    // <button className="AddTrip">+ Join a Squad</button>
 
 
     var style = {
@@ -267,7 +268,7 @@ handleEachSquad(eachSquad) {
                           Complete Your Profile
                     </div>
 
-                  <div className="todpDescri">Please Complete Your Profile so Other Squads Can Find You.</div>
+                  <div className="todpDescri">Please Complete Your Profile So Other Squads Can Find You.</div>
                 </div>
 
                 <div className="todoBtn">
@@ -298,7 +299,6 @@ handleEachSquad(eachSquad) {
 
               <div>
                   <button className="AddTrip" onClick={this.handleClick}>+ Create a Squad</button>
-                  <button className="AddTrip">+ Join a Squad</button>
               </div>
             </div>
 

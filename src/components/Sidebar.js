@@ -49,7 +49,7 @@ export default class Sidebar extends Component {
 
       <Link to="/logged/dashboard"><div className="sideBarSelection">Dashboard</div></Link>
       <div className="sideBarSelection"><Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}>Profile</Link></div>
-      <div className="sideBarSelection bottomLine">Messages</div>
+      <Link to="/logged/explore"><div className="sideBarSelection bottomLine">Explore</div></Link>
 
     </div>
     )
