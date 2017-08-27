@@ -152,8 +152,8 @@ module.exports = {
 
   getUserByHostStat: (req, res) => {
     const db = req.app.get('db');
-    console.log('at least it hit the endpoint')
-    console.log(req.params.dest, 'this is the destination')
+    // console.log('at least it hit the endpoint')
+    // console.log(req.params.dest, 'this is the destination')
     db.getUserByHostStat([req.params.dest]).then( members => {
       console.log(members, 'this is the member list for dinner host')
     res.status(200).send(members)})
@@ -169,8 +169,23 @@ module.exports = {
 
   getReviews: (req, res) => {
      const db = req.app.get('db');
-     console.log(req.params, 'this is the params')
+    //  console.log(req.params, 'this is the params')
      db.getReviewsByUserid([req.params.id]).then( reviews => {
      res.status(200).send(reviews)}).catch( err => res.status(500).send( err ))
-    }
+   },
+
+  postBktList: (req, res) => {
+    const db = req.app.get('db');
+    // console.log(req.body, 'this is req body')
+    db.insertIntoBucketList([req.body.squad_id, req.body.title, req.body.description]).then( list => {
+    res.status(200).send(list)})
+  },
+
+  getBktList: (req, res) => {
+    const db = req.app.get('db');
+    console.log('this is params', req.params)
+    db.getBktListForSquad([req.params.squad_id]).then( lists => {
+    console.log(lists,'this is lists')
+    res.status(200).send(lists)})
+  },
 }

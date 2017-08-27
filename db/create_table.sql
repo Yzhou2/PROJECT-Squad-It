@@ -65,11 +65,11 @@ CREATE TABLE squad (
 
 
 CREATE Table bucketList (
-  BucketList_Id int,
-  squad_id int REFERENCES squad(squad_id)
+  BucketList_Id Serial PRIMARY KEY,
+  squad_id int REFERENCES squad(squad_id),
   title TEXT,
   description Text,
-  Stars Int,
+  Stars Int
 )
 
 CREATE Table Message (

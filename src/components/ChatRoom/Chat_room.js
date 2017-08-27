@@ -19,7 +19,7 @@ export default class Chat_room extends Component {
         user: null,
         members: [],
         createBkt: false,
-
+        bucket: []
       }
 
 
@@ -80,6 +80,12 @@ componentDidMount(){
       this.setState({
         members: response.data
       })
+    });
+  axios.get(`http://localhost:3001/api/getBktList/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ). then(
+    response => {
+      this.setState({
+        bucket: response.data
+      })
     }
   )
 }
@@ -97,11 +103,11 @@ getMsg(msg){
 
   render() {
     // console.log(this.state.members,'members from state??????')
-    console.log(this.state.messagePack, 'how does it look???')
+    console.log(this.state.bucket, 'how does it look???')
 
   return (
     <div>
-        {this.state.createBkt?<CreateBucketList CreateBktReset={this.CreateBktReset}/> :""}
+        {this.state.createBkt?<CreateBucketList CreateBktReset={this.CreateBktReset} squad_id={this.props.location.query.eachSquad.squad_id}/> :""}
         <div className="chatRoomContainer">
           <div className="chatLeft">
             <div className="chatTop">

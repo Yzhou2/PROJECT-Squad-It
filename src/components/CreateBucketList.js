@@ -11,11 +11,13 @@ export default class CreateBucketList extends Component {
           title: null,
           description: null,
           stars: null,
-          squad_id: null,
+          squad_id: this.props.squad_id,
 
       }
       this.CreateBktReset = this.handleChangeName.bind(this);
       this.handleChangeDesc = this.handleChangeDesc.bind(this);
+      this.handleChangeName = this.handleChangeName.bind(this);
+      this.handleClick = this.handleClick.bind(this);
   }
 
 
@@ -32,22 +34,18 @@ handleChangeDesc(event) {
 }
 
 
-//
-//
-//
-// handleClick(){
-//
-//   axios.post('', {
-//
-//   }, {withCredentials:true}).then(res => {
-//     axios.get('', {withCredentials:true}).then( response =>
-//
-//      );
-//   });
-//
-//   this.props.CreateBktReset();
-//
-// }
+
+
+
+handleClick(){
+
+  axios.post('http://localhost:3001/api/postBktList', {squad_id:this.state.squad_id, title: this.state.title, description:this.state.description}, {withCredentials:true}).then(res => {
+    console.log(res)
+  });
+
+  this.props.CreateBktReset();
+
+}
 
 
   render() {
