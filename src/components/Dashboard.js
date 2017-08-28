@@ -26,7 +26,8 @@ export default class Dashboard extends Component{
       eachsquadClicked: false,
       events: null,
       dismissSafe: false,
-      dismissProf: false
+      dismissProf: false,
+      bucket:[]
 
     }
   this.handleCSDelete = this.handleCSDelete.bind(this);
@@ -67,6 +68,13 @@ export default class Dashboard extends Component{
          pastSquad: response.data
        })
     });
+
+    axios.get(`http://localhost:3001/api/getBktListByUser`, {withCredentials:true} ). then(
+      response => {
+        this.setState({
+          bucket: response.data
+        })
+      });
 
 
   }
@@ -203,8 +211,10 @@ handleEachSquad(eachSquad) {
 
   render() {
 
-    console.log(this.props, 'props passed in what')
+    // console.log(this.props, 'props passed in what')
     // <button className="AddTrip">+ Join a Squad</button>
+    console.log(this.state.bucket, 'whats in ma bucket')
+    console.log(this.state.currentSquad, 'whats ma currentsquad')
 
 
     var style = {
@@ -344,8 +354,19 @@ handleEachSquad(eachSquad) {
                 <div className="line"></div>
 
                 <div className="squadList">
-
-
+                  {
+                    this.state.bucket.map(bucketLst => {
+                      return(
+                        <div className="squadListInner">
+                          <div>{bucketLst.title}</div>
+                          <div className="dashstar">
+                            <i className="bktStar fa fa-star" aria-hidden="true"></i>
+                            <div>{bucketLst.stars}</div>
+                          </div>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
 
               </div>

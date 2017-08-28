@@ -183,8 +183,24 @@ module.exports = {
 
   getBktList: (req, res) => {
     const db = req.app.get('db');
-    console.log('this is params', req.params)
+    // console.log('this is params', req.params)
     db.getBktListForSquad([req.params.squad_id]).then( lists => {
+    // console.log(lists,'this is lists')
+    res.status(200).send(lists)})
+  },
+
+  getBktListByUser: (req, res) => {
+    const db = req.app.get('db');
+    // console.log('this is params', req.user)
+    db.getBktListForUser([req.user.userid]).then( lists => {
+    // console.log(lists,'this is lists')
+    res.status(200).send(lists)})
+  },
+
+  addBktListStars: (req, res) => {
+    const db = req.app.get('db');
+    console.log('this is params', req.params)
+    db.starBktList([req.params.bucketlist_id]).then( lists => {
     console.log(lists,'this is lists')
     res.status(200).send(lists)})
   },

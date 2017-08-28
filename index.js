@@ -136,6 +136,8 @@ massive( connectionString ).then( db => {
   app.get('/api/getReviews/:id', controller.getReviews);
   app.post('/api/postBktList', controller.postBktList);
   app.get('/api/getBktList/:squad_id', controller.getBktList);
+  app.get('/api/getBktListByUser', controller.getBktListByUser);
+  app.get('/api/addBktListStars/:bucketlist_id', controller.addBktListStars);
 
 
   app.get('/', (req, res) => {

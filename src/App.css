@@ -1971,6 +1971,7 @@ width: 100%;
 
 .bktHeader {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .addLst {
@@ -1983,4 +1984,67 @@ width: 100%;
 
 .bucketContainer {
   margin-bottom: 15px;
+}
+
+
+.bktListSingle {
+  display: flex;
+  font-size: 13px;
+  color: #b5b5b5;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  /*border: 2px solid red;*/
+  margin-left: 5px;
+  border-bottom: 1px solid lightgray;
+}
+
+.bktTitle {
+  width: 80%;
+  /*margin-left: 5px;*/
+}
+
+.bktStar {
+  color: #ffb033;
+  margin-right: 5px;
+}
+
+.bktTitle:hover {
+  color: #ffb033;
+  cursor: pointer;
+}
+
+.hoverDescri {
+  top: -40px;
+  right: 302px;
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid lightgray;
+  position: relative;
+  color: #b5b5b5;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  display: none;
+
+}
+
+.hoverWords {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.hoverBkt:hover .hoverDescri {
+   transition: 1s;
+  display: block;
+}
+
+.dashstar {
+  display: flex;
+  cursor: pointer;
 }

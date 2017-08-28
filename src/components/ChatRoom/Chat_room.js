@@ -19,7 +19,8 @@ export default class Chat_room extends Component {
         user: null,
         members: [],
         createBkt: false,
-        bucket: []
+        bucket: [],
+        stared: false
       }
 
 
@@ -30,7 +31,29 @@ export default class Chat_room extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.createBkt = this.createBkt.bind(this);
     this.CreateBktReset = this.CreateBktReset.bind(this);
+    this.star = this.star.bind(this);
     }
+
+
+
+star(bucketlist_id){
+  this.setState({
+    stared: true
+  })
+
+  if (!this.state.stared) {
+    axios.get(`http://localhost:3001/api/addBktListStars/${bucketlist_id}`, {withCredentials:true}).then(res=>{
+      axios.get(`http://localhost:3001/api/getBktList/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ). then(
+        response => {
+          this.setState({
+            bucket: response.data
+          })
+        });
+    });
+  }
+
+}
+
 
 
 
@@ -86,8 +109,7 @@ componentDidMount(){
       this.setState({
         bucket: response.data
       })
-    }
-  )
+    });
 }
 
 
@@ -104,6 +126,9 @@ getMsg(msg){
   render() {
     // console.log(this.state.members,'members from state??????')
     console.log(this.state.bucket, 'how does it look???')
+    var stared = {
+      color: "#e57a13"
+    }
 
   return (
     <div>
@@ -163,6 +188,21 @@ getMsg(msg){
                   <div className="mbrTitle">bucket list</div>
                   <i className="addLst fa fa-plus" aria-hidden="true" onClick={this.createBkt}></i>
                 </div>
+
+              {
+                this.state.bucket.map(bktlist => {
+                  return(
+                    <div className="hoverBkt">
+                      <div className="bktListSingle">
+                        <div className="bktTitle">{bktlist.title}</div>
+                        <i className="bktStar fa fa-star" aria-hidden="true" onClick={()=>{this.star(bktlist.bucketlist_id)}} style={this.state.stared?stared:{}}></i>
+                        <div>{bktlist.stars}</div>
+                      </div>
+                      <div className="hoverDescri"><div className="hoverWords">{bktlist.description}</div></div>
+                    </div>
+                  )
+                })
+              }
             </div>
           </div>
 
