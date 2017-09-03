@@ -152,6 +152,8 @@ video {
   text-align: center;
   font-size: 14px;
   align-items: center;
+  cursor: pointer;
+  height: 100%;
 
 }
 
@@ -185,32 +187,34 @@ video {
 
 .headerNav {
   /*border: 2px solid gray;*/
-  height: 15px;
-  width: 80px;
+  height: 100%;
+  /*width: 65px;*/
+  margin-right: 20px;
   position: relative;
   display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
-.headerNav div {
-  margin-right: 10px;
-  margin-left: 10px;
-}
 
-.headerNav i {
+
+
+/*.headerNav i {
   color:orange;
   margin-top: 2px;
   font-weight: bold;
-}
-.headerNav:hover .dropDown {
+  margin-left: 8px;
+}*/
+.headerNav:hover .navDrop {
   display: block;
 }
 
+.headerNav:hover a {
+  display: block;
+}
 
 .dropDown {
    position: absolute;
-   top: 45px;
-   right: 45px;;
    width: 185px;
    /*line-height: 1.25px;*/
    border: 1px solid lightgray;
@@ -237,8 +241,14 @@ video {
    width: 0;
    z-index: 1;
    top: -10px;
-   left: 141px;
+   left: 172px;
 }
+
+.navDrop {
+  top: 42px;
+  right: -6px;
+}
+
 
 .drop_menu {
   height: 42px;
@@ -254,13 +264,14 @@ video {
 }
 
 .notif-drop{
-  right: 15px;
   display: block;
   font-size: 13px;
   display: none;
   font-weight: normal;
   width: 300px;
   box-sizing: border-box;
+  top: 45px;
+  right: 18px;
 }
 
 .notif-btn {
@@ -314,6 +325,7 @@ video {
   display: block;
 }
 
+
 .nonotif {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -330,7 +342,6 @@ video {
 }
 
 .headerimg {
-  margin-left: 15px;
   margin-right: 25px;
   width: 30px;
   height: 30px;
@@ -1232,6 +1243,10 @@ border-radius: 5px;
   height: 45px;
   /*border: 2px solid red;*/
   justify-content: space-between;
+}
+
+.innerselect select {
+  height: 25px;
 }
 
 

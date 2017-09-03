@@ -123,8 +123,7 @@ componentDidMount() {
 
       <div className="headerNav" onClick={this.toggleUser}>
         <div>{this.state.firstname}</div>
-        <i className="fa fa-angle-down" aria-hidden="true"></i>
-        <div className="dropDown" style={this.state.userDD?unhide:{}}>
+        <div className="dropDown navDrop" style={this.state.userDD?unhide:{}}>
           <Link to="/logged/dashboard"><div className="drop_menu"><div>Dashboard</div></div></Link>
           <Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}><div className="drop_menu"><div>Profile</div></div></Link>
           <div className="drop_menu"><div>Log Out</div></div>
