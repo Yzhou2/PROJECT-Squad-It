@@ -2083,6 +2083,10 @@ width: 100%;
    height: auto;
  }
 
+.safetyWrapper {
+  font-size: small;
+}
+
 .mobileHam, .mobileSearch {
   display: none;
 }
@@ -2346,5 +2350,9 @@ width: 100%;
 
 .updatePic {
   margin-left: 38%;
+}
+
+.dropDown:after {
+  left:213px
 }
 }
