@@ -9,6 +9,13 @@ a:hover {
     color: #ffb033;
 }
 
+input, select {
+  border: 1px solid lightgray;
+}
+
+select {
+  border-radius: 0px;
+}
 
 video {
   position: fixed;
@@ -175,6 +182,7 @@ video {
 
 }
 
+
 .headerNav {
   /*border: 2px solid gray;*/
   height: 15px;
@@ -194,7 +202,9 @@ video {
   margin-top: 2px;
   font-weight: bold;
 }
-
+.headerNav:hover .dropDown {
+  display: block;
+}
 
 
 .dropDown {
@@ -300,6 +310,10 @@ video {
   cursor: pointer;
 }
 
+.notification:hover .notif-drop {
+  display: block;
+}
+
 .nonotif {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -329,11 +343,11 @@ video {
 }
 
 .headerlogo {
-  width: 185px;
+  width: 12.8vw;
 }
 
 .headerlogo img{
-  width: 90px;
+  width: 80px;
   margin-left: -3%;
 }
 
@@ -374,8 +388,7 @@ video {
 .sidebarName {
   color: #7e8794;
   /*font-weight: bold;*/
-  height: 20px;
-  width: 170px;
+  width: 80%;
   /*border: 2px solid black;*/
   margin: 0 auto;
   margin-top: 15px;
@@ -401,6 +414,7 @@ video {
   display: inline-block;
   float: left;
   width: 86.7%;
+  height: 1020px;
   background: #f4f4f5;
 }
 
@@ -510,6 +524,7 @@ video {
 }
 
 .AddTrip {
+  margin-right: 24px;
   height: 20px;
   width: 100px;
   color: black;
@@ -539,7 +554,7 @@ video {
 }
 
 .AddTrip {
-  margin-right: 10px;
+  margin-right: 14px;
   font-weight: bold;
   font-size: 12px;
   color: #e57a13;
@@ -576,10 +591,7 @@ video {
 }
 
 .listWrapper {
-  display: flex;
-  width: 98%;
-  justify-content: space-between;
-  align-items: center;
+  width: 98.5%;
   font-size: 14px;
   margin-top: 10px;
   margin-left: 12px;
@@ -588,9 +600,15 @@ video {
 
 }
 
+.todoLeft {
+  display: flex;
+}
+
 .todoImg {
-  width: 50px;
-  height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  min-height: 50px;
+  max-height: 50px;
   margin-left: 10px;
 }
 
@@ -602,17 +620,20 @@ video {
 
 .todo_list {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 .todoText {
   /*border: 2px solid green;*/
   margin-left: 20px;
-  width: 71vw;
 }
 
 .todoBtn {
   display: flex;
   flex-direction: column;
+  margin-right: 5px;
 }
 
 
@@ -625,7 +646,7 @@ video {
 }
 
 .todpDescri {
-  margin-top: 20px;
+  margin-top: 2%;
   font-size: 14px;
 }
 
@@ -637,7 +658,6 @@ video {
 }
 
 .todoBtn button{
-  margin-right: 10px;
   font-weight: bold;
   font-size: 12px;
   color: #e57a13;
@@ -698,9 +718,11 @@ video {
 
 .squadBox{
   height: 220px;
-  width: 330px;
+  width: 30%;
   border: 2px solid #b5b5b5;
   margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 10px;
   box-shadow: 3px 3px 1.25px #888888;
 }
@@ -736,9 +758,9 @@ video {
 
 
 .ProfilePicBox {
-  height: 210px;
+  height: auto;
   width: 100%;
-  background: lightgreen;
+  /*background: lightgreen;*/
   margin-bottom: 20px;
 }
 
@@ -1345,14 +1367,17 @@ border-radius: 5px;
 
 .searchBodyLeft{
   width: 80%;
-  height: 1000px;
   /*border: 2px solid black;*/
+}
+
+.searchOverwrite {
+  height: auto;
 }
 
 
 .searchBodyRight {
   width: 20%;
-  height: 1000px;
+  height: auto;
   border-left: 1px solid lightgray;
   background: white;
 }
@@ -1373,10 +1398,11 @@ border-radius: 5px;
 }
 
 .attractionContainer {
-  height: 800px;
+  height: auto;
   /*border-top: 5px solid #e57a13;*/
   margin-top: 20px;
   display: block;
+  margin-bottom: 20px;
 }
 
 .attractionHeader {
@@ -1389,7 +1415,6 @@ margin-bottom: 20px;
 .attractionBlock {
   /*border: 2px solid red;*/
   width: 95%;
-  height: 150px;
   margin: 0 auto;
   display: flex;
   border-bottom: 1px solid lightgray;
@@ -1398,10 +1423,12 @@ margin-bottom: 20px;
 
 .attractionPic {
   height: 120px;
-  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
   /*border: 2px solid red;*/
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 5%;
+  margin-left: 15px;
+  margin-bottom: 25px;
   border-radius: 50%;
 
 }
@@ -1415,7 +1442,6 @@ margin-bottom: 20px;
 .attractionText {
   margin-left: 10px;
   /*border: 2px solid red;*/
-  height: 120px;
   width: 82%;
   margin-top: 15px;
   color: #b5b5b5;
@@ -1432,7 +1458,9 @@ margin-bottom: 20px;
 .attractionDesc {
   margin-left: 10px;
   margin-top: 10px;
+  margin-bottom: 20px;
   font-size: 14px;
+  line-height: 1.8;
 }
 .circle {
   width: 180px;
@@ -1489,9 +1517,6 @@ margin-bottom: 20px;
   text-align: center;
 }
 
-
-<<<<<<< HEAD
-=======
 
 .trailContainer {
   height: 310px;
@@ -1615,30 +1640,29 @@ margin-bottom: 20px;
   color: #b5b5b5;
   margin-top:10px;
 }
->>>>>>> master
+
 
 .rightBarTitle {
   color: #b5b5b5;
-  margin-left: 15px;
   margin-top: 15px;
   font-size: 14px;
+  text-align: center;
 }
 
 
 .singleEvent {
-  width: 230px;
-  height: 250px;
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
   border: 1px solid #b5b5b5;
   border-radius: 5px;
   margin-bottom: 20px;
   margin-top: 10px;
-  margin-left: 10px;
   box-shadow: 1px 1px 0.5px #888888;
 }
 
 .eventPic {
   width: 100%;
-  height: 150px;
   border-radius: 5px 5px 0px 0px;
   /*border: 1px solid teal;*/
 }
@@ -1652,7 +1676,6 @@ height: 100%;
 .eventDetail {
   width: 95%;
   margin: 0 auto;
-  height: 90px;
   margin-top: 5px;
   /*border: 1px solid black;*/
   font-size: 12px;
@@ -1663,7 +1686,8 @@ height: 100%;
   margin-top: 5px;
   font-size: 18px;
   color: #7e8794;
-  height: 55px;
+  margin-bottom: 10px;
+  margin-left: 5px;
 }
 
 .eventFooter {
@@ -1672,6 +1696,7 @@ height: 100%;
 
 .eventAds {
   margin-left: 5px;
+  padding-bottom: 10px;
 }
 /*find squad + find squad member search result */
 .searchBodyBox {
@@ -1735,7 +1760,8 @@ height: 100%;
 
 .profilePic {
   height: 120px;
-  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
   margin-top: 13px;
   margin-left: 15px;
   border-radius: 50%;
@@ -1747,7 +1773,8 @@ height: 100%;
   height: 90%;
   /*border: 1px solid brown;*/
   margin-top: 5px;
-  margin-left: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
   display:flex;
   justify-content: space-between;
 }
@@ -1913,7 +1940,9 @@ height: 100%;
 
 /* explore */
 .exploreContainer {
-width: 87.2%;
+ width: 87.2%;
+ display: flex;
+ justify-content: center;
  background-image: url('https://i.imgur.com/8M6cjh7.jpg');
  background-size: cover;
 }
@@ -1922,26 +1951,26 @@ width: 87.2%;
 .explore {
   position: fixed;
   top: 50%;
-  left: 38%;
+  /*left: calc(100% - 58.5%);*/
   text-align: center;
   color: white;
   /*border: 2px solid red;*/
-  width: 600px;
-  height: 120px;
+  width: 30%;
   background: rgba(89, 144, 140, 0.4);
   border-radius: 5px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .exploreTitle {
-  font-size: 40px;
+  font-size: 2vmax;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
 .exploreInput {
-  width: 250px;
+  width: 50%;
   background-color: rgba(255,255,255,0.05);
+  margin-bottom: 20px;
 }
 
 .exploreInput:focus {
@@ -1955,6 +1984,7 @@ width: 87.2%;
   color: white;
   outline: none;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .headerPH {
@@ -2047,4 +2077,152 @@ width: 100%;
 .dashstar {
   display: flex;
   cursor: pointer;
+}
+
+.safefyContainer {
+   height: auto;
+ }
+
+@media(max-width: 1100px){
+  .sidebarImg {
+    height: 75px;
+    width: 75px;
+  }
+
+  .sidebarTop {
+    height: 150px;
+  }
+
+  .sidebar {
+    font-size: 14px;
+  }
+
+  .headerlogo img {
+    width: 70%;
+  }
+
+  .explore {
+    width: 45%;
+  }
+
+  .profilePic {
+    min-width: 95px;
+    max-width: 95px;
+    height: 95px;
+    margin-top: 25px;
+  }
+
+  .attractionPic{
+    margin-top: 8%;
+  }
+
+  .circleImg {
+   margin-left: 30px;
+  }
+
+  .createSquadContainer{
+    top: 20%;
+    left: 20%;
+  }
+
+  .InnerLeft {
+    width: 30%;
+  }
+
+  .todoBtn button {
+    margin-right: 10px;
+  }
+
+  .todpDescri {
+    font-size: 12px;
+  }
+
+  /* editProfile  */
+  .editProfile {
+    width: 550px;
+    font-size: 13px;
+    left: 20%;
+    top: 10%;
+  }
+
+  .formInput {
+    width: 200px;
+  }
+
+  .barInput {
+    width: 197px;
+  }
+
+  .bdInput {
+    width: 95px;
+  }
+
+  .adInput {
+    width: 62px;
+  }
+  /* editProfile ends */
+}
+
+@media(max-width: 700px){
+ .sidebar, .sidebarPH, .searchInput, .headerNav {
+   display: none;
+ }
+
+ .ProfileContainer, .DashboardContainer {
+    width: 100%;
+ }
+
+ .headerlogo {
+   width: 30vw;
+ }
+
+ .tripPlan {
+  width: 90%;
+  height: auto;
+ }
+
+ .todo_list {
+   flex-direction: column;
+ }
+
+ .todoBtn {
+   margin-left: 20%;
+   margin-top: 20px;
+   margin-bottom: 10px;
+ }
+
+ .todpDescri {
+   width: 90%;
+   line-height: 1.8;
+ }
+
+ .todoBtn button {
+  border: 1px solid orange;
+  width: 90%;
+ }
+
+ .squadBoxcontainer {
+   flex-direction: column;
+ }
+
+ .squadBox {
+   width: auto;
+   margin-bottom: 20px;
+   height: auto;
+ }
+
+ .createSquadContainer {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top:0;
+  border-radius: 0px;
+ }
+
+ .innerselect select{
+    height: 20px;
+ }
+
+
 }

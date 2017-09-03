@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import socket from './socket';
 import formatInput from './formatInput';
-
+// style={this.state.notificationClick?unhide:{}}
 export default class Header extends Component {
     constructor(props) {
       super(props);
@@ -20,8 +20,8 @@ export default class Header extends Component {
       this.handleChange = this.handleChange.bind(this);
       this.saveSocketInfo = this.saveSocketInfo.bind(this);
       this.accept = this.accept.bind(this);
-      this.toggle = this.toggle.bind(this);
-      this.toggleUser = this.toggleUser.bind(this);
+      // this.toggle = this.toggle.bind(this);
+      // this.toggleUser = this.toggleUser.bind(this);
 
     }
 
@@ -32,17 +32,17 @@ handleChange(event) {
   })
 }
 
-toggle(){
-  this.setState({
-    notificationClick: ! this.state.notificationClick
-  })
-}
+// toggle(){
+//   this.setState({
+//     notificationClick: ! this.state.notificationClick
+//   })
+// }
 
-toggleUser(){
-  this.setState({
-    userDD: ! this.state.userDD
-  })
-}
+// toggleUser(){
+//   this.setState({
+//     userDD: ! this.state.userDD
+//   })
+// }
 
 
 accept(){
@@ -101,33 +101,34 @@ componentDidMount() {
     <div className="headerInner">
       <i className="message_header fa fa-comments" aria-hidden="true"></i>
       <div className="notification">
-        <i className="fa fa-bell" aria-hidden="true" onClick={this.toggle}></i>
+        <i className="fa fa-bell" aria-hidden="true"></i>
         <div className="dot" style={this.state.notificationOn?unhide:{}}></div>
+        <div className="dropDown notif-drop">
+          {
+            this.state.notification.city?
+            <div className="notifSingle">
+            <div className="notif-noti"> You Are Invited to Join Squad "{this.state.notification.squadName}" in {this.state.notification.city} </div>
+            <div className="notif-btn">
+                <button className="notiBtn1" onClick={this.accept}>Accept</button>
+                <button className="notiBtn1">Reject</button>
+            </div>
+            </div>
+            :
+            <div className="nonotif"> You have no notification yet</div>
+          }
+        </div>
       </div>
 
-      <div className="dropDown notif-drop" style={this.state.notificationClick?unhide:{}}>
-        {
-          this.state.notification.city?
-          <div className="notifSingle">
-          <div className="notif-noti"> You Are Invited to Join Squad "{this.state.notification.squadName}" in {this.state.notification.city} </div>
-          <div className="notif-btn">
-              <button className="notiBtn1" onClick={this.accept}>Accept</button>
-              <button className="notiBtn1">Reject</button>
-          </div>
-          </div>
-          :
-          <div className="nonotif"> You have no notification yet</div>
-        }
-      </div>
+
 
       <div className="headerNav" onClick={this.toggleUser}>
         <div>{this.state.firstname}</div>
         <i className="fa fa-angle-down" aria-hidden="true"></i>
-      </div>
-      <div className="dropDown" style={this.state.userDD?unhide:{}}>
-        <Link to="/logged/dashboard"><div className="drop_menu"><div>Dashboard</div></div></Link>
-        <Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}><div className="drop_menu"><div>Profile</div></div></Link>
-        <div className="drop_menu"><div>Log Out</div></div>
+        <div className="dropDown" style={this.state.userDD?unhide:{}}>
+          <Link to="/logged/dashboard"><div className="drop_menu"><div>Dashboard</div></div></Link>
+          <Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}><div className="drop_menu"><div>Profile</div></div></Link>
+          <div className="drop_menu"><div>Log Out</div></div>
+        </div>
       </div>
       <Link to="/logged/dashboard"><div className="headerNav headerimg"><img src={this.state.profile_img_url} alt="fixed"/></div></Link>
     </div>

@@ -21,7 +21,7 @@ export default class Safety extends Component {
   render() {
 
   return (
-    <div className="ProfileContainer">
+    <div className="ProfileContainer safefyContainer">
       <div className="safetyWrapper">
 
 

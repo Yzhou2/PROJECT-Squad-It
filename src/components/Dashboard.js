@@ -245,40 +245,32 @@ handleEachSquad(eachSquad) {
 
             <div className="listWrapper">
               <div className="todo_list" style={this.state.dismissSafe?style2:{}}>
-                <div className="todoImg">
-                    <img src='https://i.imgur.com/AjbHfmU.png' />
-                </div>
-                <div className="todoText">
-                  <div className="todoTitle">Safety</div>
-                  <div className="todpDescri">Whether you’re hosting a guest, surfing, or hanging out with fellow Couchsurfers, we want you to be safe.</div>
-                </div>
+                  <div className="todoLeft">
+                    <div className="todoImg">
+                        <img src='https://i.imgur.com/AjbHfmU.png' />
+                    </div>
+                    <div className="todoText">
+                      <div className="todoTitle">Safety</div>
+                      <div className="todpDescri">Whether you’re hosting a guest, surfing, or hanging out with fellow Couchsurfers, we want you to be safe.</div>
+                    </div>
+                  </div>
 
                 <div className="todoBtn">
                   <Link to="/logged/safety"><button>Read</button></Link>
                   <button onClick={this.dismissSafe}>Dismiss</button>
                 </div>
               </div>
-              <div className="todo_list"></div>
-              <div className="todo_list"></div>
-            </div>
 
 
-
-
-
-
-            <div className="listWrapper">
               <div className="todo_list" style={this.state.dismissProf?style2:{}}>
-                <div className="todoImg">
-                    <img src='https://i.imgur.com/K7GtP53.png' alt="" />
-                </div>
-                <div className="todoText">
-
-                    <div className="todoTitle">
-                          Complete Your Profile
+                <div className="todoLeft">
+                    <div className="todoImg">
+                        <img src='https://i.imgur.com/K7GtP53.png'/>
                     </div>
-
-                  <div className="todpDescri">Please Complete Your Profile So Other Squads Can Find You.</div>
+                    <div className="todoText">
+                      <div className="todoTitle">Complete Your Profile</div>
+                      <div className="todpDescri">Please Complete Your Profile So Other Squads Can Find You.</div>
+                    </div>
                 </div>
 
                 <div className="todoBtn">
@@ -286,9 +278,20 @@ handleEachSquad(eachSquad) {
                   <button onClick={this.dismissProf}> Dismiss</button>
                 </div>
               </div>
-              <div className="todo_list"></div>
-              <div className="todo_list"></div>
+
+
+
+
+
+
+
             </div>
+
+
+
+
+
+
 
 
 
