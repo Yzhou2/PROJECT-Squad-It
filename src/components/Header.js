@@ -131,7 +131,19 @@ componentDidMount() {
         </div>
       </div>
       <Link to="/logged/dashboard"><div className="headerNav headerimg"><img src={this.state.profile_img_url} alt="fixed"/></div></Link>
+
+      <div className="mobileSearch">
+          <i className="fa fa-search" aria-hidden="true"></i>
+      </div>
+
+
+
+      <div className="mobileHam">
+        <i className="fa fa-bars" aria-hidden="true"></i>
+      </div>
+
     </div>
+
 
 
 
