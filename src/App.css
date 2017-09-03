@@ -2216,13 +2216,14 @@ width: 100%;
    height: auto;
  }
 
- .createSquadContainer {
+ .createSquadContainer, .editProfile, .selectSquadContainer {
   width: 100%;
   height: 100vh;
   position: fixed;
   left: 0;
   top:0;
   border-radius: 0px;
+  margin-left: 0px;
  }
 
  .innerselect select{
@@ -2235,5 +2236,115 @@ width: 100%;
    margin-left: 5px;
  }
 
+.dropDownSearch {
+  position: absolute;
+  left: 0;
+  top:45px;
+  width: 100vw;
+  height: 90px;
+  background-color: white;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  display: none;
+}
 
+.dropInput {
+  display: block;
+  margin-top: 30px;
+}
+
+.searchBodyLeft {
+  width: 100%;
+}
+.circle {
+  width: 30vw;
+}
+
+.searchBodyRight {
+  display: none;
+}
+  .circleImg {
+    margin-left: 10%;
+  }
+
+  .circleTitle {
+    width: 110px;
+  }
+
+  .mobileNav {
+    position: absolute;
+    left: 0;
+    top:45px;
+    width: 100vw;
+    height: 120px;
+    background-color: white;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    display: none;
+  }
+
+  .mobileNavBlock {
+    height: 40px;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+.dashBlock {
+  color: white;
+  background-color: #ffb033;
+}
+
+.mobileHam:hover .mobileNav {
+  display: block;
+}
+
+.mobileSearch:hover .dropDownSearch {
+  display: block;
+}
+
+.HeaderName, .reviews{
+  font-size: 20px;
+}
+
+.profileHeader {
+  height: 150px;
+}
+
+.detailBody {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  padding: 10px;
+}
+
+.detailHeader div {
+  margin-left: 0px;
+}
+
+.basicInfoList {
+  margin-bottom: 5px;
+}
+
+.basicInfoList {
+  height: 30px;
+}
+
+.editProfile {
+  font-size: 12px;
+}
+
+.editForm {
+  padding-bottom: 5px;
+}
+
+.formInput {
+  width: 80px;
+}
+
+.updatePic {
+  margin-left: 38%;
+}
 }

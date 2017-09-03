@@ -134,12 +134,28 @@ componentDidMount() {
 
       <div className="mobileSearch">
           <i className="fa fa-search" aria-hidden="true"></i>
+          <div className="dropDownSearch">
+
+
+              <div className="searchInput dropInput">
+              <input onChange={this.handleChange} />
+
+              <Link to={`/logged/searchresultCT/${this.state.search}`}><button className="search"><i className="fa fa-search" aria-hidden="true"></i></button></Link>
+              </div>
+
+
+          </div>
       </div>
 
 
 
       <div className="mobileHam">
         <i className="fa fa-bars" aria-hidden="true"></i>
+        <div className="mobileNav">
+            <Link to="/logged/dashboard"><div className="mobileNavBlock dashBlock">Dashboard</div></Link>
+            <Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}><div className="mobileNavBlock">Profile</div></Link>
+            <div className="mobileNavBlock">Log Out</div>
+        </div>
       </div>
 
     </div>
