@@ -13,6 +13,8 @@ import SelectSquad from './components/SelectSquad';
 import Chat_room from './components/ChatRoom/Chat_room';
 import Safety from './components/Safety';
 import Explore from './components/Explore';
+import UserProfile from './components/UserProfile';
+import axios from 'axios';
 
 
 export default class Router extends Component{
@@ -21,9 +23,11 @@ export default class Router extends Component{
 
     this.state={
       blur: null,
+      profilePic: 'https://i.imgur.com/rbClaeN.png'
     }
 this.blur = this.blur.bind(this);
 this.unblur = this.unblur.bind(this);
+this.updateProfile = this.updateProfile.bind(this);
   }
 
   blur(){
@@ -39,6 +43,11 @@ this.unblur = this.unblur.bind(this);
     })
   }
 
+  updateProfile(){
+     this.Header.updateProfile();
+  }
+
+
   render(){
     var blur = {
         filter: 'blur(5px)'
@@ -47,15 +56,18 @@ this.unblur = this.unblur.bind(this);
   return (
   <div>
     <div style={this.state.blur?blur:{}}>
-        <Header history={this.props.history} />
+        <Header ref={instance => { this.Header = instance; }}/>
         <div className="headerPH"></div>
-        <Sidebar/>
+        <Sidebar profilePic={this.state.profilePic}/>
         <div className="sidebarPH"></div>
     </div>
 
   <Switch>
     <Route path="/logged/dashboard" render={props => <Dashboard blur = {this.blur} unblur = {this.unblur}/>}/>
-    <Route component={ Profile } path="/logged/profile" />
+    <Route path="/logged/profile/me" render={props => <Profile blur = {this.blur}
+                                                               unblur = {this.unblur}
+                                                               updateProfile={this.updateProfile}/>}/>
+    <Route component={ UserProfile } path="/logged/profile/:userid" />
     <Route component={ EditProfile } path="/logged/editProfile" />
     <Route component={ CreateSquad } path="/logged/createsquad" />
     <Route component={ CreateTripPlan } path="/logged/createtrip" />

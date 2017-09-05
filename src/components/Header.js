@@ -3,14 +3,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import socket from './socket';
 import formatInput from './formatInput';
-// style={this.state.notificationClick?unhide:{}}
 export default class Header extends Component {
     constructor(props) {
       super(props);
 
       this.state = {
+          myUserId: null,
           firstname:null,
-          profile_img_url: null,
+          profile_img_url: '',
           search: null,
           notification: [],
           notificationOn:false,
@@ -20,6 +20,8 @@ export default class Header extends Component {
       this.handleChange = this.handleChange.bind(this);
       this.saveSocketInfo = this.saveSocketInfo.bind(this);
       this.accept = this.accept.bind(this);
+      this.reject = this.reject.bind(this);
+      this.updateProfile = this.updateProfile.bind(this);
       // this.toggle = this.toggle.bind(this);
       // this.toggleUser = this.toggleUser.bind(this);
 
@@ -32,17 +34,6 @@ handleChange(event) {
   })
 }
 
-// toggle(){
-//   this.setState({
-//     notificationClick: ! this.state.notificationClick
-//   })
-// }
-
-// toggleUser(){
-//   this.setState({
-//     userDD: ! this.state.userDD
-//   })
-// }
 
 
 accept(){
@@ -50,15 +41,28 @@ accept(){
   axios.post('http://localhost:3001/api/addSquadMember', {squad_id:this.state.notification.squad_id, user_id:this.state.notification.userid}, {withCredentials: true}).then(response => {
     console.log(response,'response from adding squad')
   });
+
+  this.setState({
+    notificationOn:false
+  })
+}
+
+
+reject(){
+  this.setState({
+    notification: []
+  })
 }
 
 
 
 saveSocketInfo(val){
+  if (val.userid == this.state.myUserId) {
   this.setState({
     notification: val,
     notificationOn: val.stat
   })
+  }
 }
 
 
@@ -68,12 +72,22 @@ componentDidMount() {
   //   console.log('lets check out the val', val)
   // })
   socket.on('new-notification', this.saveSocketInfo)
-  axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
+  axios.get( 'http://localhost:3001/api/me', {withCredentials:true} ).then( response => {
   // console.log('response!!!!!!!',response.data)//empty
   this.setState({
     firstname: response.data[0].firstname,
-    profile_img_url: response.data[0].profile_img_url
+    profile_img_url: response.data[0].profile_img_url,
+    myUserId: response.data[0].userid
+  });
+});
+}
 
+
+updateProfile(){
+  axios.get( 'http://localhost:3001/api/me', {withCredentials:true} ).then( response => {
+  // console.log('response!!!!!!!',response.data)//empty
+  this.setState({
+    profile_img_url: response.data[0].profile_img_url,
   });
 });
 }
@@ -81,7 +95,7 @@ componentDidMount() {
   render() {
     // console.log(this.state.search, 'formated?????|||||')
     // console.log('this is the userDD', this.state.userDD)
-    // console.log(this.state.notification.squadName,  this.state.notification.city,   'notification saved on state')
+    console.log(this.state,  this.state.notification,   'notification saved on state')
     var unhide = {
       display: "block"
     }
@@ -103,14 +117,14 @@ componentDidMount() {
       <div className="notification">
         <i className="fa fa-bell" aria-hidden="true"></i>
         <div className="dot" style={this.state.notificationOn?unhide:{}}></div>
-        <div className="dropDown notif-drop">
+        <div className="notif-drop">
           {
             this.state.notification.city?
             <div className="notifSingle">
             <div className="notif-noti"> You Are Invited to Join Squad "{this.state.notification.squadName}" in {this.state.notification.city} </div>
             <div className="notif-btn">
                 <button className="notiBtn1" onClick={this.accept}>Accept</button>
-                <button className="notiBtn1">Reject</button>
+                <button className="notiBtn1" onClick={this.reject}>Reject</button>
             </div>
             </div>
             :
@@ -123,7 +137,7 @@ componentDidMount() {
 
       <div className="headerNav" onClick={this.toggleUser}>
         <div>{this.state.firstname}</div>
-        <div className="dropDown navDrop" style={this.state.userDD?unhide:{}}>
+        <div className="navDrop" style={this.state.userDD?unhide:{}}>
           <Link to="/logged/dashboard"><div className="drop_menu"><div>Dashboard</div></div></Link>
           <Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}><div className="drop_menu"><div>Profile</div></div></Link>
           <div className="drop_menu"><div>Log Out</div></div>

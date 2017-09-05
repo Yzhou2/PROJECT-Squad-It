@@ -39,36 +39,36 @@ export default class SearchresultCountry extends Component {
 componentDidMount() {
   console.log('mounted')
 
- axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
-   headers: {"user-key":keys.zomatoAPI}
- }).then( response => {
-console.log(response.data.location_suggestions[0], 'this is city code')
-axios.get(`https://developers.zomato.com/api/v2.1/location_details?entity_id=${response.data.location_suggestions[0].entity_id}&entity_type=${response.data.location_suggestions[0].entity_type}`, {
-  headers: {"user-key":keys.zomatoAPI}
-}).then( response => {
-  console.log(response.data.best_rated_restaurant, 'this is the info for dinning')
-  this.setState({
-    topDinning: response.data.best_rated_restaurant.splice(0,4)
-  })
-});
-});
-
-
-axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
-  headers: {"user-key":keys.zomatoAPI}
-}).then( response => {
-console.log(response.data.location_suggestions[0], 'this is city code')
-  axios.get(`https://fizplaces-fiz-places-v1.p.mashape.com/content/api/v2/places/?lat=${response.data.location_suggestions[0].latitude}&lon=${response.data.location_suggestions[0].longitude}`, {
-    headers: {"FIZAPIKEY":keys.fIZAPIKEY, "X-Mashape-Key":keys.xMashapeKey}
-  }).then( response => {
-    console.log(response.data, 'this is the data came back from interests')
-    var newResponse = response.data.results.filter(res => res.pictures && res.description)
-    this.setState({
-      attractions: newResponse
-    })
-  });
-
-});
+//  axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
+//    headers: {"user-key":keys.zomatoAPI}
+//  }).then( response => {
+// console.log(response.data.location_suggestions[0], 'this is city code')
+// axios.get(`https://developers.zomato.com/api/v2.1/location_details?entity_id=${response.data.location_suggestions[0].entity_id}&entity_type=${response.data.location_suggestions[0].entity_type}`, {
+//   headers: {"user-key":keys.zomatoAPI}
+// }).then( response => {
+//   console.log(response.data.best_rated_restaurant, 'this is the info for dinning')
+//   this.setState({
+//     topDinning: response.data.best_rated_restaurant.splice(0,4)
+//   })
+// });
+// });
+//
+//
+// axios.get(`https://developers.zomato.com/api/v2.1/locations?query=%${this.state.city}`, {
+//   headers: {"user-key":keys.zomatoAPI}
+// }).then( response => {
+// console.log(response.data.location_suggestions[0], 'this is city code')
+//   axios.get(`https://fizplaces-fiz-places-v1.p.mashape.com/content/api/v2/places/?lat=${response.data.location_suggestions[0].latitude}&lon=${response.data.location_suggestions[0].longitude}`, {
+//     headers: {"FIZAPIKEY":keys.fIZAPIKEY, "X-Mashape-Key":keys.xMashapeKey}
+//   }).then( response => {
+//     console.log(response.data, 'this is the data came back from interests')
+//     var newResponse = response.data.results.filter(res => res.pictures && res.description)
+//     this.setState({
+//       attractions: newResponse
+//     })
+//   });
+//
+// });
 
 
 

@@ -108,7 +108,8 @@ massive( connectionString ).then( db => {
     res.send(req.user)
   });
   // app.get('/api/profileImg', controller.getPic);
-  app.get('/api/user', controller.getUserProfile);
+  app.get('/api/me', controller.getMyProfile);
+  app.get('/api/user/:userid', controller.getUserProfile);
   app.put('/api/editprofile', controller.updateProfile);
   app.post('/api/createTrip', controller.createTrip)
   app.get('/api/viewTrip', controller.viewTrip)

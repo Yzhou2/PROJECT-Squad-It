@@ -22,7 +22,7 @@ export default class Sidebar extends Component {
 
   componentDidMount() {
     // console.log('mounted')
-  axios.get( 'http://localhost:3001/api/user', {withCredentials:true} ).then( response => {
+  axios.get( 'http://localhost:3001/api/me', {withCredentials:true} ).then( response => {
     // console.log('response!!!!!!!',response.data[0].firstname)
     this.setState({
       firstname: response.data[0].firstname,
@@ -48,7 +48,7 @@ export default class Sidebar extends Component {
       </div>
 
       <Link to="/logged/dashboard"><div className="sideBarSelection">Dashboard</div></Link>
-      <div className="sideBarSelection"><Link to={{pathname:'/logged/profile', query:{flag:true, userid: this.state.userid}}}>Profile</Link></div>
+      <div className="sideBarSelection"><Link to="/logged/profile/me">Profile</Link></div>
       <Link to="/logged/explore"><div className="sideBarSelection bottomLine">Explore</div></Link>
 
     </div>

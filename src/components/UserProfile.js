@@ -9,12 +9,12 @@ import PostReview from './PostReview.js';
 
 
 
-export default class Profile extends Component {
-  constructor() {
-    super();
+export default class UserProfile extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-      userid:null,
+      userid: this.props.match.params.userid,
       firstname: null,
       lastname: null,
       profile_img_url: 'https://i.imgur.com/rbClaeN.png',
@@ -34,6 +34,8 @@ export default class Profile extends Component {
       Fluent_Languages: null,
       description: null,
       popUp: null,
+      flag: false,
+      userid:null,
       pictures: '',
       reviewsDisplay: [],
       selectSquad: false,
@@ -50,8 +52,8 @@ export default class Profile extends Component {
 
   componentDidMount() {
 
-    axios.get('http://localhost:3001/api/me', {withCredentials:true}).then( response => {
-      // console.log(response.data, 'this is responseeeeeee')
+    axios.get(`http://localhost:3001/api/user/${this.props.match.params.userid}`, {withCredentials:true}).then( response => {
+      console.log(response.data, 'this is responseeeeeee')
       this.setState({
         firstname: response.data[0].firstname,
         lastname: response.data[0].lastname,
@@ -70,14 +72,14 @@ export default class Profile extends Component {
         visited_countries: response.data[0].visited_countries,
         Fluent_Languages: response.data[0].Fluent_Languages,
         description: response.data[0].description,
-        userid: response.data[0].userid
+
       })
     });
 
 
 
-              axios.get(`http://localhost:3001/api/getReviews/${this.state.userid}`).then(res=>{
 
+              axios.get(`http://localhost:3001/api/getReviews/${this.props.match.params.userid}`).then(res=>{
 
                  this.setState({
                    reviewsDisplay: res.data
@@ -126,43 +128,50 @@ handleClickEdit() {
     popUp: true
 
   })
-
-  this.props.blur();
 }
 
 closePop(){
   this.setState({
     popUp: false
   },function(){
+      const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
+      // console.log(getProfileAPI,'linky linky link')
+      axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+        // console.log(response.data, 'this is responseeeeeee')
+        this.setState({
+          // firstname: response.data[0].firstname,
+          // lastname: response.data[0].lastname,
+          profile_img_url: response.data[0].profile_img_url,
+          // gender: response.data[0].gender,
+          // squad_status: response.data[0].squad_status,
+          // city: response.data[0].city,
+          // country: response.data[0].country,
+          // birthday: response.data[0].birthday,
+          // smoker: response.data[0].smoker,
+          // drinker: response.data[0].drinker,
+          // dstolerance: response.data[0].dstolerance,
+          // avaliableforhostdinner: response.data[0].avaliableforhostdinner,
+          // typeoftraveller: response.data[0].typeoftraveller,
+          // occupation: response.data[0].occupation,
+          // visited_countries: response.data[0].visited_countries,
+          // Fluent_Languages: response.data[0].Fluent_Languages,
+          // description: response.data[0].description
 
-    axios.get('http://localhost:3001/api/me', {withCredentials:true}).then( response => {
-      this.setState({
-        profile_img_url: response.data[0].profile_img_url,
-        Gender: this.state.Gender,
-        Squad_Status: this.state.Squad_Status,
-        City: this.state.City,
-        Country: this.state.Country,
-        Smoker: this.state.Smoker,
-        Drinker: this.state.Drinker,
-        DSTolerance: this.state.DSTolerance,
-        AvaliableForHostDinner: this.state.AvaliableForHostDinner,
-        TypeOfTraveller: this.state.TypeOfTraveller,
-        Occupation: this.state.Occupation,
-        Description: this.state.Description,
-        visited_countries: this.state.visited_countries,
-        Fluent_Languages: this.state.Fluent_Languages,
-      })
-    });
+
+        })
+      });
+
+
+
   })
 
 
 
-    this.props.unblur();
-    this.props.updateProfile();
 }
 
   render() {
-    console.log(this.state.visited_countries, 'whats countries')
+    // console.log(this.state.visited_countries, 'whats countries')
+    console.log(this.props, 'whats props')
     // console.log(this.state.reviewsDisplay.profile_img_url, 'this is what i was looking for url !!!!')
     var blur = {
       filter: 'blur(5px)'
@@ -170,6 +179,7 @@ closePop(){
     return (
       <div>
       {this.state.popUp?<EditProfile closePop={this.closePop} profile_img_url={this.state.profile_img_url} refreshImg={this.refreshImg}/>:""}
+      {this.state.selectSquad? <SelectSquad userid={this.state.userid} unSelectSquad={this.unSelectSquad}/> :"" }
       {this.state.postReview?<PostReview unPostReview={this.unPostReview} userid={this.state.userid}/>:""}
       <div className="ProfileContainer profileBackground" style={this.state.popUp?blur:{}}>
         <div className="InnerContainer">
@@ -304,7 +314,10 @@ closePop(){
 
 
 
-                <button className="editProfileBtn" onClick={this.handleClickEdit}>Edit My Profile</button>
+                <div>
+                  <button className="editProfileBtn" onClick={this.selectSquad}>Invite to Squad</button>
+                  <button className="editProfileBtn inviteBtn">Dinner Host Request</button>
+                </div>
 
               </div>
 

@@ -395,7 +395,7 @@ handleEachSquad(eachSquad) {
 
             {this.state.travelPlan ? this.state.travelPlan.map( (eachPlan, idx) => {
               return (
-            <div className="listWrapper" key={idx}>
+            <div className="listWrapper travelListWrapper" key={idx}>
               <div className="lists">
                   <div className="tripList1">
                     <div className="triploc">{eachPlan.city +', ' + eachPlan.country}</div>

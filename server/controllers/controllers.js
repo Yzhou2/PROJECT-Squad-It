@@ -2,28 +2,21 @@ const axios = require('axios');
 
 
 module.exports = {
-  getPic: (req, res) => {
+  getMyProfile: (req, res) => {
     const db = req.app.get('db');
-    const { params } = req;
-    db.get_profile_url([params.authID]).then(
-      url => res.status(200).send(url)
-    )
-  },
-  getUserProfile: (req, res) => {
-    const db = req.app.get('db');
-    if (!req.query.userid) {
     db.get_user_profile([req.user.userid]).then(
       user => {
-        // console.log(user, 'inside if')
-        res.status(200).send(user)
-      })
-    } else {
-      // console.log(req.query, 'this is req.query')
-      db.get_user_profile([req.query.userid]).then(
+        console.log(user, 'this is user')
+        return res.status(200).send(user)})
+},
+  getUserProfile: (req, res) => {
+    console.log('endpoint hit')
+    const db = req.app.get('db');
+      console.log(req.params, 'this is req.params')
+      db.get_user_profile([req.params.userid]).then(
         user => {
-          // console.log(user, 'this is user')
+          console.log(user, 'this is user')
           return res.status(200).send(user)})
-    }
   },
 
   updateProfile: (req, res) => {

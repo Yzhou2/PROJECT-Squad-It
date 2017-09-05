@@ -89,14 +89,13 @@ export default class EditProfile extends Component {
 
     axios.post('/api/uploadPic', {picurl: this.state.pictures}, {withCredentials:true}).then(
       res => {
-        const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
-        // console.log(getProfileAPI,'linky linky link')
-        axios.get(getProfileAPI, {withCredentials:true}).then( response => {
+        axios.get('http://localhost:3001/api/me', {withCredentials:true}).then( response => {
           // console.log(response.data, 'this is responseeeeeee')
           this.setState({
             pictures: response.data[0].profile_img_url,
           })
         });
+
       }
     );
 
@@ -212,9 +211,10 @@ export default class EditProfile extends Component {
              <div className="updatePic">
               <Dropzone onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)} style={dropStyle}/>
               <img src={this.state.pictures} alt="fixed" />
-             </div>
-             <div className="camera">
-               <i className="fa fa-camera" aria-hidden="true"></i>
+
+              <div className="camera">
+                <i className="fa fa-camera" aria-hidden="true"></i>
+              </div>
              </div>
            </div>
 

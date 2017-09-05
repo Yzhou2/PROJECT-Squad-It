@@ -213,10 +213,9 @@ video {
   display: block;
 }
 
-.dropDown {
+/*.dropDown {
    position: absolute;
    width: 185px;
-   /*line-height: 1.25px;*/
    border: 1px solid lightgray;
    display: none;
    z-index: 100;
@@ -241,12 +240,40 @@ video {
    width: 0;
    z-index: 1;
    top: -10px;
-   left: 172px;
-}
+   left: 152px;
+}*/
 
 .navDrop {
+  position: absolute;
+  width: 185px;
+  /*line-height: 1.25px;*/
+  border: 1px solid lightgray;
+  display: none;
+  z-index: 100;
+  background-color: white;
+  color: gray;
+  text-align: center;
+  padding: 0px;
+  background: white;
+  border-radius: 10px;
+  -webkit-filter: drop-shadow(4px 3px 2px #A3A3A3);
+  filter: drop-shadow(4px 3px 2px #A3A3A3);
+  cursor: pointer;
   top: 42px;
   right: -6px;
+}
+
+.navDrop:after {
+   content: '';
+   position: absolute;
+   border-style: solid;
+   border-width: 0 9px 10px;
+   border-color: white transparent;
+   display: block;
+   width: 0;
+   z-index: 1;
+   top: -10px;
+   left: 142px;
 }
 
 
@@ -264,15 +291,41 @@ video {
 }
 
 .notif-drop{
-  display: block;
+  position: absolute;
+  width: 300px;
+  border: 1px solid lightgray;
+  z-index: 100;
+  background-color: white;
+  color: gray;
+  text-align: center;
+  padding: 0px;
+  background: white;
+  border-radius: 10px;
+  -webkit-filter: drop-shadow(4px 3px 2px #A3A3A3);
+  filter: drop-shadow(4px 3px 2px #A3A3A3);
+  cursor: pointer;
   font-size: 13px;
   display: none;
   font-weight: normal;
-  width: 300px;
   box-sizing: border-box;
   top: 45px;
   right: 18px;
 }
+
+.notif-drop:after {
+   content: '';
+   position: absolute;
+   border-style: solid;
+   border-width: 0 9px 10px;
+   border-color: white transparent;
+   display: block;
+   width: 0;
+   z-index: 1;
+   top: -10px;
+   left: 142px;
+}
+
+
 
 .notif-btn {
   margin-left: 20px;
@@ -319,6 +372,9 @@ video {
   margin-right: 10px;
   display: flex;
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .notification:hover .notif-drop {
@@ -337,7 +393,6 @@ video {
   background-color: red;
   box-shadow: 0 3px 1px #B8ADA2;
   display: none;
-  margin-top: 5px;
   margin-left: 5px;
 }
 
@@ -609,6 +664,15 @@ video {
   color:darkgray;
   /*border: 2px solid red;*/
 
+}
+
+.travelListWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listbtn {
+  margin-right: 15px;
 }
 
 .todoLeft {
@@ -984,6 +1048,7 @@ video {
   margin-top: 15px;
   margin-bottom: 15px;
   cursor: pointer;
+  position: relative;
 }
 
 .updatePic img {
@@ -993,10 +1058,8 @@ video {
 
 .camera {
   position: absolute;
-  top: 200px;
-  left:200px;
-  top: 135px;
-  left: 435px;
+  top: 80px;
+  left: 80px;
 
 
 }
@@ -1387,6 +1450,8 @@ border-radius: 5px;
 
 .searchOverwrite {
   height: auto;
+  position: absolute;
+  z-index: -10000;
 }
 
 
@@ -2107,6 +2172,13 @@ width: 100%;
 }
 
 @media(max-width: 1100px){
+
+  .landingText {
+    font-size: 63px;
+  }
+
+
+
   .sidebarImg {
     height: 75px;
     width: 75px;
@@ -2367,7 +2439,37 @@ width: 100%;
   margin-left: 38%;
 }
 
-.dropDown:after {
+/*.dropDown:after {
   left:213px
+}*/
+
+.landingText {
+  font-size: 39px;
 }
+
+.span {
+    font-size: 25px;
+  }
+
+  .landingBtn {
+    margin-top: 40px;
+  }
+
+  .cardRight {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .searchCard {
+    height: auto;
+  }
+
+.notif-drop {
+  width: 200px;
+}
+
+
+  .notif-drop:after {
+    left:116px;
+  }
 }
