@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import formatInput from './formatInput';
 
 
 
@@ -15,7 +16,7 @@ this.handleChange = this.handleChange.bind(this);
 
 handleChange(event){
   this.setState({
-    search: event.target.value
+    search: formatInput(event.target.value)
   })
 }
 
@@ -27,7 +28,7 @@ handleChange(event){
       <div className="ProfileContainer exploreContainer">
         <div className="explore">
           <div className="exploreTitle">Tell Us Where You Want To Go</div>
-          <input className="exploreInput" onChange={this.handleChange}/>
+          <input className="exploreInput" onChange={this.handleChange} placeholder="Currently only has New York Opened"/>
           <Link to={`/logged/searchresultCT/${this.state.search}`}><button>Explore</button></Link>
         </div>
       </div>

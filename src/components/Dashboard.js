@@ -51,10 +51,12 @@ export default class Dashboard extends Component{
       eachsquadClicked: false
     });
 
-    axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>
+    axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>{
+      console.log('response from squad?????', response)
       this.setState({
         currentSquad: response.data,
       })
+    }
     );
 
     axios.get('http://localhost:3001/api/viewTrip', {withCredentials:true}).then( response =>
@@ -92,10 +94,12 @@ export default class Dashboard extends Component{
           pastSquad: response.data
         })
         axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>
+
           this.setState({
             response: response.data,
             currentSquad: response.data
           })
+
         );
       });
 
@@ -123,6 +127,15 @@ export default class Dashboard extends Component{
           pastSquad: response.data
         })
      })
+
+     axios.get(`http://localhost:3001/api/getBktListByUser`, {withCredentials:true} ). then(
+       response => {
+         this.setState({
+           bucket: response.data
+         })
+       });
+
+
     })
 
   }
@@ -213,7 +226,7 @@ handleEachSquad(eachSquad) {
 
     // console.log(this.props, 'props passed in what')
     // <button className="AddTrip">+ Join a Squad</button>
-    console.log(this.state.bucket, 'whats in ma bucket')
+    // console.log(this.state.bucket, 'whats in ma bucket')
     console.log(this.state.currentSquad, 'whats ma currentsquad')
 
 

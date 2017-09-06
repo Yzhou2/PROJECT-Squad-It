@@ -50,7 +50,8 @@ accept(){
 
 reject(){
   this.setState({
-    notification: []
+    notification: [],
+    notificationOn: false
   })
 }
 
@@ -105,7 +106,7 @@ updateProfile(){
       <Link to="/logged/dashboard"><div className="leftMargin headerlogo"><img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/></div></Link>
 
         <div className="searchInput">
-        <input onChange={this.handleChange} />
+        <input onChange={this.handleChange} placeholder="Currently Only Has Users For 'New York' In Our Database"/>
 
         <Link to={`/logged/searchresultCT/${this.state.search}`}><button className="search"><i className="fa fa-search" aria-hidden="true"></i></button></Link>
         </div>

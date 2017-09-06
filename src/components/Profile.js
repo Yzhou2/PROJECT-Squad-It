@@ -318,11 +318,6 @@ closePop(){
               <div className="reviewContainer">
                 <div className="reviews">Reviews</div>
 
-                <div className="addReview" onClick={this.postReview}>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                  <div>Add Your Review</div>
-                </div>
-
 
                   <div className="reviewInner">
                     {this.state.reviewsDisplay.map((review,idx) => {

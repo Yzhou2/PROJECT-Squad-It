@@ -24,6 +24,7 @@ export default class SearchresultCountry extends Component {
       }
       this.unSelectSquad = this.unSelectSquad.bind(this);
       this.handleClick = this.handleClick.bind(this);
+      this.notAvaliableFS = this.notAvaliableFS.bind(this);
 
     }
 
@@ -133,6 +134,10 @@ this.state.category === 'member' ?
 // </div>
 // </div>
 
+notAvaliableFS(){
+  alert('Send Request Feature Still Under Construction, To Test Out This Functionality, You Can Go Back To Search Result, Click On Find Squad Member And Click On Add To My Squad :)')
+}
+
   render() {
  // console.log(this.state.notification, 'miracle happens or not?')
  // console.log(this.props.match.params, 'whats the params')
@@ -180,8 +185,11 @@ this.state.category === 'member' ?
 
                          <div className="btnContainer">
                              <button><Link to={`/logged/profile/${user.userid}`}>View Profile</Link></button>
-                             {console.log(user.userid, 'hey yo this is the userid')}
+                             {this.state.category == 'host' ?
+                             <button onClick={this.notAvaliableFS}>Send Request</button>
+                             :
                              <button onClick={()=>{this.handleClick(user.userid)}}>+ To Your Squad</button>
+                           }
                          </div>
                        </div>
                    </div>

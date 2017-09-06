@@ -22,7 +22,7 @@ export default class SearchresultCountry extends Component {
         trails: null,
         attractions:[]
       }
-
+this.notAvaliableFS = this.notAvaliableFS.bind(this);
     }
 
 
@@ -85,6 +85,10 @@ componentWillReceiveProps(props){
 
 }
 
+notAvaliableFS(){
+  alert('Find Squad Feature Still Under Construction, To Test Out The Same Functionalities, Try Clicking On Find Squad Member :) !')
+}
+
   render() {
     // console.log(this.props, 'this is from trailsApi')
     console.log(this.state.topDinning, 'whats dinning ')
@@ -106,7 +110,7 @@ componentWillReceiveProps(props){
           <div className="searchBodyContainer">
             <div className="searchBodyLeft">
               <div className="CirclesContainer">
-                <div className="circle">
+                <div className="circle" onClick={this.notAvaliableFS}>
                   <div className="circleImg"><img src='https://i.imgur.com/6mvqxs1.png' /></div>
                   <div className="circleTitle"> Find Squad </div>
                 </div>

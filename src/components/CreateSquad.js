@@ -7,6 +7,7 @@ export default class CreateSquad extends Component {
     super(props)
 
       this.state={
+        squad_id: null,
         name: null,
         Description: null,
         Address: null,
@@ -113,6 +114,12 @@ export default class CreateSquad extends Component {
     handleClick() {
       console.log('clicked save')
     axios.post( 'http://localhost:3001/api/squad', this.state, {withCredentials:true} ).then( response => {
+      axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>{
+        console.log('response from squadinfo????????', response.data)
+        this.setState({
+          squad_id: response.data.squad_id
+        })
+      });
       this.props.updatecurrentSquad(this.state)
     });
     this.props.createSquadReset();
