@@ -48,6 +48,7 @@ export default class UserProfile extends Component {
   this.unSelectSquad = this.unSelectSquad.bind(this);
   this.postReview = this.postReview.bind(this);
   this.unPostReview = this.unPostReview.bind(this);
+  this.updateReview = this.updateReview.bind(this);
   }
 
   componentDidMount() {
@@ -134,53 +135,38 @@ closePop(){
   this.setState({
     popUp: false
   },function(){
-      const getProfileAPI = this.state.flag?'http://localhost:3001/api/user':`http://localhost:3001/api/user?userid=${this.state.userid}`
-      // console.log(getProfileAPI,'linky linky link')
-      axios.get(getProfileAPI, {withCredentials:true}).then( response => {
-        // console.log(response.data, 'this is responseeeeeee')
-        this.setState({
-          // firstname: response.data[0].firstname,
-          // lastname: response.data[0].lastname,
-          profile_img_url: response.data[0].profile_img_url,
-          // gender: response.data[0].gender,
-          // squad_status: response.data[0].squad_status,
-          // city: response.data[0].city,
-          // country: response.data[0].country,
-          // birthday: response.data[0].birthday,
-          // smoker: response.data[0].smoker,
-          // drinker: response.data[0].drinker,
-          // dstolerance: response.data[0].dstolerance,
-          // avaliableforhostdinner: response.data[0].avaliableforhostdinner,
-          // typeoftraveller: response.data[0].typeoftraveller,
-          // occupation: response.data[0].occupation,
-          // visited_countries: response.data[0].visited_countries,
-          // Fluent_Languages: response.data[0].Fluent_Languages,
-          // description: response.data[0].description
-
-
-        })
-      });
-
-
-
+    axios.get(`http://localhost:3001/api/user/${this.props.match.params.userid}`, {withCredentials:true}).then( response => {
+      // console.log(response.data, 'this is responseeeeeee')
+      this.setState({
+        profile_img_url: response.data[0].profile_img_url,
+      })
+    });
   })
+}
 
-
-
+updateReview(){
+  // console.log('hit||||||||||||||||||||||||||||||||')
+  axios.get(`http://localhost:3001/api/getReviews/${this.props.match.params.userid}`).then(res=>{
+    console.log(res.data, 'data||||||||||||||||||||')
+     this.setState({
+       reviewsDisplay: res.data
+     })
+   })
 }
 
   render() {
     // console.log(this.state.visited_countries, 'whats countries')
-    console.log(this.props, 'whats props')
+    console.log(this.state.userid, 'whats props')
     // console.log(this.state.reviewsDisplay.profile_img_url, 'this is what i was looking for url !!!!')
     var blur = {
       filter: 'blur(5px)'
     }
     return (
       <div>
-      {this.state.popUp?<EditProfile closePop={this.closePop} profile_img_url={this.state.profile_img_url} refreshImg={this.refreshImg}/>:""}
       {this.state.selectSquad? <SelectSquad userid={this.state.userid} unSelectSquad={this.unSelectSquad}/> :"" }
-      {this.state.postReview?<PostReview unPostReview={this.unPostReview} userid={this.state.userid}/>:""}
+      {this.state.postReview?<PostReview unPostReview={this.unPostReview}
+                                         userid={this.props.match.params.userid}
+                                         updateReview={this.updateReview}/>:""}
       <div className="ProfileContainer profileBackground" style={this.state.popUp?blur:{}}>
         <div className="InnerContainer">
           <div className="InnerLeft">

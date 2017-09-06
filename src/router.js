@@ -45,6 +45,7 @@ this.updateProfile = this.updateProfile.bind(this);
 
   updateProfile(){
      this.Header.updateProfile();
+     this.Sidebar.updateProfile();
   }
 
 
@@ -58,7 +59,7 @@ this.updateProfile = this.updateProfile.bind(this);
     <div style={this.state.blur?blur:{}}>
         <Header ref={instance => { this.Header = instance; }}/>
         <div className="headerPH"></div>
-        <Sidebar profilePic={this.state.profilePic}/>
+        <Sidebar ref={instance => { this.Sidebar = instance; }}/>
         <div className="sidebarPH"></div>
     </div>
 

@@ -93,7 +93,8 @@ handleKeyPress(event){
 
 componentDidMount(){
   socket.on('receive-msg', this.getMsg);
-  axios.get('http://localhost:3001/api/user', {withCredentials:true}).then(res=>{
+  axios.get('http://localhost:3001/api/me', {withCredentials:true}).then(res=>{
+    console.log(res.data, 'user on state||||||||||||||||||||||')
     this.setState({
       user: res.data[0]
     })

@@ -160,9 +160,16 @@ module.exports = {
      res.status(200).send(reviews)})
    },
 
+   getMyReviews: (req, res) => {
+      const db = req.app.get('db');
+      console.log(req.user.userid, 'this is the userid for review')
+      db.getReviewsByUserid([req.user.userid]).then( reviews => {
+      res.status(200).send(reviews)}).catch( err => res.status(500).send( err ))
+    },
+
   getReviews: (req, res) => {
      const db = req.app.get('db');
-    //  console.log(req.params, 'this is the params')
+     console.log(req.params, 'this is the params for user')
      db.getReviewsByUserid([req.params.id]).then( reviews => {
      res.status(200).send(reviews)}).catch( err => res.status(500).send( err ))
    },

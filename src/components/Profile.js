@@ -76,10 +76,11 @@ export default class Profile extends Component {
 
 
 
-              axios.get(`http://localhost:3001/api/getReviews/${this.state.userid}`).then(res=>{
+              axios.get('http://localhost:3001/api/getMyReviews', {withCredentials:true}).then(res=>{
 
 
                  this.setState({
+
                    reviewsDisplay: res.data
                  })
                })
@@ -162,8 +163,9 @@ closePop(){
 }
 
   render() {
-    console.log(this.state.visited_countries, 'whats countries')
+    // console.log(this.state.visited_countries, 'whats countries')
     // console.log(this.state.reviewsDisplay.profile_img_url, 'this is what i was looking for url !!!!')
+    console.log('userid', this.state.userid)
     var blur = {
       filter: 'blur(5px)'
     }

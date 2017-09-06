@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
@@ -274,7 +274,7 @@ handleEachSquad(eachSquad) {
                 </div>
 
                 <div className="todoBtn">
-                  <button>Complete Profile</button>
+                  <Link to="/logged/profile/me"><button>Complete Profile</button></Link>
                   <button onClick={this.dismissProf}> Dismiss</button>
                 </div>
               </div>

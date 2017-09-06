@@ -18,6 +18,16 @@ export default class Sidebar extends Component {
   }
 
 
+  updateProfile(){
+    axios.get( 'http://localhost:3001/api/me', {withCredentials:true} ).then( response => {
+    // console.log('response!!!!!!!',response.data)//empty
+    this.setState({
+      profile_img_url: response.data[0].profile_img_url,
+    });
+  });
+  }
+
+
 
 
   componentDidMount() {

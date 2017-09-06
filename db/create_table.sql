@@ -67,7 +67,7 @@ CREATE Table bucketList (
   squad_id int REFERENCES squad(squad_id),
   title TEXT,
   description Text,
-  Stars Int
+  Stars Int default 0
 )
 
 CREATE Table Message (

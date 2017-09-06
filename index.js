@@ -134,6 +134,7 @@ massive( connectionString ).then( db => {
    )
  });
   app.post('/api/postReviews', controller.postReviews);
+  app.get('/api/getMyReviews', controller.getMyReviews);
   app.get('/api/getReviews/:id', controller.getReviews);
   app.post('/api/postBktList', controller.postBktList);
   app.get('/api/getBktList/:squad_id', controller.getBktList);
