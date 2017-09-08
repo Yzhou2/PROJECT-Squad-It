@@ -39,7 +39,7 @@ handleChangeDesc(event) {
 
 handleClick(){
 
-  axios.post('http://localhost:3001/api/postBktList', {squad_id:this.state.squad_id, title: this.state.title, description:this.state.description}, {withCredentials:true}).then(res => {
+  axios.post('/api/postBktList', {squad_id:this.state.squad_id, title: this.state.title, description:this.state.description}, {withCredentials:true}).then(res => {
     this.props.updateBktList();
   });
 

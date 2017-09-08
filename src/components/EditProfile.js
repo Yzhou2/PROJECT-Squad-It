@@ -70,7 +70,7 @@ export default class EditProfile extends Component {
 
 
   handleClick(){
-    axios.put('http://localhost:3001/api/editprofile', {
+    axios.put('/api/editprofile', {
       Gender: this.state.Gender,
       Squad_Status: this.state.Squad_Status,
       City: this.state.City,
@@ -89,7 +89,7 @@ export default class EditProfile extends Component {
 
     axios.post('/api/uploadPic', {picurl: this.state.pictures}, {withCredentials:true}).then(
       res => {
-        axios.get('http://localhost:3001/api/me', {withCredentials:true}).then( response => {
+        axios.get('/api/me', {withCredentials:true}).then( response => {
           // console.log(response.data, 'this is responseeeeeee')
           this.setState({
             pictures: response.data[0].profile_img_url,

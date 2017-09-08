@@ -53,7 +53,7 @@ export default class UserProfile extends Component {
 
   componentDidMount() {
 
-    axios.get(`http://localhost:3001/api/user/${this.props.match.params.userid}`, {withCredentials:true}).then( response => {
+    axios.get(`/api/user/${this.props.match.params.userid}`, {withCredentials:true}).then( response => {
       console.log(response.data, 'this is responseeeeeee')
       this.setState({
         firstname: response.data[0].firstname,
@@ -80,7 +80,7 @@ export default class UserProfile extends Component {
 
 
 
-              axios.get(`http://localhost:3001/api/getReviews/${this.props.match.params.userid}`).then(res=>{
+              axios.get(`/api/getReviews/${this.props.match.params.userid}`).then(res=>{
 
                  this.setState({
                    reviewsDisplay: res.data
@@ -135,7 +135,7 @@ closePop(){
   this.setState({
     popUp: false
   },function(){
-    axios.get(`http://localhost:3001/api/user/${this.props.match.params.userid}`, {withCredentials:true}).then( response => {
+    axios.get(`/api/user/${this.props.match.params.userid}`, {withCredentials:true}).then( response => {
       // console.log(response.data, 'this is responseeeeeee')
       this.setState({
         profile_img_url: response.data[0].profile_img_url,
@@ -146,7 +146,7 @@ closePop(){
 
 updateReview(){
   // console.log('hit||||||||||||||||||||||||||||||||')
-  axios.get(`http://localhost:3001/api/getReviews/${this.props.match.params.userid}`).then(res=>{
+  axios.get(`/api/getReviews/${this.props.match.params.userid}`).then(res=>{
     console.log(res.data, 'data||||||||||||||||||||')
      this.setState({
        reviewsDisplay: res.data

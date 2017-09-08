@@ -116,8 +116,8 @@ handleClick(){
    eachPlan: Object.assign(this.state.eachPlan, {arrival: Arrival}, {depart: Depart})
    })
 
-  axios.put('http://localhost:3001/api/editTrip', this.state, {withCredentials:true}).then(res => {
-    axios.get('http://localhost:3001/api/viewTrip', {withCredentials:true}).then( response =>
+  axios.put('/api/editTrip', this.state, {withCredentials:true}).then(res => {
+    axios.get('/api/viewTrip', {withCredentials:true}).then( response =>
       this.props.updateTravelPlan(response.data)
      );
   });

@@ -124,7 +124,7 @@ handleClick(){
 
   var Arrival = this.state.GoingYear + "-" + this.state.GoingMonth + "-" + this.state.GoingDay;
   var Depart = this.state.LeavingYear + "-" + this.state.LeavingMonth + "-" + this.state.LeavingDay;
-  axios.post('http://localhost:3001/api/createTrip', {
+  axios.post('/api/createTrip', {
     City: this.state.City,
     State: this.state.State,
     Country: this.state.Country,
@@ -142,7 +142,7 @@ handleClick(){
     TripAvaliable: this.state.TripAvaliable
 
   }, {withCredentials:true}).then(res => {
-    axios.get('http://localhost:3001/api/viewTrip', {withCredentials:true}).then( response =>
+    axios.get('/api/viewTrip', {withCredentials:true}).then( response =>
       this.props.updateTravelPlan(response.data)
      );
   });

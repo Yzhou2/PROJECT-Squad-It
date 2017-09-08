@@ -4,6 +4,8 @@
 /node_modules
 keys.js
 config.js
+.env
+.env.prod
 # testing
 /coverage
 

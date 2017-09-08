@@ -50,7 +50,7 @@ export default class Profile extends Component {
 
   componentDidMount() {
 
-    axios.get('http://localhost:3001/api/me', {withCredentials:true}).then( response => {
+    axios.get('/api/me', {withCredentials:true}).then( response => {
       // console.log(response.data, 'this is responseeeeeee')
       this.setState({
         firstname: response.data[0].firstname,
@@ -76,7 +76,7 @@ export default class Profile extends Component {
 
 
 
-              axios.get('http://localhost:3001/api/getMyReviews', {withCredentials:true}).then(res=>{
+              axios.get('/api/getMyReviews', {withCredentials:true}).then(res=>{
 
 
                  this.setState({
@@ -136,7 +136,7 @@ closePop(){
     popUp: false
   },function(){
 
-    axios.get('http://localhost:3001/api/me', {withCredentials:true}).then( response => {
+    axios.get('/api/me', {withCredentials:true}).then( response => {
       this.setState({
         profile_img_url: response.data[0].profile_img_url,
         Gender: this.state.Gender,

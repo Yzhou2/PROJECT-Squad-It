@@ -53,7 +53,7 @@ componentDidMount(){
 
 this.state.category === 'member' ?
 
-    axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
+    axios.get(`/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
     res => {
       console.log(res, 'response from axios to get users by dest')
       this.setState({
@@ -61,7 +61,7 @@ this.state.category === 'member' ?
       })
     })
     :
-    axios.get(`http://localhost:3001/api/getUserByHostStat/${this.state.city}`, {withCredentials: true}).then(
+    axios.get(`/api/getUserByHostStat/${this.state.city}`, {withCredentials: true}).then(
       res => {
         this.setState({
               users: res.data
@@ -77,7 +77,7 @@ this.state.category === 'member' ?
 //     city: props.city
 //   });
 //
-//   axios.get(`http://localhost:3001/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
+//   axios.get(`/api/getUserByDest/${this.state.city}`, {withCredentials: true}).then(
 //     res => {
 //       this.setState({
 //         users: res.data

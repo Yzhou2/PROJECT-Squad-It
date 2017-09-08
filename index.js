@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
@@ -5,13 +6,13 @@ const Auth = require('passport-auth0');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express();
-const config = require('./server/config')
+// const config = require('./server/config')
 const massive = require('massive');
 const controller = require('./server/controllers/controllers');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const s3Controller = require('./server/controllers/s3Controller');
-const connectionString = config.address;
+const connectionString = process.env.ADDRESS;
 
 
 var corsOptions = {
@@ -43,6 +44,7 @@ socket.on('notification', function(val){
 
 
 app.use(cors(corsOptions));
+app.use( express.static( `${__dirname}/./build` ) );
 app.use(bodyParser.json());
 app.use(session({
   secret:'dsadsfgdsdfsdffghio',
@@ -65,10 +67,10 @@ massive( connectionString ).then( db => {
   app.set('db', db)
 
   passport.use(new Auth({
-    domain: config.domain,
-    clientID: config.clientID,
-    clientSecret: config.clientSecret,
-    callbackURL: 'http://localhost:3001/auth/callback'
+    domain: process.env.DOMAIN,
+    clientID: process.env.CLIENTID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: '/auth/callback'
   }, function(accessToken, refreshToken, extraParams, profile, done){
     //db find and create user
     // console.log(profile);
@@ -102,7 +104,7 @@ massive( connectionString ).then( db => {
 
 
   app.get('/auth', passport.authenticate('auth0'));
-  app.get('/auth/callback', passport.authenticate('auth0', {successRedirect:'http://localhost:3000/logged/dashboard'}));
+  app.get('/auth/callback', passport.authenticate('auth0', {successRedirect:'/logged/dashboard'}));
   app.get('/me', function(req, res){
     // console.log(req.user,'this is req.user')
     res.send(req.user)
@@ -140,11 +142,14 @@ massive( connectionString ).then( db => {
   app.get('/api/getBktList/:squad_id', controller.getBktList);
   app.get('/api/getBktListByUser', controller.getBktListByUser);
   app.get('/api/addBktListStars/:bucketlist_id', controller.addBktListStars);
+  const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '.','build','index.html'));
+})
 
 
-  app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-  })
+
+
 
   server.listen(3001, ()=>{
     console.log('im listening on port 3001')

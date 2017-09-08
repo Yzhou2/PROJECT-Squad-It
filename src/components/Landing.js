@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 
 
-export default function Landing() {
+export default class Explore extends Component {
+  render(){
+    console.log(process.env,'whats process env file look like')
   return (
     <div className="landingMain">
 
     <div className="landingTop">
       <img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/>
       <div className="topNav">
-        <a href='http://localhost:3001/auth'><div className="topNavJoin">SIGN IN</div></a>
-        <a href='http://localhost:3001/auth'><div className="topNavJoin">JOIN</div></a>
+        <a href={process.env.REACT_APP_LOGIN}><div className="topNavJoin">SIGN IN</div></a>
+        <a href={process.env.REACT_APP_LOGIN}><div className="topNavJoin">JOIN</div></a>
       </div>
     </div>
 
@@ -24,11 +26,12 @@ export default function Landing() {
           <div>Meet Your Squad On the Road</div>
           <div className="span">Create Lifetime Memories</div>
       <div className="landingBtn">
-          <a href='http://localhost:3001/auth'><button className="signin">SIGN IN</button></a>
-          <a href='http://localhost:3001/auth'><button className="main_Cta">JOIN</button></a>
+          <a href={process.env.REACT_APP_LOGIN}><button className="signin">SIGN IN</button></a>
+          <a href={process.env.REACT_APP_LOGIN}><button className="main_Cta">JOIN</button></a>
       </div>
      </div>
 
     </div>
-  )
+    )
+  }
 }

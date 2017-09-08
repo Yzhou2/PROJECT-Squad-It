@@ -51,7 +51,7 @@ export default class Dashboard extends Component{
       eachsquadClicked: false
     });
 
-    axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>{
+    axios.get('/api/squadInfo', {withCredentials:true}).then( response =>{
       console.log('response from squad?????', response)
       this.setState({
         currentSquad: response.data,
@@ -59,19 +59,19 @@ export default class Dashboard extends Component{
     }
     );
 
-    axios.get('http://localhost:3001/api/viewTrip', {withCredentials:true}).then( response =>
+    axios.get('/api/viewTrip', {withCredentials:true}).then( response =>
       this.setState({
         travelPlan: response.data,
       })
      );
 
-     axios.get('http://localhost:3001/api/getPastSquad', {withCredentials:true}).then( response => {
+     axios.get('/api/getPastSquad', {withCredentials:true}).then( response => {
        this.setState({
          pastSquad: response.data
        })
     });
 
-    axios.get(`http://localhost:3001/api/getBktListByUser`, {withCredentials:true} ). then(
+    axios.get(`/api/getBktListByUser`, {withCredentials:true} ). then(
       response => {
         this.setState({
           bucket: response.data
@@ -88,12 +88,12 @@ export default class Dashboard extends Component{
 
 
   handleCSDelete(eachSquad) {
-    axios.put('http://localhost:3001/api/updateSquad',{eachSquad}, {withCredentials:true}).then(res => {
-      axios.get('http://localhost:3001/api/getPastSquad', {withCredentials:true}).then( response => {
+    axios.put('/api/updateSquad',{eachSquad}, {withCredentials:true}).then(res => {
+      axios.get('/api/getPastSquad', {withCredentials:true}).then( response => {
         this.setState({
           pastSquad: response.data
         })
-        axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response =>
+        axios.get('/api/squadInfo', {withCredentials:true}).then( response =>
 
           this.setState({
             response: response.data,
@@ -121,14 +121,14 @@ export default class Dashboard extends Component{
 
   handlePSDelete(id){
     console.log('id passed into psdelete', id)
-    axios.delete(`http://localhost:3001/api/removeSquad/${id}`,{withCredentials:true}).then(res => {
-      axios.get('http://localhost:3001/api/getPastSquad', {withCredentials:true}).then( response => {
+    axios.delete(`/api/removeSquad/${id}`,{withCredentials:true}).then(res => {
+      axios.get('/api/getPastSquad', {withCredentials:true}).then( response => {
         this.setState({
           pastSquad: response.data
         })
      })
 
-     axios.get(`http://localhost:3001/api/getBktListByUser`, {withCredentials:true} ). then(
+     axios.get(`/api/getBktListByUser`, {withCredentials:true} ). then(
        response => {
          this.setState({
            bucket: response.data
@@ -142,8 +142,8 @@ export default class Dashboard extends Component{
 
   deleteTrip(id){
   console.log(id, 'this is the data send to function delete')
-  axios.delete(`http://localhost:3001/api/removeTrip/${id}`,{withCredentials:true}).then(res => {
-    axios.get('http://localhost:3001/api/viewTrip', {withCredentials:true}).then( response =>
+  axios.delete(`/api/removeTrip/${id}`,{withCredentials:true}).then(res => {
+    axios.get('/api/viewTrip', {withCredentials:true}).then( response =>
       this.setState({
         travelPlan: response.data,
       })

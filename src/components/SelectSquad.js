@@ -34,7 +34,7 @@ componentDidMount(){
 
 
 
-  axios.get('http://localhost:3001/api/squadInfo', {withCredentials:true}).then( response => {
+  axios.get('/api/squadInfo', {withCredentials:true}).then( response => {
     this.setState({
       all_squads: response.data,
     })

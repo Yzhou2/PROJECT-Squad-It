@@ -17,7 +17,7 @@ export default class SelectSquad extends Component {
 
 
 handleClick(squad_id){
-  axios.post('http://localhost:3001/api/postReviews', {userid:this.props.userid, review:this.state.review}, {withCredentials: true}).then(response => {
+  axios.post('/api/postReviews', {userid:this.props.userid, review:this.state.review}, {withCredentials: true}).then(response => {
     this.props.updateReview();
   });
 

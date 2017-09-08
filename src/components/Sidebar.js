@@ -19,7 +19,7 @@ export default class Sidebar extends Component {
 
 
   updateProfile(){
-    axios.get( 'http://localhost:3001/api/me', {withCredentials:true} ).then( response => {
+    axios.get( '/api/me', {withCredentials:true} ).then( response => {
     // console.log('response!!!!!!!',response.data)//empty
     this.setState({
       profile_img_url: response.data[0].profile_img_url,
@@ -32,7 +32,7 @@ export default class Sidebar extends Component {
 
   componentDidMount() {
     // console.log('mounted')
-  axios.get( 'http://localhost:3001/api/me', {withCredentials:true} ).then( response => {
+  axios.get( '/api/me', {withCredentials:true} ).then( response => {
     // console.log('response!!!!!!!',response.data[0].firstname)
     this.setState({
       firstname: response.data[0].firstname,

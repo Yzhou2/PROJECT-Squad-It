@@ -38,7 +38,7 @@ handleChange(event) {
 
 accept(){
   // console.log('clicked')
-  axios.post('http://localhost:3001/api/addSquadMember', {squad_id:this.state.notification.squad_id, user_id:this.state.notification.userid}, {withCredentials: true}).then(response => {
+  axios.post('/api/addSquadMember', {squad_id:this.state.notification.squad_id, user_id:this.state.notification.userid}, {withCredentials: true}).then(response => {
     console.log(response,'response from adding squad')
   });
 
@@ -73,7 +73,7 @@ componentDidMount() {
   //   console.log('lets check out the val', val)
   // })
   socket.on('new-notification', this.saveSocketInfo)
-  axios.get( 'http://localhost:3001/api/me', {withCredentials:true} ).then( response => {
+  axios.get( '/api/me', {withCredentials:true} ).then( response => {
   // console.log('response!!!!!!!',response.data)//empty
   this.setState({
     firstname: response.data[0].firstname,
@@ -85,7 +85,7 @@ componentDidMount() {
 
 
 updateProfile(){
-  axios.get( 'http://localhost:3001/api/me', {withCredentials:true} ).then( response => {
+  axios.get( '/api/me', {withCredentials:true} ).then( response => {
   // console.log('response!!!!!!!',response.data)//empty
   this.setState({
     profile_img_url: response.data[0].profile_img_url,
@@ -106,7 +106,7 @@ updateProfile(){
       <Link to="/logged/dashboard"><div className="leftMargin headerlogo"><img src='https://i.imgur.com/E7Zuby6.png' alt="fixed"/></div></Link>
 
         <div className="searchInput">
-        <input onChange={this.handleChange} placeholder="Currently Only Has Users For 'New York' In Our Database"/>
+        <input onChange={this.handleChange} placeholder="Currently Only Has Users For 'London' In Our Database"/>
 
         <Link to={`/logged/searchresultCT/${this.state.search}`}><button className="search"><i className="fa fa-search" aria-hidden="true"></i></button></Link>
         </div>

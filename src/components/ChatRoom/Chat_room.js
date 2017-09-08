@@ -43,8 +43,8 @@ star(bucketlist_id){
   })
 
   if (!this.state.stared) {
-    axios.get(`http://localhost:3001/api/addBktListStars/${bucketlist_id}`, {withCredentials:true}).then(res=>{
-      axios.get(`http://localhost:3001/api/getBktList/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ). then(
+    axios.get(`/api/addBktListStars/${bucketlist_id}`, {withCredentials:true}).then(res=>{
+      axios.get(`/api/getBktList/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ). then(
         response => {
           this.setState({
             bucket: response.data
@@ -94,19 +94,19 @@ handleKeyPress(event){
 
 componentDidMount(){
   socket.on('receive-msg', this.getMsg);
-  axios.get('http://localhost:3001/api/me', {withCredentials:true}).then(res=>{
+  axios.get('/api/me', {withCredentials:true}).then(res=>{
     console.log(res.data, 'user on state||||||||||||||||||||||')
     this.setState({
       user: res.data[0]
     })
   });
-  axios.post(`http://localhost:3001/api/getSquadMembers/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ).then(
+  axios.post(`/api/getSquadMembers/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ).then(
     response => {
       this.setState({
         members: response.data
       })
     });
-  axios.get(`http://localhost:3001/api/getBktList/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ). then(
+  axios.get(`/api/getBktList/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ). then(
     response => {
       this.setState({
         bucket: response.data
@@ -124,7 +124,7 @@ getMsg(msg){
 }
 
 updateBktList(){
-  axios.get(`http://localhost:3001/api/getBktList/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ). then(
+  axios.get(`/api/getBktList/${this.props.location.query.eachSquad.squad_id}`, {withCredentials:true} ). then(
     response => {
       this.setState({
         bucket: response.data
