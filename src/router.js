@@ -28,6 +28,7 @@ export default class Router extends Component{
 this.blur = this.blur.bind(this);
 this.unblur = this.unblur.bind(this);
 this.updateProfile = this.updateProfile.bind(this);
+this.updatecurrentSquad = this.updatecurrentSquad.bind(this);
   }
 
   blur(){
@@ -48,6 +49,10 @@ this.updateProfile = this.updateProfile.bind(this);
      this.Sidebar.updateProfile();
   }
 
+  updatecurrentSquad(){
+    this.Dashboard.updatecurrentSquad()
+  }
+
 
   render(){
     var blur = {
@@ -57,14 +62,15 @@ this.updateProfile = this.updateProfile.bind(this);
   return (
   <div>
     <div style={this.state.blur?blur:{}}>
-        <Header ref={instance => { this.Header = instance; }}/>
+        <Header ref={instance => { this.Header = instance; }} updatecurrentSquad={this.updatecurrentSquad}/>
         <div className="headerPH"></div>
         <Sidebar ref={instance => { this.Sidebar = instance; }}/>
         <div className="sidebarPH"></div>
     </div>
 
   <Switch>
-    <Route path="/logged/dashboard" render={props => <Dashboard blur = {this.blur} unblur = {this.unblur}/>}/>
+    <Route path="/logged/dashboard" render={props => <Dashboard blur = {this.blur} unblur = {this.unblur}
+                                                                        ref={instance => { this.Dashboard = instance; }}/>}/>
     <Route path="/logged/profile/me" render={props => <Profile blur = {this.blur}
                                                                unblur = {this.unblur}
                                                                updateProfile={this.updateProfile}/>}/>

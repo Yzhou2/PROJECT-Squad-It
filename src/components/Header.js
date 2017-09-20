@@ -45,6 +45,8 @@ accept(){
   this.setState({
     notificationOn:false
   })
+
+  this.props.updatecurrentSquad()
 }
 
 

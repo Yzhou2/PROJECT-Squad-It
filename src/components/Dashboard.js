@@ -41,6 +41,7 @@ export default class Dashboard extends Component{
   this.handleEachSquad = this.handleEachSquad.bind(this);
   this.dismissSafe = this.dismissSafe.bind(this);
   this.dismissProf = this.dismissProf.bind(this);
+  this.updatecurrentSquad = this.updatecurrentSquad.bind(this);
   }
 
 
@@ -221,6 +222,15 @@ handleEachSquad(eachSquad) {
   })
 }
 
+updatecurrentSquad(){
+  axios.get('/api/squadInfo', {withCredentials:true}).then( response =>{
+    // console.log('response from squad?????', response)
+    this.setState({
+      currentSquad: response.data,
+    })
+  });
+}
+
 
   render() {
 
@@ -264,7 +274,7 @@ handleEachSquad(eachSquad) {
                     </div>
                     <div className="todoText">
                       <div className="todoTitle">Safety</div>
-                      <div className="todpDescri">Whether you’re hosting a guest, surfing, or hanging out with fellow Couchsurfers, we want you to be safe.</div>
+                      <div className="todpDescri">Whether you’re hosting a guest, surfing, or hanging out with your Squads, we want you to be safe.</div>
                     </div>
                   </div>
 

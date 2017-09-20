@@ -44,6 +44,19 @@ video {
   margin-top: 10px;
 }
 
+.annotation {
+  margin-top: 60px;
+  padding: 5px 10px;
+  font-size: 19px;
+  line-height: 30px;
+  background-color: rgba(229, 122,19, 0.4);
+  width: fit-content;
+}
+
+.annotation span {
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -328,7 +341,7 @@ video {
   font-weight: normal;
   box-sizing: border-box;
   top: 45px;
-  right: 18px;
+  right: -140px;
 }
 
 .notif-drop:after {
@@ -342,6 +355,7 @@ video {
    z-index: 1;
    top: -10px;
    left: 142px;
+   display: none;
 }
 
 
@@ -388,6 +402,7 @@ video {
 }
 
 .notification {
+  position: relative;
   margin-right: 10px;
   display: flex;
   cursor: pointer;

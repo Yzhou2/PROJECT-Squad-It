@@ -26,9 +26,12 @@ export default class Explore extends Component {
           <div>Meet Your Squad On the Road</div>
           <div className="span">Create Lifetime Memories</div>
       <div className="landingBtn">
-          <a href={process.env.REACT_APP_LOGIN}><button className="signin">SIGN IN</button></a>
-          <a href={process.env.REACT_APP_LOGIN}><button className="main_Cta">JOIN</button></a>
+          <a href={process.env.REACT_APP_LOGIN}><button className="signin">JOIN</button></a>
+          <a href={process.env.REACT_APP_LOGIN}><button className="main_Cta">SIGN IN</button></a>
       </div>
+
+      <div className="annotation">Sign in by clicking Sign in button, then <span>log in with google</span> using demo email: <br/> squad.it.demo@gmail.com <br/> password: 13141516</div>
+
      </div>
 
     </div>
