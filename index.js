@@ -19,7 +19,6 @@ var corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
   optionsSuccessStatus: 200,
-  // 'Access-Control-Allow-Origin': '*'
 
  // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
